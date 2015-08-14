@@ -22,14 +22,16 @@ Examples: <script src="https://gist.github.com/tangothu/43dd6bce46674064a5f3.js"
 
 For each element in HTML, it will correspond to either block or inline element. We can overwrite the way how an element is displayed by using the display property. For example:
 
-<script src="https://gist.github.com/tangothu/51d08c16a68bf32af42d.js"></script> -- This will convert the div element to a span element
-<script src="https://gist.github.com/tangothu/b7206058192d0ea3ab88.js"></script> -- This will convert the span element to a div element
+<script src="https://gist.github.com/tangothu/51d08c16a68bf32af42d.js"></script> -- This will convert the *div* element to a *span* element
+<script src="https://gist.github.com/tangothu/b7206058192d0ea3ab88.js"></script> -- This will convert the *span* element to a *div* element
 
 What is display: inline-block then?
 
 inline-block is the element who can be defined with width and height, and also can be aligned in the same line with other element. 
 
 jsfiddle example to test the attributes:
-http://jsfiddle.net/ayzLztau/
+[Link](http://jsfiddle.net/ayzLztau/)
+
+
 
 
