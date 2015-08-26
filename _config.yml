@@ -2,6 +2,3 @@ permalink: /:year/:month/:title/
 author: Kevin
 highlighter: pygments
 paginate: 24
-markdown: redcarpet
-redcarpet:
-    extensions: ["fenced_code_blocks", "autolink", "tables", "strikethrough"]
