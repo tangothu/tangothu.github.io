@@ -1,3 +1,14 @@
+---
+layout: post
+title: MVP Design Pattern
+categories:
+- Programming
+tags:
+- Design Pattern
+- Client Side
+- GWT
+---
+
 ## 今天来写写MVP(Model View Presenter)设计模式。
 
 最近正在用GWT(Google Web Toolkit)框架做一个项目的前端代码逻辑，涉及到前端部件在页面上的组合、拼接及逻辑实现，因此随笔记录其中用到的MVP模式。
