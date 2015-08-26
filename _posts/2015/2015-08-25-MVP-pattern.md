@@ -67,7 +67,7 @@ View view = new View();
 Presenter presenter = new Presenter(view); // 这里用view去初始化presenter
 
 ### 解释说明
-上面的代码省略了很多实现细节，但通过将数据和视图分离，展现了MVP模式的一个最基本的实现。一旦某些数据要发生变化时，view会调用presenter中的方法：presenter.updateData()，从而把需要更新的数据传递给view。需要注意的是，presenter应该对view中的控件类型和数据结构**一无所知** - 亦即presenter并不需要知道数据在view中的存储结构是什么，只需把模型数据传递给view即可。模型的渲染工作应由view来完成。
+上面的代码省略了很多实现细节，但通过将数据和视图分离，展现了MVP模式的一个最基本的实现。一旦某些数据要发生变化时，view会调用presenter中的方法：presenter.updateData()，从而把需要更新的数据传递给view。需要注意的是，view中不包含任何model的信息，所有业务逻辑都由presenter去实现；此外，presenter应该对view中的控件类型和数据结构**一无所知** - 亦即presenter并不需要知道数据在view中的存储结构是什么，只需把模型数据传递给view即可。模型的渲染工作应由view来完成。
 
 用视图去初始化表现层只是一种可能的实现。我曾经看到过用表现层去初始化视图,但还是觉得以上的代码示例更能展现presenter和view的逻辑关系。根据MVP的定义，view应该是无状态的，所有view的活动和更新都应由presenter主导。此外,缓存和数据验证等工作都应由presenter来做，这样就能让view更加专一的完成其职责-通过控件显示数据。
 
