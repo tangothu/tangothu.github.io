@@ -77,11 +77,51 @@ As our circle of knowledge expands，so does the circumference of darkness surro
 
         </div>
         <div class="col-md-9">
-          <div class="article">
-            <div class="well">
-                <h1><a href="/jekyll-clean/2015/08/css-display">Aug 13, 2015 - CSS display usage</a></h1>
             
-            <div class="post-content">
+<div class="article">
+    <div class="well">
+        <h1><a href="/jekyll-clean/2015/08/css-top-and-margintop">Aug 14, 2015 - CSS position, top and margin-top</a></h1>
+        
+        <div class="content">
+            <h3 id="1-how-to-use-position-property-with-top-left-right-bottom">1.How to use position property with top,left,right,bottom</h3>
+
+<p>In CSS, top, left, right and bottom should always be used with position property. We define a css element called &quot;sub&quot; as below:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">.sub {
+  position: relative;
+  top: 10px;
+}
+</code></pre></div>
+<p>There are two common values of property ().
+For 
+<code>
+position: relative;
+</code>
+, the element defined with this attribute will &quot;relatively&quot; shift its position based on where it originally locates. </p>
+
+<p>For 
+<code>
+position: absolute;
+</code>
+, the element defined with this attribute will shift its position either:
+a. the parent element of sub is also defined with position, then sub will shift based on the parent&#39;s location. 
+b. sub doesn&#39;t have a parent who has position attribute; then sub will use HTML body and shift based on the body&#39;s location. </p>
+
+<h3 id="2-what-is-margin-top-what-39-s-the-difference-between-top-and-margin-top">2.What is margin-top? What&#39;s the difference between top and margin-top?</h3>
+
+<p>margin-top is to add distance on the margin of element, it will shift the block element along with its subsequent elements which are also in document flow (will push them further down). top, on the other hand, is used to shift the element without having effects on the surrounding elements. </p>
+
+<p>Here is the link to display position absolute vs. position relative.
+<a href="http://jsfiddle.net/v1Lfc5hg/">Link</a></p>
+
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class="well">
+        <h1><a href="/jekyll-clean/2015/08/css-display">Aug 13, 2015 - CSS display usage</a></h1>
+        
+        <div class="content">
             <p>I&#39;ve been recently writing client side code which uses css style. One important layout property in CSS is called display. Here I will write down my understanding of display property in CSS.</p>
 
 <p>There are multiple values display property can be assigned: inline, block, inline-block (introduced in CSS 2.1). In order to differenciate them, we need to take a look at HTML elements types first. </p>
@@ -106,24 +146,57 @@ Examples: <script src="https://gist.github.com/tangothu/43dd6bce46674064a5f3.js"
 <p>jsfiddle example to test the attributes:
 <a href="http://jsfiddle.net/ayzLztau/">Link</a></p>
 
-            </div>
-            
-            </div>
-          </div>
-          <div class="pagination">
-              
-                <a class="btn btn-default" href="/jekyll-clean/2015/08/css-top-and-margintop" class="next">Newer Post</a>
-              
-              
-                <a class="btn btn-default" href="/jekyll-clean/2015/08/css-display" class="previous">Older Post</a>
-              
+        </div>
+    </div>
 </div>
+
+<div class="article">
+    <div class="well">
+        <h1><a href="/jekyll-clean/2015/08/css-display">Aug 13, 2015 - CSS display usage</a></h1>
+        
+        <div class="content">
+            <p>I&#39;ve been recently writing client side code which uses css style. One important layout property in CSS is called display. Here I will write down my understanding of display property in CSS.</p>
+
+<p>There are multiple values display property can be assigned: inline, block, inline-block (introduced in CSS 2.1). In order to differenciate them, we need to take a look at HTML elements types first. </p>
+
+<p>In HTML, elements can be classifies as two types: block elements and inline elements. </p>
+
+<p>block element: Every element will start from a new line. The element&#39;s width, height, and margin size can be set. By default, the element&#39;s width and height will be the same as its parents&#39; width and height.
+Examples: <script src="https://gist.github.com/tangothu/701b69b0d3f603b431a5.js"></script></p>
+
+<p>inline element: Element that does not start a new line. Will ignore top and bottom margin settings as well as width and height. The element width and height is the word&#39;s (or the image&#39;s) width and height.
+Examples: <script src="https://gist.github.com/tangothu/43dd6bce46674064a5f3.js"></script></p>
+
+<p>For each element in HTML, it will correspond to either block or inline element. We can overwrite the way how an element is displayed by using the display property. For example:</p>
+
+<p><script src="https://gist.github.com/tangothu/51d08c16a68bf32af42d.js"></script> -- This will convert the <em>div</em> element to a <em>span</em> element
+<script src="https://gist.github.com/tangothu/b7206058192d0ea3ab88.js"></script> -- This will convert the <em>span</em> element to a <em>div</em> element</p>
+
+<p>What is display: inline-block then?</p>
+
+<p>inline-block is the element who can be defined with width and height, and also can be aligned in the same line with other element. </p>
+
+<p>jsfiddle example to test the attributes:
+<a href="http://jsfiddle.net/ayzLztau/">Link</a></p>
 
         </div>
     </div>
 </div>
 
 
+<div class="pagination">
+  
+      
+        <a class="btn btn-default" href="/jekyll-clean/index.html" class="previous">Newer</a>
+      
+  
+  <span class="page_number ">Page: 2 of 2</span>
+  
+</div>
+
+        </div>
+    </div>
+</div>
 
 <div class="container-fluid">
     <div class="row-fluid">

@@ -1,58 +1,40 @@
----
-layout: default
----
+{% include header.html %}
 
-<section class="post">
-{{ content }}
-</section>
-<section class="meta">
-<span class="author">
-  <a>{{ site.author }}</a>
-</span>
-<span class="time">
-  /
-  <time datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date:"%Y-%m-%d" }}</time>
-</span>
-<br />
-<span class="license">
-  Published under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">(CC) BY-NC-SA</a>
-</span>
-{% if page.categories %}
-<span class="categories">
-  in categories
-  {% for cat in page.categories %}
-  <a href="/categories/#{{ cat }}" title="{{ cat }}">{{ cat }}</a>&nbsp;
-  {% endfor %}
-</span>
-{% endif %}
-{% if page.tags %}
-<span class="tags">
-  tagged with 
-  {% for tag in page.tags %}
-  <a href="/tags/#{{ tag }}" title="{{ tag }}">{{ tag }}</a>&nbsp;
-  {% endfor %}
-</span>
-{% endif %}
-</section>
-{% include comments.md %}
-<script type="text/javascript">
-$(function(){
-  $(document).keydown(function(e) {
-    var url = false;
-        if (e.which == 37 || e.which == 74) {  // Left arrow and J
-            {% if page.previous %}
-        url = '{{ site.url }}{{ page.previous.url }}';
-        {% endif %}
-        }
-        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
-            {% if page.next %}
-        url = '{{ site.url }}{{ page.next.url }}';
-        {% endif %}
-        }
-        if (url) {
-            window.location = url;
-        }
-  });
-})
-</script>
+<div class="container container-left">
+    <div class="row">
+        <div class="col-md-3 hidden-xs">
+            {% include sidebar.html %}
+        </div>
+        <div class="col-md-9">
+          <div class="article">
+            <div class="well">
+                <h1><a href="{{ site.baseurl}}{{ page.url }}">{{ page.date | date: "%b %-d, %Y" }} - {{ page.title }}</a></h1>
+            {% if site.comments == true and page.comments == true and site.disqus != '' %}
+                <p class="author"><a href="#disqus_thread">Comments</a></p>
+            {% endif %}
+            <div class="post-content">
+            {{ content }}
+            </div>
+            {% if page.comments %}
+            <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            {% endif %}
+            </div>
+          </div>
+          <div class="pagination">
+              {% if page.next %}
+                <a class="btn btn-default" href="{{ site.baseurl}}{{ page.next.url }}" class="next">Newer Post</a>
+              {% endif %}
+              {% if page.previous %}
+                <a class="btn btn-default" href="{{ site.baseurl}}{{ page.previous.url }}" class="previous">Older Post</a>
+              {% endif %}
+</div>
 
+        </div>
+    </div>
+</div>
+
+{% include disqus-comments.html %}
+{% include footer.html %}

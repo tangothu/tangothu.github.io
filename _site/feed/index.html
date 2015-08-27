@@ -4,133 +4,248 @@
         xmlns:atom="http://www.w3.org/2005/Atom"
   >
   <channel>
-    <title>Kevin</title>
-    <link href="/feed/" rel="self" />
+    <title></title>
+    <link href="http://tangothu.github.io/feed/" rel="self" />
     <link href="http://geeklu.com" />
-    <lastBuildDate>2015-08-26T00:38:52-04:00</lastBuildDate>
+    <lastBuildDate>2015-08-26T22:38:50-04:00</lastBuildDate>
     <webMaster>kejinlu@gmail.com</webMaster>
     
     <item>
       <title>MVP Design Pattern</title>
-      <link href="/2015/08/MVP-pattern/"/>
+      <link href="http://tangothu.github.io/2015/08/MVP-pattern"/>
       <pubDate>2015-08-25T00:00:00-04:00</pubDate>
-      <author>Kevin</author>
-      <guid>/2015/08/MVP-pattern</guid>
-      <content:encoded><![CDATA[<h2 id="mvpmodel-view-presenter">今天来写写MVP(Model View Presenter)设计模式。</h2>
+      <author></author>
+      <guid>http://tangothu.github.io/2015/08/MVP-pattern</guid>
+      <content:encoded><![CDATA[<h2 id="今天来写写mvp-model-view-presenter-设计模式。">今天来写写MVP(Model View Presenter)设计模式。</h2>
 
 <p>最近正在用GWT(Google Web Toolkit)框架做一个项目的前端代码逻辑，涉及到前端部件在页面上的组合、拼接及逻辑实现，因此随笔记录其中用到的MVP模式。</p>
 
 <p>MVP模式在安卓开发中应用十分广泛。在有用户界面的程序里，模型(Model)和视图(View)的功能不同：模型是用于存储相应业务逻辑的数据，而视图则是用于将不同模型的数据组合在一起，显示它们。为了更好的区分模型和视图对应的功能，MVP模式就诞生了。</p>
 
-<h3 id="mvp">MVP三者的功能分别是什么</h3>
+<h3 id="mvp三者的功能分别是什么">MVP三者的功能分别是什么</h3>
+
 <blockquote>
-  <ul>
-    <li>视图层(View): 用于展示数据，一般存储相应的小控件(Widget)和相应格式(CSS)的信息，同时保有一个对Presenter的引用;</li>
-    <li>模型层(Model): 用于存储数据，可以想象其是一些字段(String)和数字(double/float)组成的POJO类;</li>
-    <li>表现层(Presenter) 用于解藕视图和模型的关系。可用于读取业务逻辑数据，并且把读取的数据更新到相应视图上。或有相应事件发生，去更新/重绘视图层的逻辑。</li>
-  </ul>
+<ul>
+<li>视图层(View): 用于展示数据，一般存储相应的小控件(Widget)和相应格式(CSS)的信息，同时保有一个对Presenter的引用;</li>
+<li>模型层(Model): 用于存储数据，可以想象其是一些字段(String)和数字(double/float)组成的POJO类;</li>
+<li>表现层(Presenter) 用于解藕视图和模型的关系。可用于读取业务逻辑数据，并且把读取的数据更新到相应视图上。或有相应事件发生，去更新/重绘视图层的逻辑。</li>
+</ul>
 </blockquote>
 
-<h3 id="section">代码举例</h3>
+<h3 id="代码举例">代码举例</h3>
 
 <p>在Java代码中，应该如何定义这三者，他们的关系又是什么呢？如下代码给出了示例:</p>
-
-<p>```java
-public class Presenter {
+<div class="highlight"><pre><code class="language-text" data-lang="text">public class Presenter {
   private final View view;
-  private Model model;</p>
+  private Model model;
 
-<p>public Presenter(View view) {
+  public Presenter(View view) {
     // Note in this constructor the view is initialized first
     // Then we will use the view to initialize presenter and bind view with presenter
     this.view = view;
     view.setPresenter(this);
-  }</p>
+  }
 
-<p>public View getView() {
+  public View getView() {
     return view;
-  }</p>
+  }
 
-<p>public void loadModel() {
-    model.setData(“Katie”,25);
-  }</p>
+  public void loadModel() {
+    model.setData(&quot;Katie&quot;,25);
+  }
 
-<p>public void updateData() {
+  public void updateData() {
     //should process and update the data
   }
-}</p>
+}
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">public class View {
+  private Presenter presenter;
 
-<p>public class View {
-  private Presenter presenter;</p>
-
-<p>public View(){
+  public View(){
     //do some construction to the widget within this view 
-  }</p>
+  }
 
-<p>@UiHandler(“button”)
+  @UiHandler(&quot;button&quot;)
   void click(ClickEvent e) {
     presenter.updateData();
   }
-}</p>
-
-<p>public class Model {
+}
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">public class Model {
   private String name;
-  private double age;</p>
+  private double age;
 
-<p>public void setData(String name, double age) {
+  public void setData(String name, double age) {
     this.name = name;
     this.age = age;
   }
 }
-```</p>
-
+</code></pre></div>
 <p>应用举例：
 View view = new View();
 Presenter presenter = new Presenter(view); // 这里用view去初始化presenter</p>
 
-<h3 id="section-1">解释说明</h3>
+<h3 id="解释说明">解释说明</h3>
+
 <p>上面的代码省略了很多实现细节，但通过将数据和视图分离，展现了MVP模式的一个最基本的实现。一旦某些数据要发生变化时，view会调用presenter中的方法：presenter.updateData()，从而把需要更新的数据传递给view。需要注意的是，view中不包含任何model的信息，所有业务逻辑都由presenter去实现；此外，presenter应该对view中的控件类型和数据结构<strong>一无所知</strong> - 亦即presenter并不需要知道数据在view中的存储结构是什么，只需把模型数据传递给view即可。模型的渲染工作应由view来完成。</p>
 
 <p>用视图去初始化表现层只是一种可能的实现。我曾经看到过用表现层去初始化视图,但还是觉得以上的代码示例更能展现presenter和view的逻辑关系。根据MVP的定义，view应该是无状态的，所有view的活动和更新都应由presenter主导。此外,缓存和数据验证等工作都应由presenter来做，这样就能让view更加专一的完成其职责-通过控件显示数据。</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>MVP Design Pattern</title>
+      <link href="http://tangothu.github.io/2015/08/MVP-pattern"/>
+      <pubDate>2015-08-25T00:00:00-04:00</pubDate>
+      <author></author>
+      <guid>http://tangothu.github.io/2015/08/MVP-pattern</guid>
+      <content:encoded><![CDATA[<h2 id="今天来写写mvp-model-view-presenter-设计模式。">今天来写写MVP(Model View Presenter)设计模式。</h2>
 
+<p>最近正在用GWT(Google Web Toolkit)框架做一个项目的前端代码逻辑，涉及到前端部件在页面上的组合、拼接及逻辑实现，因此随笔记录其中用到的MVP模式。</p>
+
+<p>MVP模式在安卓开发中应用十分广泛。在有用户界面的程序里，模型(Model)和视图(View)的功能不同：模型是用于存储相应业务逻辑的数据，而视图则是用于将不同模型的数据组合在一起，显示它们。为了更好的区分模型和视图对应的功能，MVP模式就诞生了。</p>
+
+<h3 id="mvp三者的功能分别是什么">MVP三者的功能分别是什么</h3>
+
+<blockquote>
+<ul>
+<li>视图层(View): 用于展示数据，一般存储相应的小控件(Widget)和相应格式(CSS)的信息，同时保有一个对Presenter的引用;</li>
+<li>模型层(Model): 用于存储数据，可以想象其是一些字段(String)和数字(double/float)组成的POJO类;</li>
+<li>表现层(Presenter) 用于解藕视图和模型的关系。可用于读取业务逻辑数据，并且把读取的数据更新到相应视图上。或有相应事件发生，去更新/重绘视图层的逻辑。</li>
+</ul>
+</blockquote>
+
+<h3 id="代码举例">代码举例</h3>
+
+<p>在Java代码中，应该如何定义这三者，他们的关系又是什么呢？如下代码给出了示例:</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Presenter</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="kd">final</span> <span class="n">View</span> <span class="n">view</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="n">Model</span> <span class="n">model</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">Presenter</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Note in this constructor the view is initialized first</span>
+    <span class="c1">// Then we will use the view to initialize presenter and bind view with presenter</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">view</span> <span class="o">=</span> <span class="n">view</span><span class="o">;</span>
+    <span class="n">view</span><span class="o">.</span><span class="na">setPresenter</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">view</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">loadModel</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">model</span><span class="o">.</span><span class="na">setData</span><span class="o">(</span><span class="s">&quot;Katie&quot;</span><span class="o">,</span><span class="mi">25</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateData</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">//should process and update the data</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">View</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="n">Presenter</span> <span class="n">presenter</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">View</span><span class="o">(){</span>
+    <span class="c1">//do some construction to the widget within this view </span>
+  <span class="o">}</span>
+
+  <span class="nd">@UiHandler</span><span class="o">(</span><span class="s">&quot;button&quot;</span><span class="o">)</span>
+  <span class="kt">void</span> <span class="nf">click</span><span class="o">(</span><span class="n">ClickEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">presenter</span><span class="o">.</span><span class="na">updateData</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Model</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kt">double</span> <span class="n">age</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setData</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">double</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>应用举例：
+View view = new View();
+Presenter presenter = new Presenter(view); // 这里用view去初始化presenter</p>
+
+<h3 id="解释说明">解释说明</h3>
+
+<p>上面的代码省略了很多实现细节，但通过将数据和视图分离，展现了MVP模式的一个最基本的实现。一旦某些数据要发生变化时，view会调用presenter中的方法：presenter.updateData()，从而把需要更新的数据传递给view。需要注意的是，view中不包含任何model的信息，所有业务逻辑都由presenter去实现；此外，presenter应该对view中的控件类型和数据结构<strong>一无所知</strong> - 亦即presenter并不需要知道数据在view中的存储结构是什么，只需把模型数据传递给view即可。模型的渲染工作应由view来完成。</p>
+
+<p>用视图去初始化表现层只是一种可能的实现。我曾经看到过用表现层去初始化视图,但还是觉得以上的代码示例更能展现presenter和view的逻辑关系。根据MVP的定义，view应该是无状态的，所有view的活动和更新都应由presenter主导。此外,缓存和数据验证等工作都应由presenter来做，这样就能让view更加专一的完成其职责-通过控件显示数据。</p>
 ]]></content:encoded>
     </item>
     
     <item>
       <title>CSS position, top and margin-top</title>
-      <link href="/2015/08/css-top-and-margintop/"/>
+      <link href="http://tangothu.github.io/2015/08/css-top-and-margintop"/>
       <pubDate>2015-08-14T00:00:00-04:00</pubDate>
-      <author>Kevin</author>
-      <guid>/2015/08/css-top-and-margintop</guid>
-      <content:encoded><![CDATA[<h3 id="how-to-use-position-property-with-topleftrightbottom">1.How to use position property with top,left,right,bottom</h3>
+      <author></author>
+      <guid>http://tangothu.github.io/2015/08/css-top-and-margintop</guid>
+      <content:encoded><![CDATA[<h3 id="1-how-to-use-position-property-with-top-left-right-bottom">1.How to use position property with top,left,right,bottom</h3>
 
-<p>In CSS, top, left, right and bottom should always be used with position property. We define a css element called “sub” as below:</p>
-
-<p><code>
-.sub {
+<p>In CSS, top, left, right and bottom should always be used with position property. We define a css element called &quot;sub&quot; as below:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">.sub {
   position: relative;
   top: 10px;
 }
-</code></p>
-
+</code></pre></div>
 <p>There are two common values of property ().
 For 
 <code>
 position: relative;
 </code>
-, the element defined with this attribute will “relatively” shift its position based on where it originally locates.</p>
+, the element defined with this attribute will &quot;relatively&quot; shift its position based on where it originally locates. </p>
 
 <p>For 
 <code>
 position: absolute;
 </code>
 , the element defined with this attribute will shift its position either:
-a. the parent element of sub is also defined with position, then sub will shift based on the parent’s location. 
-b. sub doesn’t have a parent who has position attribute; then sub will use HTML body and shift based on the body’s location.</p>
+a. the parent element of sub is also defined with position, then sub will shift based on the parent&#39;s location. 
+b. sub doesn&#39;t have a parent who has position attribute; then sub will use HTML body and shift based on the body&#39;s location. </p>
 
-<h3 id="what-is-margin-top-whats-the-difference-between-top-and-margin-top">2.What is margin-top? What’s the difference between top and margin-top?</h3>
+<h3 id="2-what-is-margin-top-what-39-s-the-difference-between-top-and-margin-top">2.What is margin-top? What&#39;s the difference between top and margin-top?</h3>
 
-<p>margin-top is to add distance on the margin of element, it will shift the block element along with its subsequent elements which are also in document flow (will push them further down). top, on the other hand, is used to shift the element without having effects on the surrounding elements.</p>
+<p>margin-top is to add distance on the margin of element, it will shift the block element along with its subsequent elements which are also in document flow (will push them further down). top, on the other hand, is used to shift the element without having effects on the surrounding elements. </p>
+
+<p>Here is the link to display position absolute vs. position relative.
+<a href="http://jsfiddle.net/v1Lfc5hg/">Link</a></p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>CSS position, top and margin-top</title>
+      <link href="http://tangothu.github.io/2015/08/css-top-and-margintop"/>
+      <pubDate>2015-08-14T00:00:00-04:00</pubDate>
+      <author></author>
+      <guid>http://tangothu.github.io/2015/08/css-top-and-margintop</guid>
+      <content:encoded><![CDATA[<h3 id="1-how-to-use-position-property-with-top-left-right-bottom">1.How to use position property with top,left,right,bottom</h3>
+
+<p>In CSS, top, left, right and bottom should always be used with position property. We define a css element called &quot;sub&quot; as below:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">.sub {
+  position: relative;
+  top: 10px;
+}
+</code></pre></div>
+<p>There are two common values of property ().
+For 
+<code>
+position: relative;
+</code>
+, the element defined with this attribute will &quot;relatively&quot; shift its position based on where it originally locates. </p>
+
+<p>For 
+<code>
+position: absolute;
+</code>
+, the element defined with this attribute will shift its position either:
+a. the parent element of sub is also defined with position, then sub will shift based on the parent&#39;s location. 
+b. sub doesn&#39;t have a parent who has position attribute; then sub will use HTML body and shift based on the body&#39;s location. </p>
+
+<h3 id="2-what-is-margin-top-what-39-s-the-difference-between-top-and-margin-top">2.What is margin-top? What&#39;s the difference between top and margin-top?</h3>
+
+<p>margin-top is to add distance on the margin of element, it will shift the block element along with its subsequent elements which are also in document flow (will push them further down). top, on the other hand, is used to shift the element without having effects on the surrounding elements. </p>
 
 <p>Here is the link to display position absolute vs. position relative.
 <a href="http://jsfiddle.net/v1Lfc5hg/">Link</a></p>
@@ -139,35 +254,65 @@ b. sub doesn’t have a parent who has position attribute; then sub will use HTM
     
     <item>
       <title>CSS display usage</title>
-      <link href="/2015/08/css-display/"/>
+      <link href="http://tangothu.github.io/2015/08/css-display"/>
       <pubDate>2015-08-13T00:00:00-04:00</pubDate>
-      <author>Kevin</author>
-      <guid>/2015/08/css-display</guid>
-      <content:encoded><![CDATA[<p>I’ve been recently writing client side code which uses css style. One important layout property in CSS is called display. Here I will write down my understanding of display property in CSS.</p>
+      <author></author>
+      <guid>http://tangothu.github.io/2015/08/css-display</guid>
+      <content:encoded><![CDATA[<p>I&#39;ve been recently writing client side code which uses css style. One important layout property in CSS is called display. Here I will write down my understanding of display property in CSS.</p>
 
-<p>There are multiple values display property can be assigned: inline, block, inline-block (introduced in CSS 2.1). In order to differenciate them, we need to take a look at HTML elements types first.</p>
+<p>There are multiple values display property can be assigned: inline, block, inline-block (introduced in CSS 2.1). In order to differenciate them, we need to take a look at HTML elements types first. </p>
 
-<p>In HTML, elements can be classifies as two types: block elements and inline elements.</p>
+<p>In HTML, elements can be classifies as two types: block elements and inline elements. </p>
 
-<p>block element: Every element will start from a new line. The element’s width, height, and margin size can be set. By default, the element’s width and height will be the same as its parents’ width and height.
+<p>block element: Every element will start from a new line. The element&#39;s width, height, and margin size can be set. By default, the element&#39;s width and height will be the same as its parents&#39; width and height.
 Examples: <script src="https://gist.github.com/tangothu/701b69b0d3f603b431a5.js"></script></p>
 
-<p>inline element: Element that does not start a new line. Will ignore top and bottom margin settings as well as width and height. The element width and height is the word’s (or the image’s) width and height.
+<p>inline element: Element that does not start a new line. Will ignore top and bottom margin settings as well as width and height. The element width and height is the word&#39;s (or the image&#39;s) width and height.
 Examples: <script src="https://gist.github.com/tangothu/43dd6bce46674064a5f3.js"></script></p>
 
 <p>For each element in HTML, it will correspond to either block or inline element. We can overwrite the way how an element is displayed by using the display property. For example:</p>
 
-<script src="https://gist.github.com/tangothu/51d08c16a68bf32af42d.js"></script>
-<p>– This will convert the <em>div</em> element to a <em>span</em> element
-<script src="https://gist.github.com/tangothu/b7206058192d0ea3ab88.js"></script> – This will convert the <em>span</em> element to a <em>div</em> element</p>
+<p><script src="https://gist.github.com/tangothu/51d08c16a68bf32af42d.js"></script> -- This will convert the <em>div</em> element to a <em>span</em> element
+<script src="https://gist.github.com/tangothu/b7206058192d0ea3ab88.js"></script> -- This will convert the <em>span</em> element to a <em>div</em> element</p>
 
 <p>What is display: inline-block then?</p>
 
-<p>inline-block is the element who can be defined with width and height, and also can be aligned in the same line with other element.</p>
+<p>inline-block is the element who can be defined with width and height, and also can be aligned in the same line with other element. </p>
 
 <p>jsfiddle example to test the attributes:
 <a href="http://jsfiddle.net/ayzLztau/">Link</a></p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>CSS display usage</title>
+      <link href="http://tangothu.github.io/2015/08/css-display"/>
+      <pubDate>2015-08-13T00:00:00-04:00</pubDate>
+      <author></author>
+      <guid>http://tangothu.github.io/2015/08/css-display</guid>
+      <content:encoded><![CDATA[<p>I&#39;ve been recently writing client side code which uses css style. One important layout property in CSS is called display. Here I will write down my understanding of display property in CSS.</p>
 
+<p>There are multiple values display property can be assigned: inline, block, inline-block (introduced in CSS 2.1). In order to differenciate them, we need to take a look at HTML elements types first. </p>
+
+<p>In HTML, elements can be classifies as two types: block elements and inline elements. </p>
+
+<p>block element: Every element will start from a new line. The element&#39;s width, height, and margin size can be set. By default, the element&#39;s width and height will be the same as its parents&#39; width and height.
+Examples: <script src="https://gist.github.com/tangothu/701b69b0d3f603b431a5.js"></script></p>
+
+<p>inline element: Element that does not start a new line. Will ignore top and bottom margin settings as well as width and height. The element width and height is the word&#39;s (or the image&#39;s) width and height.
+Examples: <script src="https://gist.github.com/tangothu/43dd6bce46674064a5f3.js"></script></p>
+
+<p>For each element in HTML, it will correspond to either block or inline element. We can overwrite the way how an element is displayed by using the display property. For example:</p>
+
+<p><script src="https://gist.github.com/tangothu/51d08c16a68bf32af42d.js"></script> -- This will convert the <em>div</em> element to a <em>span</em> element
+<script src="https://gist.github.com/tangothu/b7206058192d0ea3ab88.js"></script> -- This will convert the <em>span</em> element to a <em>div</em> element</p>
+
+<p>What is display: inline-block then?</p>
+
+<p>inline-block is the element who can be defined with width and height, and also can be aligned in the same line with other element. </p>
+
+<p>jsfiddle example to test the attributes:
+<a href="http://jsfiddle.net/ayzLztau/">Link</a></p>
 ]]></content:encoded>
     </item>
     
