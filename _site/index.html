@@ -55,10 +55,6 @@ As our circle of knowledge expands，so does the circumference of darkness surro
         
           <li><a href="/jekyll-clean/2015/08/MVP-pattern">MVP Design Pattern</a></li>
         
-          <li><a href="/jekyll-clean/2015/08/MVP-pattern">MVP Design Pattern</a></li>
-        
-          <li><a href="/jekyll-clean/2015/08/css-top-and-margintop">CSS position, top and margin-top</a></li>
-        
           <li><a href="/jekyll-clean/2015/08/css-top-and-margintop">CSS position, top and margin-top</a></li>
         
           <li><a href="/jekyll-clean/2015/08/css-display">CSS display usage</a></li>
@@ -163,91 +159,6 @@ Presenter presenter = new Presenter(view); // 这里用view去初始化presenter
 
 <div class="article">
     <div class="well">
-        <h1><a href="/jekyll-clean/2015/08/MVP-pattern">Aug 25, 2015 - MVP Design Pattern</a></h1>
-        
-        <div class="content">
-            <h2 id="今天来写写mvp-model-view-presenter-设计模式。">今天来写写MVP(Model View Presenter)设计模式。</h2>
-
-<p>最近正在用GWT(Google Web Toolkit)框架做一个项目的前端代码逻辑，涉及到前端部件在页面上的组合、拼接及逻辑实现，因此随笔记录其中用到的MVP模式。</p>
-
-<p>MVP模式在安卓开发中应用十分广泛。在有用户界面的程序里，模型(Model)和视图(View)的功能不同：模型是用于存储相应业务逻辑的数据，而视图则是用于将不同模型的数据组合在一起，显示它们。为了更好的区分模型和视图对应的功能，MVP模式就诞生了。</p>
-
-<h3 id="mvp三者的功能分别是什么">MVP三者的功能分别是什么</h3>
-
-<blockquote>
-<ul>
-<li>视图层(View): 用于展示数据，一般存储相应的小控件(Widget)和相应格式(CSS)的信息，同时保有一个对Presenter的引用;</li>
-<li>模型层(Model): 用于存储数据，可以想象其是一些字段(String)和数字(double/float)组成的POJO类;</li>
-<li>表现层(Presenter) 用于解藕视图和模型的关系。可用于读取业务逻辑数据，并且把读取的数据更新到相应视图上。或有相应事件发生，去更新/重绘视图层的逻辑。</li>
-</ul>
-</blockquote>
-
-<h3 id="代码举例">代码举例</h3>
-
-<p>在Java代码中，应该如何定义这三者，他们的关系又是什么呢？如下代码给出了示例:</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Presenter</span> <span class="o">{</span>
-  <span class="kd">private</span> <span class="kd">final</span> <span class="n">View</span> <span class="n">view</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="n">Model</span> <span class="n">model</span><span class="o">;</span>
-
-  <span class="kd">public</span> <span class="nf">Presenter</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// Note in this constructor the view is initialized first</span>
-    <span class="c1">// Then we will use the view to initialize presenter and bind view with presenter</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">view</span> <span class="o">=</span> <span class="n">view</span><span class="o">;</span>
-    <span class="n">view</span><span class="o">.</span><span class="na">setPresenter</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-  <span class="o">}</span>
-
-  <span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">view</span><span class="o">;</span>
-  <span class="o">}</span>
-
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">loadModel</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">model</span><span class="o">.</span><span class="na">setData</span><span class="o">(</span><span class="s">&quot;Katie&quot;</span><span class="o">,</span><span class="mi">25</span><span class="o">);</span>
-  <span class="o">}</span>
-
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateData</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">//should process and update the data</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">View</span> <span class="o">{</span>
-  <span class="kd">private</span> <span class="n">Presenter</span> <span class="n">presenter</span><span class="o">;</span>
-
-  <span class="kd">public</span> <span class="nf">View</span><span class="o">(){</span>
-    <span class="c1">//do some construction to the widget within this view </span>
-  <span class="o">}</span>
-
-  <span class="nd">@UiHandler</span><span class="o">(</span><span class="s">&quot;button&quot;</span><span class="o">)</span>
-  <span class="kt">void</span> <span class="nf">click</span><span class="o">(</span><span class="n">ClickEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">presenter</span><span class="o">.</span><span class="na">updateData</span><span class="o">();</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Model</span> <span class="o">{</span>
-  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="kt">double</span> <span class="n">age</span><span class="o">;</span>
-
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setData</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">double</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div>
-<p>应用举例：
-View view = new View();
-Presenter presenter = new Presenter(view); // 这里用view去初始化presenter</p>
-
-<h3 id="解释说明">解释说明</h3>
-
-<p>上面的代码省略了很多实现细节，但通过将数据和视图分离，展现了MVP模式的一个最基本的实现。一旦某些数据要发生变化时，view会调用presenter中的方法：presenter.updateData()，从而把需要更新的数据传递给view。需要注意的是，view中不包含任何model的信息，所有业务逻辑都由presenter去实现；此外，presenter应该对view中的控件类型和数据结构<strong>一无所知</strong> - 亦即presenter并不需要知道数据在view中的存储结构是什么，只需把模型数据传递给view即可。模型的渲染工作应由view来完成。</p>
-
-<p>用视图去初始化表现层只是一种可能的实现。我曾经看到过用表现层去初始化视图,但还是觉得以上的代码示例更能展现presenter和view的逻辑关系。根据MVP的定义，view应该是无状态的，所有view的活动和更新都应由presenter主导。此外,缓存和数据验证等工作都应由presenter来做，这样就能让view更加专一的完成其职责-通过控件显示数据。</p>
-
-        </div>
-    </div>
-</div>
-
-<div class="article">
-    <div class="well">
         <h1><a href="/jekyll-clean/2015/08/css-top-and-margintop">Aug 14, 2015 - CSS position, top and margin-top</a></h1>
         
         <div class="content">
@@ -285,12 +196,43 @@ b. sub doesn&#39;t have a parent who has position attribute; then sub will use H
     </div>
 </div>
 
+<div class="article">
+    <div class="well">
+        <h1><a href="/jekyll-clean/2015/08/css-display">Aug 13, 2015 - CSS display usage</a></h1>
+        
+        <div class="content">
+            <p>I&#39;ve been recently writing client side code which uses css style. One important layout property in CSS is called display. Here I will write down my understanding of display property in CSS.</p>
+
+<p>There are multiple values display property can be assigned: inline, block, inline-block (introduced in CSS 2.1). In order to differenciate them, we need to take a look at HTML elements types first. </p>
+
+<p>In HTML, elements can be classifies as two types: block elements and inline elements. </p>
+
+<p>block element: Every element will start from a new line. The element&#39;s width, height, and margin size can be set. By default, the element&#39;s width and height will be the same as its parents&#39; width and height.
+Examples: <script src="https://gist.github.com/tangothu/701b69b0d3f603b431a5.js"></script></p>
+
+<p>inline element: Element that does not start a new line. Will ignore top and bottom margin settings as well as width and height. The element width and height is the word&#39;s (or the image&#39;s) width and height.
+Examples: <script src="https://gist.github.com/tangothu/43dd6bce46674064a5f3.js"></script></p>
+
+<p>For each element in HTML, it will correspond to either block or inline element. We can overwrite the way how an element is displayed by using the display property. For example:</p>
+
+<p><script src="https://gist.github.com/tangothu/51d08c16a68bf32af42d.js"></script> -- This will convert the <em>div</em> element to a <em>span</em> element
+<script src="https://gist.github.com/tangothu/b7206058192d0ea3ab88.js"></script> -- This will convert the <em>span</em> element to a <em>div</em> element</p>
+
+<p>What is display: inline-block then?</p>
+
+<p>inline-block is the element who can be defined with width and height, and also can be aligned in the same line with other element. </p>
+
+<p>jsfiddle example to test the attributes:
+<a href="http://jsfiddle.net/ayzLztau/">Link</a></p>
+
+        </div>
+    </div>
+</div>
+
 
 <div class="pagination">
   
-  <span class="page_number ">Page: 1 of 2</span>
-  
-    <a class="btn btn-default" href="/jekyll-clean/page2" class="next">Older</a>
+  <span class="page_number ">Page: 1 of 1</span>
   
 </div>
 

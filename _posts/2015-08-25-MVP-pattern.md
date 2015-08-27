@@ -24,7 +24,7 @@ MVP模式在安卓开发中应用十分广泛。在有用户界面的程序里�
 
 在Java代码中，应该如何定义这三者，他们的关系又是什么呢？如下代码给出了示例:
 
-```java
+```
 public class Presenter {
   private final View view;
   private Model model;
@@ -48,7 +48,9 @@ public class Presenter {
     //should process and update the data
   }
 }
+```
 
+```
 public class View {
   private Presenter presenter;
   
@@ -61,7 +63,9 @@ public class View {
     presenter.updateData();
   }
 }
+```
 
+```
 public class Model {
   private String name;
   private double age;
