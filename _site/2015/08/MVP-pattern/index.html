@@ -97,55 +97,55 @@ As our circle of knowledge expands，so does the circumference of darkness surro
 <h3 id="代码举例">代码举例</h3>
 
 <p>在Java代码中，应该如何定义这三者，他们的关系又是什么呢？如下代码给出了示例:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">public class Presenter {
-  private final View view;
-  private Model model;
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Presenter</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="kd">final</span> <span class="n">View</span> <span class="n">view</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="n">Model</span> <span class="n">model</span><span class="o">;</span>
 
-  public Presenter(View view) {
-    // Note in this constructor the view is initialized first
-    // Then we will use the view to initialize presenter and bind view with presenter
-    this.view = view;
-    view.setPresenter(this);
-  }
+  <span class="kd">public</span> <span class="nf">Presenter</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Note in this constructor the view is initialized first</span>
+    <span class="c1">// Then we will use the view to initialize presenter and bind view with presenter</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">view</span> <span class="o">=</span> <span class="n">view</span><span class="o">;</span>
+    <span class="n">view</span><span class="o">.</span><span class="na">setPresenter</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="o">}</span>
 
-  public View getView() {
-    return view;
-  }
+  <span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">view</span><span class="o">;</span>
+  <span class="o">}</span>
 
-  public void loadModel() {
-    model.setData(&quot;Katie&quot;,25);
-  }
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">loadModel</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">model</span><span class="o">.</span><span class="na">setData</span><span class="o">(</span><span class="s">&quot;Katie&quot;</span><span class="o">,</span><span class="mi">25</span><span class="o">);</span>
+  <span class="o">}</span>
 
-  public void updateData() {
-    //should process and update the data
-  }
-}
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">public class View {
-  private Presenter presenter;
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateData</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">//should process and update the data</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">View</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="n">Presenter</span> <span class="n">presenter</span><span class="o">;</span>
 
-  public View(){
-    //do some construction to the widget within this view 
-  }
+  <span class="kd">public</span> <span class="nf">View</span><span class="o">(){</span>
+    <span class="c1">//do some construction to the widget within this view </span>
+  <span class="o">}</span>
 
-  @UiHandler(&quot;button&quot;)
-  void click(ClickEvent e) {
-    presenter.updateData();
-  }
-}
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">public class Model {
-  private String name;
-  private double age;
+  <span class="nd">@UiHandler</span><span class="o">(</span><span class="s">&quot;button&quot;</span><span class="o">)</span>
+  <span class="kt">void</span> <span class="nf">click</span><span class="o">(</span><span class="n">ClickEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">presenter</span><span class="o">.</span><span class="na">updateData</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Model</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kt">double</span> <span class="n">age</span><span class="o">;</span>
 
-  public void setData(String name, double age) {
-    this.name = name;
-    this.age = age;
-  }
-}
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setData</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">double</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div>
-<p>应用举例：
-View view = new View();
-Presenter presenter = new Presenter(view); // 这里用view去初始化presenter</p>
-
+<p>应用举例：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">View</span> <span class="n">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">View</span><span class="o">();</span>
+<span class="n">Presenter</span> <span class="n">presenter</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Presenter</span><span class="o">(</span><span class="n">view</span><span class="o">);</span> <span class="c1">// 这里用view去初始化presenter</span>
+</code></pre></div>
 <h3 id="解释说明">解释说明</h3>
 
 <p>上面的代码省略了很多实现细节，但通过将数据和视图分离，展现了MVP模式的一个最基本的实现。一旦某些数据要发生变化时，view会调用presenter中的方法：presenter.updateData()，从而把需要更新的数据传递给view。需要注意的是，view中不包含任何model的信息，所有业务逻辑都由presenter去实现；此外，presenter应该对view中的控件类型和数据结构<strong>一无所知</strong> - 亦即presenter并不需要知道数据在view中的存储结构是什么，只需把模型数据传递给view即可。模型的渲染工作应由view来完成。</p>

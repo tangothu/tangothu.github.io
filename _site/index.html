@@ -98,55 +98,55 @@ As our circle of knowledge expands，so does the circumference of darkness surro
 <h3 id="代码举例">代码举例</h3>
 
 <p>在Java代码中，应该如何定义这三者，他们的关系又是什么呢？如下代码给出了示例:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">public class Presenter {
-  private final View view;
-  private Model model;
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Presenter</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="kd">final</span> <span class="n">View</span> <span class="n">view</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="n">Model</span> <span class="n">model</span><span class="o">;</span>
 
-  public Presenter(View view) {
-    // Note in this constructor the view is initialized first
-    // Then we will use the view to initialize presenter and bind view with presenter
-    this.view = view;
-    view.setPresenter(this);
-  }
+  <span class="kd">public</span> <span class="nf">Presenter</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Note in this constructor the view is initialized first</span>
+    <span class="c1">// Then we will use the view to initialize presenter and bind view with presenter</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">view</span> <span class="o">=</span> <span class="n">view</span><span class="o">;</span>
+    <span class="n">view</span><span class="o">.</span><span class="na">setPresenter</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="o">}</span>
 
-  public View getView() {
-    return view;
-  }
+  <span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">view</span><span class="o">;</span>
+  <span class="o">}</span>
 
-  public void loadModel() {
-    model.setData(&quot;Katie&quot;,25);
-  }
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">loadModel</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">model</span><span class="o">.</span><span class="na">setData</span><span class="o">(</span><span class="s">&quot;Katie&quot;</span><span class="o">,</span><span class="mi">25</span><span class="o">);</span>
+  <span class="o">}</span>
 
-  public void updateData() {
-    //should process and update the data
-  }
-}
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">public class View {
-  private Presenter presenter;
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateData</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">//should process and update the data</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">View</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="n">Presenter</span> <span class="n">presenter</span><span class="o">;</span>
 
-  public View(){
-    //do some construction to the widget within this view 
-  }
+  <span class="kd">public</span> <span class="nf">View</span><span class="o">(){</span>
+    <span class="c1">//do some construction to the widget within this view </span>
+  <span class="o">}</span>
 
-  @UiHandler(&quot;button&quot;)
-  void click(ClickEvent e) {
-    presenter.updateData();
-  }
-}
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">public class Model {
-  private String name;
-  private double age;
+  <span class="nd">@UiHandler</span><span class="o">(</span><span class="s">&quot;button&quot;</span><span class="o">)</span>
+  <span class="kt">void</span> <span class="nf">click</span><span class="o">(</span><span class="n">ClickEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">presenter</span><span class="o">.</span><span class="na">updateData</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Model</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kt">double</span> <span class="n">age</span><span class="o">;</span>
 
-  public void setData(String name, double age) {
-    this.name = name;
-    this.age = age;
-  }
-}
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setData</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">double</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div>
-<p>应用举例：
-View view = new View();
-Presenter presenter = new Presenter(view); // 这里用view去初始化presenter</p>
-
+<p>应用举例：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">View</span> <span class="n">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">View</span><span class="o">();</span>
+<span class="n">Presenter</span> <span class="n">presenter</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Presenter</span><span class="o">(</span><span class="n">view</span><span class="o">);</span> <span class="c1">// 这里用view去初始化presenter</span>
+</code></pre></div>
 <h3 id="解释说明">解释说明</h3>
 
 <p>上面的代码省略了很多实现细节，但通过将数据和视图分离，展现了MVP模式的一个最基本的实现。一旦某些数据要发生变化时，view会调用presenter中的方法：presenter.updateData()，从而把需要更新的数据传递给view。需要注意的是，view中不包含任何model的信息，所有业务逻辑都由presenter去实现；此外，presenter应该对view中的控件类型和数据结构<strong>一无所知</strong> - 亦即presenter并不需要知道数据在view中的存储结构是什么，只需把模型数据传递给view即可。模型的渲染工作应由view来完成。</p>
@@ -162,7 +162,9 @@ Presenter presenter = new Presenter(view); // 这里用view去初始化presenter
         <h1><a href="/2015/08/css-top-and-margintop">Aug 14, 2015 - CSS position, top and margin-top</a></h1>
         
         <div class="content">
-            <h3 id="1-how-to-use-position-property-with-top-left-right-bottom">1.How to use position property with top,left,right,bottom</h3>
+            <h2 id="what-39-s-the-difference-between-top-and-margin-top-in-css">What&#39;s the difference between top and margin-top in CSS?</h2>
+
+<h4 id="how-to-use-position-property-with-top-left-right-bottom">How to use position property with top,left,right,bottom</h4>
 
 <p>In CSS, top, left, right and bottom should always be used with position property. We define a css element called &quot;sub&quot; as below:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">.sub {
@@ -185,7 +187,7 @@ position: absolute;
 a. the parent element of sub is also defined with position, then sub will shift based on the parent&#39;s location. 
 b. sub doesn&#39;t have a parent who has position attribute; then sub will use HTML body and shift based on the body&#39;s location. </p>
 
-<h3 id="2-what-is-margin-top-what-39-s-the-difference-between-top-and-margin-top">2.What is margin-top? What&#39;s the difference between top and margin-top?</h3>
+<h4 id="what-is-margin-top-what-39-s-the-difference-between-top-and-margin-top">What is margin-top? What&#39;s the difference between top and margin-top?</h4>
 
 <p>margin-top is to add distance on the margin of element, it will shift the block element along with its subsequent elements which are also in document flow (will push them further down). top, on the other hand, is used to shift the element without having effects on the surrounding elements. </p>
 
@@ -201,22 +203,36 @@ b. sub doesn&#39;t have a parent who has position attribute; then sub will use H
         <h1><a href="/2015/08/css-display">Aug 13, 2015 - CSS display usage</a></h1>
         
         <div class="content">
-            <p>I&#39;ve been recently writing client side code which uses css style. One important layout property in CSS is called display. Here I will write down my understanding of display property in CSS.</p>
+            <h2 id="css-property-display">CSS property - display</h2>
+
+<p>I&#39;ve been recently writing client side code which uses css style. One important layout property in CSS is called display. Here I will write down my understanding of display property in CSS.</p>
 
 <p>There are multiple values display property can be assigned: inline, block, inline-block (introduced in CSS 2.1). In order to differenciate them, we need to take a look at HTML elements types first. </p>
 
 <p>In HTML, elements can be classifies as two types: block elements and inline elements. </p>
 
 <p>block element: Every element will start from a new line. The element&#39;s width, height, and margin size can be set. By default, the element&#39;s width and height will be the same as its parents&#39; width and height.
-Examples: <script src="https://gist.github.com/tangothu/701b69b0d3f603b431a5.js"></script></p>
-
+Examples: </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;div&gt; &lt;p&gt; &lt;th&gt; &lt;tr&gt; &lt;table&gt;
+</code></pre></div>
 <p>inline element: Element that does not start a new line. Will ignore top and bottom margin settings as well as width and height. The element width and height is the word&#39;s (or the image&#39;s) width and height.
-Examples: <script src="https://gist.github.com/tangothu/43dd6bce46674064a5f3.js"></script></p>
-
+Examples: </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;span&gt; &lt;input&gt; &lt;img&gt; &lt;label&gt; &lt;a&gt;
+</code></pre></div>
 <p>For each element in HTML, it will correspond to either block or inline element. We can overwrite the way how an element is displayed by using the display property. For example:</p>
 
-<p><script src="https://gist.github.com/tangothu/51d08c16a68bf32af42d.js"></script> -- This will convert the <em>div</em> element to a <em>span</em> element
-<script src="https://gist.github.com/tangothu/b7206058192d0ea3ab88.js"></script> -- This will convert the <em>span</em> element to a <em>div</em> element</p>
+<blockquote>
+<ul>
+<li><p>This will convert the <em>div</em> element to a <em>span</em> element
+<code>
+&lt;div style=&quot;display: inline&quot;&gt; 
+</code></p></li>
+<li><p>This will convert the <em>span</em> element to a <em>div</em> element
+<code>
+&lt;span style=&quot;display: block&quot;&gt;
+</code></p></li>
+</ul>
+</blockquote>
 
 <p>What is display: inline-block then?</p>
 

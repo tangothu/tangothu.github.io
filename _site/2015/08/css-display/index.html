@@ -78,22 +78,36 @@ As our circle of knowledge expands，so does the circumference of darkness surro
                 <h1><a href="/2015/08/css-display">Aug 13, 2015 - CSS display usage</a></h1>
             
             <div class="post-content">
-            <p>I&#39;ve been recently writing client side code which uses css style. One important layout property in CSS is called display. Here I will write down my understanding of display property in CSS.</p>
+            <h2 id="css-property-display">CSS property - display</h2>
+
+<p>I&#39;ve been recently writing client side code which uses css style. One important layout property in CSS is called display. Here I will write down my understanding of display property in CSS.</p>
 
 <p>There are multiple values display property can be assigned: inline, block, inline-block (introduced in CSS 2.1). In order to differenciate them, we need to take a look at HTML elements types first. </p>
 
 <p>In HTML, elements can be classifies as two types: block elements and inline elements. </p>
 
 <p>block element: Every element will start from a new line. The element&#39;s width, height, and margin size can be set. By default, the element&#39;s width and height will be the same as its parents&#39; width and height.
-Examples: <script src="https://gist.github.com/tangothu/701b69b0d3f603b431a5.js"></script></p>
-
+Examples: </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;div&gt; &lt;p&gt; &lt;th&gt; &lt;tr&gt; &lt;table&gt;
+</code></pre></div>
 <p>inline element: Element that does not start a new line. Will ignore top and bottom margin settings as well as width and height. The element width and height is the word&#39;s (or the image&#39;s) width and height.
-Examples: <script src="https://gist.github.com/tangothu/43dd6bce46674064a5f3.js"></script></p>
-
+Examples: </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;span&gt; &lt;input&gt; &lt;img&gt; &lt;label&gt; &lt;a&gt;
+</code></pre></div>
 <p>For each element in HTML, it will correspond to either block or inline element. We can overwrite the way how an element is displayed by using the display property. For example:</p>
 
-<p><script src="https://gist.github.com/tangothu/51d08c16a68bf32af42d.js"></script> -- This will convert the <em>div</em> element to a <em>span</em> element
-<script src="https://gist.github.com/tangothu/b7206058192d0ea3ab88.js"></script> -- This will convert the <em>span</em> element to a <em>div</em> element</p>
+<blockquote>
+<ul>
+<li><p>This will convert the <em>div</em> element to a <em>span</em> element
+<code>
+&lt;div style=&quot;display: inline&quot;&gt; 
+</code></p></li>
+<li><p>This will convert the <em>span</em> element to a <em>div</em> element
+<code>
+&lt;span style=&quot;display: block&quot;&gt;
+</code></p></li>
+</ul>
+</blockquote>
 
 <p>What is display: inline-block then?</p>
 

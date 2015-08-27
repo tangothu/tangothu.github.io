@@ -24,7 +24,7 @@ MVP模式在安卓开发中应用十分广泛。在有用户界面的程序里�
 
 在Java代码中，应该如何定义这三者，他们的关系又是什么呢？如下代码给出了示例:
 
-```
+```java
 public class Presenter {
   private final View view;
   private Model model;
@@ -50,7 +50,7 @@ public class Presenter {
 }
 ```
 
-```
+```java
 public class View {
   private Presenter presenter;
   
@@ -65,7 +65,7 @@ public class View {
 }
 ```
 
-```
+```java
 public class Model {
   private String name;
   private double age;
@@ -78,8 +78,11 @@ public class Model {
 ```
 
 应用举例：
+
+```java
 View view = new View();
 Presenter presenter = new Presenter(view); // 这里用view去初始化presenter
+```
 
 ### 解释说明
 上面的代码省略了很多实现细节，但通过将数据和视图分离，展现了MVP模式的一个最基本的实现。一旦某些数据要发生变化时，view会调用presenter中的方法：presenter.updateData()，从而把需要更新的数据传递给view。需要注意的是，view中不包含任何model的信息，所有业务逻辑都由presenter去实现；此外，presenter应该对view中的控件类型和数据结构**一无所知** - 亦即presenter并不需要知道数据在view中的存储结构是什么，只需把模型数据传递给view即可。模型的渲染工作应由view来完成。
