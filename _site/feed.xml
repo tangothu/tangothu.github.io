@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Kevin Tan's blog</title>
+		<description>As our circle of knowledge expands，so does the circumference of darkness surrounding it - Albert Einstein</description>
+		<link>http://tangothu.github.io/jekyll-clean</link>
+		<atom:link href="http://tangothu.github.io/jekyll-clean/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>MVP Design Pattern</title>
+				<description>&lt;h2 id=&quot;今天来写写mvp-model-view-presenter-设计模式。&quot;&gt;今天来写写MVP(Model View Presenter)设计模式。&lt;/h2&gt;
+
+&lt;p&gt;最近正在用GWT(Google Web Toolkit)框架做一个项目的前端代码逻辑，涉及到前端部件在页面上的组合、拼接及逻辑实现，因此随笔记录其中用到的MVP模式。&lt;/p&gt;
+
+&lt;p&gt;MVP模式在安卓开发中应用十分广泛。在有用户界面的程序里，模型(Model)和视图(View)的功能不同：模型是用于存储相应业务逻辑的数据，而视图则是用于将不同模型的数据组合在一起，显示它们。为了更好的区分模型和视图对应的功能，MVP模式就诞生了。&lt;/p&gt;
+
+&lt;h3 id=&quot;mvp三者的功能分别是什么&quot;&gt;MVP三者的功能分别是什么&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;视图层(View): 用于展示数据，一般存储相应的小控件(Widget)和相应格式(CSS)的信息，同时保有一个对Presenter的引用;&lt;/li&gt;
+&lt;li&gt;模型层(Model): 用于存储数据，可以想象其是一些字段(String)和数字(double/float)组成的POJO类;&lt;/li&gt;
+&lt;li&gt;表现层(Presenter) 用于解藕视图和模型的关系。可用于读取业务逻辑数据，并且把读取的数据更新到相应视图上。或有相应事件发生，去更新/重绘视图层的逻辑。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;代码举例&quot;&gt;代码举例&lt;/h3&gt;
+
+&lt;p&gt;在Java代码中，应该如何定义这三者，他们的关系又是什么呢？如下代码给出了示例:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public class Presenter {
+  private final View view;
+  private Model model;
+
+  public Presenter(View view) {
+    // Note in this constructor the view is initialized first
+    // Then we will use the view to initialize presenter and bind view with presenter
+    this.view = view;
+    view.setPresenter(this);
+  }
+
+  public View getView() {
+    return view;
+  }
+
+  public void loadModel() {
+    model.setData(&amp;quot;Katie&amp;quot;,25);
+  }
+
+  public void updateData() {
+    //should process and update the data
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public class View {
+  private Presenter presenter;
+
+  public View(){
+    //do some construction to the widget within this view 
+  }
+
+  @UiHandler(&amp;quot;button&amp;quot;)
+  void click(ClickEvent e) {
+    presenter.updateData();
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public class Model {
+  private String name;
+  private double age;
+
+  public void setData(String name, double age) {
+    this.name = name;
+    this.age = age;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;应用举例：
+View view = new View();
+Presenter presenter = new Presenter(view); // 这里用view去初始化presenter&lt;/p&gt;
+
+&lt;h3 id=&quot;解释说明&quot;&gt;解释说明&lt;/h3&gt;
+
+&lt;p&gt;上面的代码省略了很多实现细节，但通过将数据和视图分离，展现了MVP模式的一个最基本的实现。一旦某些数据要发生变化时，view会调用presenter中的方法：presenter.updateData()，从而把需要更新的数据传递给view。需要注意的是，view中不包含任何model的信息，所有业务逻辑都由presenter去实现；此外，presenter应该对view中的控件类型和数据结构&lt;strong&gt;一无所知&lt;/strong&gt; - 亦即presenter并不需要知道数据在view中的存储结构是什么，只需把模型数据传递给view即可。模型的渲染工作应由view来完成。&lt;/p&gt;
+
+&lt;p&gt;用视图去初始化表现层只是一种可能的实现。我曾经看到过用表现层去初始化视图,但还是觉得以上的代码示例更能展现presenter和view的逻辑关系。根据MVP的定义，view应该是无状态的，所有view的活动和更新都应由presenter主导。此外,缓存和数据验证等工作都应由presenter来做，这样就能让view更加专一的完成其职责-通过控件显示数据。&lt;/p&gt;
+</description>
+				<pubDate>Tue, 25 Aug 2015 00:00:00 -0400</pubDate>
+				<link>http://tangothu.github.io/jekyll-clean/2015/08/MVP-pattern</link>
+				<guid isPermaLink="true">http://tangothu.github.io/jekyll-clean/2015/08/MVP-pattern</guid>
+			</item>
+		
+			<item>
+				<title>CSS position, top and margin-top</title>
+				<description>&lt;h3 id=&quot;1-how-to-use-position-property-with-top-left-right-bottom&quot;&gt;1.How to use position property with top,left,right,bottom&lt;/h3&gt;
+
+&lt;p&gt;In CSS, top, left, right and bottom should always be used with position property. We define a css element called &amp;quot;sub&amp;quot; as below:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;.sub {
+  position: relative;
+  top: 10px;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;There are two common values of property ().
+For 
+&lt;code&gt;
+position: relative;
+&lt;/code&gt;
+, the element defined with this attribute will &amp;quot;relatively&amp;quot; shift its position based on where it originally locates. &lt;/p&gt;
+
+&lt;p&gt;For 
+&lt;code&gt;
+position: absolute;
+&lt;/code&gt;
+, the element defined with this attribute will shift its position either:
+a. the parent element of sub is also defined with position, then sub will shift based on the parent&amp;#39;s location. 
+b. sub doesn&amp;#39;t have a parent who has position attribute; then sub will use HTML body and shift based on the body&amp;#39;s location. &lt;/p&gt;
+
+&lt;h3 id=&quot;2-what-is-margin-top-what-39-s-the-difference-between-top-and-margin-top&quot;&gt;2.What is margin-top? What&amp;#39;s the difference between top and margin-top?&lt;/h3&gt;
+
+&lt;p&gt;margin-top is to add distance on the margin of element, it will shift the block element along with its subsequent elements which are also in document flow (will push them further down). top, on the other hand, is used to shift the element without having effects on the surrounding elements. &lt;/p&gt;
+
+&lt;p&gt;Here is the link to display position absolute vs. position relative.
+&lt;a href=&quot;http://jsfiddle.net/v1Lfc5hg/&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;
+</description>
+				<pubDate>Fri, 14 Aug 2015 00:00:00 -0400</pubDate>
+				<link>http://tangothu.github.io/jekyll-clean/2015/08/css-top-and-margintop</link>
+				<guid isPermaLink="true">http://tangothu.github.io/jekyll-clean/2015/08/css-top-and-margintop</guid>
+			</item>
+		
+			<item>
+				<title>CSS display usage</title>
+				<description>&lt;p&gt;I&amp;#39;ve been recently writing client side code which uses css style. One important layout property in CSS is called display. Here I will write down my understanding of display property in CSS.&lt;/p&gt;
+
+&lt;p&gt;There are multiple values display property can be assigned: inline, block, inline-block (introduced in CSS 2.1). In order to differenciate them, we need to take a look at HTML elements types first. &lt;/p&gt;
+
+&lt;p&gt;In HTML, elements can be classifies as two types: block elements and inline elements. &lt;/p&gt;
+
+&lt;p&gt;block element: Every element will start from a new line. The element&amp;#39;s width, height, and margin size can be set. By default, the element&amp;#39;s width and height will be the same as its parents&amp;#39; width and height.
+Examples: &lt;script src=&quot;https://gist.github.com/tangothu/701b69b0d3f603b431a5.js&quot;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;inline element: Element that does not start a new line. Will ignore top and bottom margin settings as well as width and height. The element width and height is the word&amp;#39;s (or the image&amp;#39;s) width and height.
+Examples: &lt;script src=&quot;https://gist.github.com/tangothu/43dd6bce46674064a5f3.js&quot;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;For each element in HTML, it will correspond to either block or inline element. We can overwrite the way how an element is displayed by using the display property. For example:&lt;/p&gt;
+
+&lt;p&gt;&lt;script src=&quot;https://gist.github.com/tangothu/51d08c16a68bf32af42d.js&quot;&gt;&lt;/script&gt; -- This will convert the &lt;em&gt;div&lt;/em&gt; element to a &lt;em&gt;span&lt;/em&gt; element
+&lt;script src=&quot;https://gist.github.com/tangothu/b7206058192d0ea3ab88.js&quot;&gt;&lt;/script&gt; -- This will convert the &lt;em&gt;span&lt;/em&gt; element to a &lt;em&gt;div&lt;/em&gt; element&lt;/p&gt;
+
+&lt;p&gt;What is display: inline-block then?&lt;/p&gt;
+
+&lt;p&gt;inline-block is the element who can be defined with width and height, and also can be aligned in the same line with other element. &lt;/p&gt;
+
+&lt;p&gt;jsfiddle example to test the attributes:
+&lt;a href=&quot;http://jsfiddle.net/ayzLztau/&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;
+</description>
+				<pubDate>Thu, 13 Aug 2015 00:00:00 -0400</pubDate>
+				<link>http://tangothu.github.io/jekyll-clean/2015/08/css-display</link>
+				<guid isPermaLink="true">http://tangothu.github.io/jekyll-clean/2015/08/css-display</guid>
+			</item>
+		
+	</channel>
+</rss>
