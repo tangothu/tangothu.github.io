@@ -77,173 +77,11 @@ As our circle of knowledge expands，so does the circumference of darkness surro
 
         </div>
         <div class="col-md-9">
+          <div class="article">
+            <div class="well">
+                <h1><a href="/2015/08/GWT-intro">Aug 26, 2015 - Brief intro to Google Web Toolkit</a></h1>
             
-<div class="article">
-    <div class="well">
-        <h1><a href="/2015/09/python-data-structures">Sep 1, 2015 - Python data structure usage summary</a></h1>
-        
-        <div class="content">
-            <h2 id="python-data-structure-usage-list-tuple-dict-and-set">Python data structure usage - list, tuple, dict and set</h2>
-
-<p>This article is to write notes to record how to define, insert/remove, access and iterate python data structures.</p>
-
-<h3 id="list">list()</h3>
-
-<ul>
-<li>Define - use square brackets [] to define.</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">classmates = [&#39;Macro&#39;,&#39;Bob&#39;,&#39;Julia&#39;]
-</code></pre></div>
-<ul>
-<li>Insert</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">position = 1
-classmates.insert(position,&#39;Aaron&#39;) # or use classmates.append(&#39;Stephen&#39;) which will append data to the last position of list 
-</code></pre></div>
-<ul>
-<li>Remove</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">classmates.remove(&#39;Aaron&#39;) # or use classmates.pop(), which will return the last element 
-</code></pre></div>
-<ul>
-<li>Access</li>
-</ul>
-
-<p>We can use square bracket with index to access element
-<code>
-classmates[0] 
-</code></p>
-
-<ul>
-<li>Iterate</li>
-</ul>
-
-<p>We can use enumerate, to loop list. Enumerate method will get the iterator of list, yield its index and related element, and loop the index until the very end of list. It will create an <em>indexed series</em> of data.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">for i, item in enumerate(classmates):
-    print i, item
-</code></pre></div>
-<p>Alternatively we can also use</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">for i in range(0, len(classmates)):
-    print i, classmates[i]
-</code></pre></div>
-<p>Note, in Python, list() is not <em>hashable</em>. What hashable means is an object will have a hashvalue (provided by its own <strong>hash</strong>() method and can be compared to other objects) which never changes during its lifetime. For list(), since it is not immutable, the value of itself might be changed, thus if it has hashvalue it will get changed too during its lifetime. That&#39;s why python list() doesn&#39;t have <strong>hash</strong>() method and is not hashable.</p>
-
-<h3 id="tuple">tuple()</h3>
-
-<ul>
-<li>Define - use parenthesis () to define</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">month = (&#39;Tom&#39;,&#39;Feb&#39;,&#39;Dec&#39;)
-</code></pre></div>
-<ul>
-<li>Insert</li>
-</ul>
-
-<p>Once a tuple is created, it cannot be inserted with an element since it is immutable.</p>
-
-<ul>
-<li>Remove</li>
-</ul>
-
-<p>Once a tuple is created, it cannot remove an element since it is immutable.</p>
-
-<ul>
-<li>Access</li>
-</ul>
-
-<p>We can use square bracket with index to access element</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">month[0] 
-</code></pre></div>
-<ul>
-<li>Iterate
-We can use enumerate, to loop tuple.</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">for i, item in enumerate(month):
-    print i, item
-</code></pre></div>
-<h3 id="set">set()</h3>
-
-<ul>
-<li>Define - use set() with a list in the parenthesis to define it </li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">s = set([3,4,5])
-</code></pre></div>
-<ul>
-<li>Insert</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">s.add(&#39;5&#39;) # s will now become set([&#39;5&#39;,3,4,5])
-</code></pre></div>
-<ul>
-<li>Remove</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">s.remove(5) # s will not become set([&#39;5&#39;,3,4])
-</code></pre></div>
-<ul>
-<li>Access</li>
-</ul>
-
-<p>Note we cannot use s[0] to access an element in set because set is unordered collection without index.</p>
-
-<ul>
-<li>Iterate</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">for i in s
-    print i
-</code></pre></div>
-<h3 id="dict">dict()</h3>
-
-<p>Dict, in Python, is a <em>mapping</em> type which maps a key to a value. The mapping mechanism is implemented by hash function to the key. 
-Note in dict, the key has to be hashable (thus immutable) - this is because each time when requesting a value using a key, hash(key) should produce the same result, or otherwise you will get two values based on the same key - that means the definition of dict is wrong! As a result, the key should be hashable, or in other words, the hash(key) should always be the same. 
-If the key can be changed, then the hash functino will also return a different value, which shouldn&#39;t happen. Thus, the key has to be immutable (list cannot be the key in dict.)</p>
-
-<ul>
-<li>Define - use curly brackets {} to define.</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">students = {&#39;kevin&#39;:60,&#39;michael&#39;:70,&#39;jason&#39;:65}
-</code></pre></div>
-<ul>
-<li>Insert</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">students[&#39;mike&#39;] = 80
-</code></pre></div>
-<ul>
-<li>Remove</li>
-</ul>
-
-<p>Use key word <em>del</em></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">del students[&#39;mike&#39;]
-</code></pre></div>
-<p>or </p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">students.pop(&#39;mike&#39;) # this will return 80 and remove &#39;mike&#39;:80 in dict
-</code></pre></div>
-<ul>
-<li>Access</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">students[&#39;mike&#39;]
-</code></pre></div>
-<p>or</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">score=students.get(&#39;mike&#39;)
-</code></pre></div>
-<ul>
-<li>Iterate</li>
-</ul>
-
-<p>Use items() method</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">for key, value in students.items()
-    print key, value
-</code></pre></div>
-<p>Reference:
-<a href="https://wiki.python.org/moin/DictionaryKeys">Python Dictionary Keys</a></p>
-
-        </div>
-    </div>
-</div>
-
-<div class="article">
-    <div class="well">
-        <h1><a href="/2015/08/GWT-intro">Aug 26, 2015 - Brief intro to Google Web Toolkit</a></h1>
-        
-        <div class="content">
+            <div class="post-content">
             <h2 id="简单介绍对java-web-框架-google-web-toolkit的理解和使用体会。">简单介绍对Java web 框架 - Google Web Toolkit的理解和使用体会。</h2>
 
 <p>根据维基百科<a href="https://zh.wikipedia.org/wiki/Google_Web_Toolkit">Link</a>，GWT是一个前端使用JavaScript，后端使用Java的AJAX framework。GWT可以用于构建网站或手机app，在一个java项目中整合前端/后端代码。在当下的网页开发前端技术中，总是需要用到html, css及javascript等编程语言完成对网页前端的编写，运用java实现后端代码逻辑。GWT框架可以使对javascript甚至html不甚熟悉的程序员也能开发动态的网页，仅使用java代码就能实现对网页局部的数据验证、更新(即完成AJAX的功能)，以减轻程序员开发的负担。可以说GWT是后端java程序员的福音！</p>
@@ -333,105 +171,24 @@ If the key can be changed, then the hash functino will also return a different v
 initWidget(binder.createAndBindUi(this)); 
 语句会用GWT的uibinder绑定这个java class，并把其对应的javascript代码生成出来。</p>
 
-        </div>
-    </div>
-</div>
-
-<div class="article">
-    <div class="well">
-        <h1><a href="/2015/08/MVP-pattern">Aug 25, 2015 - MVP Design Pattern</a></h1>
-        
-        <div class="content">
-            <h2 id="今天来写写mvp-model-view-presenter-设计模式。">今天来写写MVP(Model View Presenter)设计模式。</h2>
-
-<p>最近正在用GWT(Google Web Toolkit)框架做一个项目的前端代码逻辑，涉及到前端部件在页面上的组合、拼接及逻辑实现，因此随笔记录其中用到的MVP模式。</p>
-
-<p>MVP模式在安卓开发中应用十分广泛。在有用户界面的程序里，模型(Model)和视图(View)的功能不同：模型是用于存储相应业务逻辑的数据，而视图则是用于将不同模型的数据组合在一起，显示它们。为了更好的区分模型和视图对应的功能，MVP模式就诞生了。</p>
-
-<h3 id="mvp三者的功能分别是什么">MVP三者的功能分别是什么</h3>
-
-<blockquote>
-<ul>
-<li>视图层(View): 用于展示数据，一般存储相应的小控件(Widget)和相应格式(CSS)的信息，同时保有一个对Presenter的引用;</li>
-<li>模型层(Model): 用于存储数据，可以想象其是一些字段(String)和数字(double/float)组成的POJO类;</li>
-<li>表现层(Presenter) 用于解藕视图和模型的关系。可用于读取业务逻辑数据，并且把读取的数据更新到相应视图上。或有相应事件发生，去更新/重绘视图层的逻辑。</li>
-</ul>
-</blockquote>
-
-<h3 id="代码举例">代码举例</h3>
-
-<p>在Java代码中，应该如何定义这三者，他们的关系又是什么呢？如下代码给出了示例:</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Presenter</span> <span class="o">{</span>
-  <span class="kd">private</span> <span class="kd">final</span> <span class="n">View</span> <span class="n">view</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="n">Model</span> <span class="n">model</span><span class="o">;</span>
-
-  <span class="kd">public</span> <span class="nf">Presenter</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// Note in this constructor the view is initialized first</span>
-    <span class="c1">// Then we will use the view to initialize presenter and bind view with presenter</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">view</span> <span class="o">=</span> <span class="n">view</span><span class="o">;</span>
-    <span class="n">view</span><span class="o">.</span><span class="na">setPresenter</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-  <span class="o">}</span>
-
-  <span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">view</span><span class="o">;</span>
-  <span class="o">}</span>
-
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">loadModel</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">model</span><span class="o">.</span><span class="na">setData</span><span class="o">(</span><span class="s">&quot;Katie&quot;</span><span class="o">,</span><span class="mi">25</span><span class="o">);</span>
-  <span class="o">}</span>
-
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateData</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">//should process and update the data</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">View</span> <span class="o">{</span>
-  <span class="kd">private</span> <span class="n">Presenter</span> <span class="n">presenter</span><span class="o">;</span>
-
-  <span class="kd">public</span> <span class="nf">View</span><span class="o">(){</span>
-    <span class="c1">//do some construction to the widget within this view </span>
-  <span class="o">}</span>
-
-  <span class="nd">@UiHandler</span><span class="o">(</span><span class="s">&quot;button&quot;</span><span class="o">)</span>
-  <span class="kt">void</span> <span class="nf">click</span><span class="o">(</span><span class="n">ClickEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">presenter</span><span class="o">.</span><span class="na">updateData</span><span class="o">();</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Model</span> <span class="o">{</span>
-  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="kt">double</span> <span class="n">age</span><span class="o">;</span>
-
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setData</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">double</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div>
-<p>应用举例：</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">View</span> <span class="n">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">View</span><span class="o">();</span>
-<span class="n">Presenter</span> <span class="n">presenter</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Presenter</span><span class="o">(</span><span class="n">view</span><span class="o">);</span> <span class="c1">// 这里用view去初始化presenter</span>
-</code></pre></div>
-<h3 id="解释说明">解释说明</h3>
-
-<p>上面的代码省略了很多实现细节，但通过将数据和视图分离，展现了MVP模式的一个最基本的实现。一旦某些数据要发生变化时，view会调用presenter中的方法：presenter.updateData()，从而把需要更新的数据传递给view。需要注意的是，view中不包含任何model的信息，所有业务逻辑都由presenter去实现；此外，presenter应该对view中的控件类型和数据结构<strong>一无所知</strong> - 亦即presenter并不需要知道数据在view中的存储结构是什么，只需把模型数据传递给view即可。模型的渲染工作应由view来完成。</p>
-
-<p>用视图去初始化表现层只是一种可能的实现。我曾经看到过用表现层去初始化视图,但还是觉得以上的代码示例更能展现presenter和view的逻辑关系。根据MVP的定义，view应该是无状态的，所有view的活动和更新都应由presenter主导。此外,缓存和数据验证等工作都应由presenter来做，这样就能让view更加专一的完成其职责-通过控件显示数据。</p>
-
-        </div>
-    </div>
-</div>
-
-
-<div class="pagination">
-  
-  <span class="page_number ">Page: 1 of 2</span>
-  
-    <a class="btn btn-default" href="/page2" class="next">Older</a>
-  
+            </div>
+            
+            </div>
+          </div>
+          <div class="pagination">
+              
+                <a class="btn btn-default" href="/2015/09/python-data-structures" class="next">Newer Post</a>
+              
+              
+                <a class="btn btn-default" href="/2015/08/MVP-pattern" class="previous">Older Post</a>
+              
 </div>
 
         </div>
     </div>
 </div>
+
+
 
 <div class="container-fluid">
     <div class="row-fluid">
