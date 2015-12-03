@@ -79,46 +79,48 @@ As our circle of knowledge expands，so does the circumference of darkness surro
         <div class="col-md-9">
           <div class="article">
             <div class="well">
-                <h1><a href="/2015/08/css-display">Aug 13, 2015 - CSS display usage</a></h1>
+                <h1><a href="/2015/12/python-pass-by-value-or-reference">Dec 1, 2015 - Python function - pass by value or by reference?</a></h1>
             
             <div class="post-content">
-            <h2 id="css-property-display">CSS property - display</h2>
+            <h2 id="python-function-pass-by-value-or-by-reference">Python function - pass by value or by reference?</h2>
 
-<p>I&#39;ve been recently writing client side code which uses css style. One important layout property in CSS is called display. Here I will write down my understanding of display property in CSS.</p>
+<p>Let&#39;s look at below examples to change int number and list in function variables. </p>
 
-<p>There are multiple values display property can be assigned: inline, block, inline-block (introduced in CSS 2.1). In order to differenciate them, we need to take a look at HTML elements types first. </p>
+<h3 id="changing-an-int-number-in-function-variable">Changing an int number in function variable</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">def changeNumber(num):
+    num = 2
+    print (&#39;Changing num to %s&#39;,num)
 
-<p>In HTML, elements can be classifies as two types: block elements and inline elements. </p>
-
-<p>block element: Every element will start from a new line. The element&#39;s width, height, and margin size can be set. By default, the element&#39;s width and height will be the same as its parents&#39; width and height.
-Examples: </p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;div&gt; &lt;p&gt; &lt;th&gt; &lt;tr&gt; &lt;table&gt;
+num = 1
+print (&#39;Before change, num is %s&#39;,num)
+changeNumber(num)
+print (&#39;After change, num is %s&#39;,num)
 </code></pre></div>
-<p>inline element: Element that does not start a new line. Will ignore top and bottom margin settings as well as width and height. The element width and height is the word&#39;s (or the image&#39;s) width and height.
-Examples: </p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;span&gt; &lt;input&gt; &lt;img&gt; &lt;label&gt; &lt;a&gt;
+<p>Result:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">(&#39;Before change, num is %s&#39;, 1)
+(&#39;Changing num to %s&#39;, 2)
+(&#39;After change, num is %s&#39;, 1)
 </code></pre></div>
-<p>For each element in HTML, it will correspond to either block or inline element. We can overwrite the way how an element is displayed by using the display property. For example:</p>
+<h3 id="changing-an-list-in-function-variable">Changing an list in function variable</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">def changeList(lst):
+    lst.append(50)
+    newlst = [1,2,3,4,5,6,7,8,9,10]
+    lst = newlst
 
-<blockquote>
-<ul>
-<li><p>This will convert the <em>div</em> element to a <em>span</em> element
-<code>
-&lt;div style=&quot;display: inline&quot;&gt; 
-</code></p></li>
-<li><p>This will convert the <em>span</em> element to a <em>div</em> element
-<code>
-&lt;span style=&quot;display: block&quot;&gt;
-</code></p></li>
-</ul>
-</blockquote>
+lst = [1,2,3,4]
+print (&#39;Before change, list is &#39;,lst)
+changeList(lst)
+print (&#39;After change, list is &#39;,lst)
+</code></pre></div>
+<p>Result:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">(&#39;Before change, list is &#39;, [1, 2, 3, 4])
+(&#39;After change, list is &#39;, [1, 2, 3, 4, 50])
+</code></pre></div>
+<h3 id="int-value-is-not-changed-while-list-is-changed-what-39-s-happening">int value is not changed while list is changed.. What&#39;s happening?</h3>
 
-<p>What is display: inline-block then?</p>
+<p>In Python, all variables can be seen as the reference to an object in memory (like a tag on an object). When changing the num (type: int), because int is a immutable data type in Python, so in changeNumber(num) method an local variable (also named &quot;num&quot;) is created locally with in the function, and it is assigned as int value 2. However, the original parameter num, is still pointing to 1, thus num is not changed after calling function changeNumber(num).</p>
 
-<p>inline-block is the element who can be defined with width and height, and also can be aligned in the same line with other element. </p>
-
-<p>jsfiddle example to test the attributes:
-<a href="http://jsfiddle.net/ayzLztau/">Link</a></p>
+<p>When changing the lst (type: list), the parameter lst is passed into the function. In the function it is calling append method, which is to change the content of the list (list is mutable, which means the content of it can be changed). But when we reassign the lst to a new list(newlst), it is the same case as changeNumber again - lst is assigned to a new list but it is a local variable assignment without impacting the external variable. So in this case, the variable itself is not changed externally outside of function, but the content already changed. </p>
 
             </div>
             
@@ -126,8 +128,8 @@ Examples: </p>
           </div>
           <div class="pagination">
               
-                <a class="btn btn-default" href="/2015/08/css-top-and-margintop" class="next">Newer Post</a>
               
+                <a class="btn btn-default" href="/2015/10/python-list-comprehension" class="previous">Older Post</a>
               
 </div>
 

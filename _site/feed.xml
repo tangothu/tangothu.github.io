@@ -7,6 +7,53 @@
 		<atom:link href="http://tangothu.github.io/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Python function - pass by value or by reference?</title>
+				<description>&lt;h2 id=&quot;python-function-pass-by-value-or-by-reference&quot;&gt;Python function - pass by value or by reference?&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;#39;s look at below examples to change int number and list in function variables. &lt;/p&gt;
+
+&lt;h3 id=&quot;changing-an-int-number-in-function-variable&quot;&gt;Changing an int number in function variable&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;def changeNumber(num):
+    num = 2
+    print (&amp;#39;Changing num to %s&amp;#39;,num)
+
+num = 1
+print (&amp;#39;Before change, num is %s&amp;#39;,num)
+changeNumber(num)
+print (&amp;#39;After change, num is %s&amp;#39;,num)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Result:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;(&amp;#39;Before change, num is %s&amp;#39;, 1)
+(&amp;#39;Changing num to %s&amp;#39;, 2)
+(&amp;#39;After change, num is %s&amp;#39;, 1)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&quot;changing-an-list-in-function-variable&quot;&gt;Changing an list in function variable&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;def changeList(lst):
+    lst.append(50)
+    newlst = [1,2,3,4,5,6,7,8,9,10]
+    lst = newlst
+
+lst = [1,2,3,4]
+print (&amp;#39;Before change, list is &amp;#39;,lst)
+changeList(lst)
+print (&amp;#39;After change, list is &amp;#39;,lst)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Result:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;(&amp;#39;Before change, list is &amp;#39;, [1, 2, 3, 4])
+(&amp;#39;After change, list is &amp;#39;, [1, 2, 3, 4, 50])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&quot;int-value-is-not-changed-while-list-is-changed-what-39-s-happening&quot;&gt;int value is not changed while list is changed.. What&amp;#39;s happening?&lt;/h3&gt;
+
+&lt;p&gt;In Python, all variables can be seen as the reference to an object in memory (like a tag on an object). When changing the num (type: int), because int is a immutable data type in Python, so in changeNumber(num) method an local variable (also named &amp;quot;num&amp;quot;) is created locally with in the function, and it is assigned as int value 2. However, the original parameter num, is still pointing to 1, thus num is not changed after calling function changeNumber(num).&lt;/p&gt;
+
+&lt;p&gt;When changing the lst (type: list), the parameter lst is passed into the function. In the function it is calling append method, which is to change the content of the list (list is mutable, which means the content of it can be changed). But when we reassign the lst to a new list(newlst), it is the same case as changeNumber again - lst is assigned to a new list but it is a local variable assignment without impacting the external variable. So in this case, the variable itself is not changed externally outside of function, but the content already changed. &lt;/p&gt;
+</description>
+				<pubDate>Tue, 01 Dec 2015 00:00:00 -0500</pubDate>
+				<link>http://tangothu.github.io/2015/12/python-pass-by-value-or-reference</link>
+				<guid isPermaLink="true">http://tangothu.github.io/2015/12/python-pass-by-value-or-reference</guid>
+			</item>
+		
+			<item>
 				<title>List Comprehension in Python</title>
 				<description>&lt;h2 id=&quot;list-comprehension-in-python-summary&quot;&gt;List Comprehension in Python - Summary&lt;/h2&gt;
 

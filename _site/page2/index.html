@@ -53,6 +53,8 @@ As our circle of knowledge expands，so does the circumference of darkness surro
     <h1>Recent Posts</h1>
     <ul>
         
+          <li><a href="/2015/12/python-pass-by-value-or-reference">Python function - pass by value or by reference?</a></li>
+        
           <li><a href="/2015/10/python-list-comprehension">List Comprehension in Python</a></li>
         
           <li><a href="/2015/09/python-function-parameter">Function parameter with default value in Python</a></li>
@@ -60,8 +62,6 @@ As our circle of knowledge expands，so does the circumference of darkness surro
           <li><a href="/2015/09/python-data-structures">Python data structure usage summary</a></li>
         
           <li><a href="/2015/08/GWT-intro">Brief intro to Google Web Toolkit</a></li>
-        
-          <li><a href="/2015/08/MVP-pattern">MVP Design Pattern</a></li>
         
     </ul>
 </div>
@@ -78,6 +78,167 @@ As our circle of knowledge expands，so does the circumference of darkness surro
         </div>
         <div class="col-md-9">
             
+<div class="article">
+    <div class="well">
+        <h1><a href="/2015/09/python-data-structures">Sep 1, 2015 - Python data structure usage summary</a></h1>
+        
+        <div class="content">
+            <h2 id="python-data-structure-usage-list-tuple-dict-and-set">Python data structure usage - list, tuple, dict and set</h2>
+
+<p>This article is to write notes to record how to define, insert/remove, access and iterate python data structures.</p>
+
+<h3 id="list">list()</h3>
+
+<ul>
+<li>Define - use square brackets [] to define.</li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">classmates = [&#39;Macro&#39;,&#39;Bob&#39;,&#39;Julia&#39;]
+</code></pre></div>
+<ul>
+<li>Insert</li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">position = 1
+classmates.insert(position,&#39;Aaron&#39;) # or use classmates.append(&#39;Stephen&#39;) which will append data to the last position of list 
+</code></pre></div>
+<ul>
+<li>Remove</li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">classmates.remove(&#39;Aaron&#39;) # or use classmates.pop(), which will return the last element 
+</code></pre></div>
+<ul>
+<li>Access</li>
+</ul>
+
+<p>We can use square bracket with index to access element
+<code>
+classmates[0] 
+</code></p>
+
+<ul>
+<li>Iterate</li>
+</ul>
+
+<p>We can use enumerate, to loop list. Enumerate method will get the iterator of list, yield its index and related element, and loop the index until the very end of list. It will create an <em>indexed series</em> of data.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">for i, item in enumerate(classmates):
+    print i, item
+</code></pre></div>
+<p>Alternatively we can also use</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">for i in range(0, len(classmates)):
+    print i, classmates[i]
+</code></pre></div>
+<p>Note, in Python, list() is not <em>hashable</em>. What hashable means is an object will have a hashvalue (provided by its own <strong>hash</strong>() method and can be compared to other objects) which never changes during its lifetime. For list(), since it is not immutable, the value of itself might be changed, thus if it has hashvalue it will get changed too during its lifetime. That&#39;s why python list() doesn&#39;t have <strong>hash</strong>() method and is not hashable.</p>
+
+<h3 id="tuple">tuple()</h3>
+
+<ul>
+<li>Define - use parenthesis () to define</li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">month = (&#39;Tom&#39;,&#39;Feb&#39;,&#39;Dec&#39;)
+</code></pre></div>
+<ul>
+<li>Insert</li>
+</ul>
+
+<p>Once a tuple is created, it cannot be inserted with an element since it is immutable.</p>
+
+<ul>
+<li>Remove</li>
+</ul>
+
+<p>Once a tuple is created, it cannot remove an element since it is immutable.</p>
+
+<ul>
+<li>Access</li>
+</ul>
+
+<p>We can use square bracket with index to access element</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">month[0] 
+</code></pre></div>
+<ul>
+<li>Iterate
+We can use enumerate, to loop tuple.</li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">for i, item in enumerate(month):
+    print i, item
+</code></pre></div>
+<h3 id="set">set()</h3>
+
+<ul>
+<li>Define - use set() with a list in the parenthesis to define it </li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">s = set([3,4,5])
+</code></pre></div>
+<ul>
+<li>Insert</li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">s.add(&#39;5&#39;) # s will now become set([&#39;5&#39;,3,4,5])
+</code></pre></div>
+<ul>
+<li>Remove</li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">s.remove(5) # s will not become set([&#39;5&#39;,3,4])
+</code></pre></div>
+<ul>
+<li>Access</li>
+</ul>
+
+<p>Note we cannot use s[0] to access an element in set because set is unordered collection without index.</p>
+
+<ul>
+<li>Iterate</li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">for i in s
+    print i
+</code></pre></div>
+<h3 id="dict">dict()</h3>
+
+<p>Dict, in Python, is a <em>mapping</em> type which maps a key to a value. The mapping mechanism is implemented by hash function to the key. 
+Note in dict, the key has to be hashable (thus immutable) - this is because each time when requesting a value using a key, hash(key) should produce the same result, or otherwise you will get two values based on the same key - that means the definition of dict is wrong! As a result, the key should be hashable, or in other words, the hash(key) should always be the same. 
+If the key can be changed, then the hash functino will also return a different value, which shouldn&#39;t happen. Thus, the key has to be immutable (list cannot be the key in dict.)</p>
+
+<ul>
+<li>Define - use curly brackets {} to define.</li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">students = {&#39;kevin&#39;:60,&#39;michael&#39;:70,&#39;jason&#39;:65}
+</code></pre></div>
+<ul>
+<li>Insert</li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">students[&#39;mike&#39;] = 80
+</code></pre></div>
+<ul>
+<li>Remove</li>
+</ul>
+
+<p>Use key word <em>del</em></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">del students[&#39;mike&#39;]
+</code></pre></div>
+<p>or </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">students.pop(&#39;mike&#39;) # this will return 80 and remove &#39;mike&#39;:80 in dict
+</code></pre></div>
+<ul>
+<li>Access</li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">students[&#39;mike&#39;]
+</code></pre></div>
+<p>or</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">score=students.get(&#39;mike&#39;)
+</code></pre></div>
+<ul>
+<li>Iterate</li>
+</ul>
+
+<p>Use items() method</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">for key, value in students.items()
+    print key, value
+</code></pre></div>
+<p>Reference:
+<a href="https://wiki.python.org/moin/DictionaryKeys">Python Dictionary Keys</a></p>
+
+        </div>
+    </div>
+</div>
+
 <div class="article">
     <div class="well">
         <h1><a href="/2015/08/GWT-intro">Aug 26, 2015 - Brief intro to Google Web Toolkit</a></h1>
@@ -254,47 +415,6 @@ initWidget(binder.createAndBindUi(this));
 <p>上面的代码省略了很多实现细节，但通过将数据和视图分离，展现了MVP模式的一个最基本的实现。一旦某些数据要发生变化时，view会调用presenter中的方法：presenter.updateData()，从而把需要更新的数据传递给view。需要注意的是，view中不包含任何model的信息，所有业务逻辑都由presenter去实现；此外，presenter应该对view中的控件类型和数据结构<strong>一无所知</strong> - 亦即presenter并不需要知道数据在view中的存储结构是什么，只需把模型数据传递给view即可。模型的渲染工作应由view来完成。</p>
 
 <p>用视图去初始化表现层只是一种可能的实现。我曾经看到过用表现层去初始化视图,但还是觉得以上的代码示例更能展现presenter和view的逻辑关系。根据MVP的定义，view应该是无状态的，所有view的活动和更新都应由presenter主导。此外,缓存和数据验证等工作都应由presenter来做，这样就能让view更加专一的完成其职责-通过控件显示数据。</p>
-
-        </div>
-    </div>
-</div>
-
-<div class="article">
-    <div class="well">
-        <h1><a href="/2015/08/css-top-and-margintop">Aug 14, 2015 - CSS position, top and margin-top</a></h1>
-        
-        <div class="content">
-            <h2 id="what-39-s-the-difference-between-top-and-margin-top-in-css">What&#39;s the difference between top and margin-top in CSS?</h2>
-
-<h4 id="how-to-use-position-property-with-top-left-right-bottom">How to use position property with top,left,right,bottom</h4>
-
-<p>In CSS, top, left, right and bottom should always be used with position property. We define a css element called &quot;sub&quot; as below:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">.sub {
-  position: relative;
-  top: 10px;
-}
-</code></pre></div>
-<p>There are two common values of property ().
-For 
-<code>
-position: relative;
-</code>
-, the element defined with this attribute will &quot;relatively&quot; shift its position based on where it originally locates. </p>
-
-<p>For 
-<code>
-position: absolute;
-</code>
-, the element defined with this attribute will shift its position either:
-a. the parent element of sub is also defined with position, then sub will shift based on the parent&#39;s location. 
-b. sub doesn&#39;t have a parent who has position attribute; then sub will use HTML body and shift based on the body&#39;s location. </p>
-
-<h4 id="what-is-margin-top-what-39-s-the-difference-between-top-and-margin-top">What is margin-top? What&#39;s the difference between top and margin-top?</h4>
-
-<p>margin-top is to add distance on the margin of element, it will shift the block element along with its subsequent elements which are also in document flow (will push them further down). top, on the other hand, is used to shift the element without having effects on the surrounding elements. </p>
-
-<p>Here is the link to display position absolute vs. position relative.
-<a href="http://jsfiddle.net/v1Lfc5hg/">Link</a></p>
 
         </div>
     </div>

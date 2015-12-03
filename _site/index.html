@@ -53,6 +53,8 @@ As our circle of knowledge expands，so does the circumference of darkness surro
     <h1>Recent Posts</h1>
     <ul>
         
+          <li><a href="/2015/12/python-pass-by-value-or-reference">Python function - pass by value or by reference?</a></li>
+        
           <li><a href="/2015/10/python-list-comprehension">List Comprehension in Python</a></li>
         
           <li><a href="/2015/09/python-function-parameter">Function parameter with default value in Python</a></li>
@@ -60,8 +62,6 @@ As our circle of knowledge expands，so does the circumference of darkness surro
           <li><a href="/2015/09/python-data-structures">Python data structure usage summary</a></li>
         
           <li><a href="/2015/08/GWT-intro">Brief intro to Google Web Toolkit</a></li>
-        
-          <li><a href="/2015/08/MVP-pattern">MVP Design Pattern</a></li>
         
     </ul>
 </div>
@@ -78,6 +78,55 @@ As our circle of knowledge expands，so does the circumference of darkness surro
         </div>
         <div class="col-md-9">
             
+<div class="article">
+    <div class="well">
+        <h1><a href="/2015/12/python-pass-by-value-or-reference">Dec 1, 2015 - Python function - pass by value or by reference?</a></h1>
+        
+        <div class="content">
+            <h2 id="python-function-pass-by-value-or-by-reference">Python function - pass by value or by reference?</h2>
+
+<p>Let&#39;s look at below examples to change int number and list in function variables. </p>
+
+<h3 id="changing-an-int-number-in-function-variable">Changing an int number in function variable</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">def changeNumber(num):
+    num = 2
+    print (&#39;Changing num to %s&#39;,num)
+
+num = 1
+print (&#39;Before change, num is %s&#39;,num)
+changeNumber(num)
+print (&#39;After change, num is %s&#39;,num)
+</code></pre></div>
+<p>Result:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">(&#39;Before change, num is %s&#39;, 1)
+(&#39;Changing num to %s&#39;, 2)
+(&#39;After change, num is %s&#39;, 1)
+</code></pre></div>
+<h3 id="changing-an-list-in-function-variable">Changing an list in function variable</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">def changeList(lst):
+    lst.append(50)
+    newlst = [1,2,3,4,5,6,7,8,9,10]
+    lst = newlst
+
+lst = [1,2,3,4]
+print (&#39;Before change, list is &#39;,lst)
+changeList(lst)
+print (&#39;After change, list is &#39;,lst)
+</code></pre></div>
+<p>Result:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">(&#39;Before change, list is &#39;, [1, 2, 3, 4])
+(&#39;After change, list is &#39;, [1, 2, 3, 4, 50])
+</code></pre></div>
+<h3 id="int-value-is-not-changed-while-list-is-changed-what-39-s-happening">int value is not changed while list is changed.. What&#39;s happening?</h3>
+
+<p>In Python, all variables can be seen as the reference to an object in memory (like a tag on an object). When changing the num (type: int), because int is a immutable data type in Python, so in changeNumber(num) method an local variable (also named &quot;num&quot;) is created locally with in the function, and it is assigned as int value 2. However, the original parameter num, is still pointing to 1, thus num is not changed after calling function changeNumber(num).</p>
+
+<p>When changing the lst (type: list), the parameter lst is passed into the function. In the function it is calling append method, which is to change the content of the list (list is mutable, which means the content of it can be changed). But when we reassign the lst to a new list(newlst), it is the same case as changeNumber again - lst is assigned to a new list but it is a local variable assignment without impacting the external variable. So in this case, the variable itself is not changed externally outside of function, but the content already changed. </p>
+
+        </div>
+    </div>
+</div>
+
 <div class="article">
     <div class="well">
         <h1><a href="/2015/10/python-list-comprehension">Oct 20, 2015 - List Comprehension in Python</a></h1>
@@ -154,167 +203,6 @@ Immutable objects include: tuple(), string, int, float, ...</p>
 <p>For my_other_list, we are expecting only 2 in the list, but it looks like the result is &quot;remembering&quot; the result from last run. Why is this happening? </p>
 
 <p>Note that all python value are passed by its reference (address). When the function is defined, the function parameter is also defined. When using the mutable objects as the parameter, it will allocate a fixed memory address to the mutable object. When the function is called, it is actually using this mutable object&#39;s address cache to get the result. </p>
-
-        </div>
-    </div>
-</div>
-
-<div class="article">
-    <div class="well">
-        <h1><a href="/2015/09/python-data-structures">Sep 1, 2015 - Python data structure usage summary</a></h1>
-        
-        <div class="content">
-            <h2 id="python-data-structure-usage-list-tuple-dict-and-set">Python data structure usage - list, tuple, dict and set</h2>
-
-<p>This article is to write notes to record how to define, insert/remove, access and iterate python data structures.</p>
-
-<h3 id="list">list()</h3>
-
-<ul>
-<li>Define - use square brackets [] to define.</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">classmates = [&#39;Macro&#39;,&#39;Bob&#39;,&#39;Julia&#39;]
-</code></pre></div>
-<ul>
-<li>Insert</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">position = 1
-classmates.insert(position,&#39;Aaron&#39;) # or use classmates.append(&#39;Stephen&#39;) which will append data to the last position of list 
-</code></pre></div>
-<ul>
-<li>Remove</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">classmates.remove(&#39;Aaron&#39;) # or use classmates.pop(), which will return the last element 
-</code></pre></div>
-<ul>
-<li>Access</li>
-</ul>
-
-<p>We can use square bracket with index to access element
-<code>
-classmates[0] 
-</code></p>
-
-<ul>
-<li>Iterate</li>
-</ul>
-
-<p>We can use enumerate, to loop list. Enumerate method will get the iterator of list, yield its index and related element, and loop the index until the very end of list. It will create an <em>indexed series</em> of data.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">for i, item in enumerate(classmates):
-    print i, item
-</code></pre></div>
-<p>Alternatively we can also use</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">for i in range(0, len(classmates)):
-    print i, classmates[i]
-</code></pre></div>
-<p>Note, in Python, list() is not <em>hashable</em>. What hashable means is an object will have a hashvalue (provided by its own <strong>hash</strong>() method and can be compared to other objects) which never changes during its lifetime. For list(), since it is not immutable, the value of itself might be changed, thus if it has hashvalue it will get changed too during its lifetime. That&#39;s why python list() doesn&#39;t have <strong>hash</strong>() method and is not hashable.</p>
-
-<h3 id="tuple">tuple()</h3>
-
-<ul>
-<li>Define - use parenthesis () to define</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">month = (&#39;Tom&#39;,&#39;Feb&#39;,&#39;Dec&#39;)
-</code></pre></div>
-<ul>
-<li>Insert</li>
-</ul>
-
-<p>Once a tuple is created, it cannot be inserted with an element since it is immutable.</p>
-
-<ul>
-<li>Remove</li>
-</ul>
-
-<p>Once a tuple is created, it cannot remove an element since it is immutable.</p>
-
-<ul>
-<li>Access</li>
-</ul>
-
-<p>We can use square bracket with index to access element</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">month[0] 
-</code></pre></div>
-<ul>
-<li>Iterate
-We can use enumerate, to loop tuple.</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">for i, item in enumerate(month):
-    print i, item
-</code></pre></div>
-<h3 id="set">set()</h3>
-
-<ul>
-<li>Define - use set() with a list in the parenthesis to define it </li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">s = set([3,4,5])
-</code></pre></div>
-<ul>
-<li>Insert</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">s.add(&#39;5&#39;) # s will now become set([&#39;5&#39;,3,4,5])
-</code></pre></div>
-<ul>
-<li>Remove</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">s.remove(5) # s will not become set([&#39;5&#39;,3,4])
-</code></pre></div>
-<ul>
-<li>Access</li>
-</ul>
-
-<p>Note we cannot use s[0] to access an element in set because set is unordered collection without index.</p>
-
-<ul>
-<li>Iterate</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">for i in s
-    print i
-</code></pre></div>
-<h3 id="dict">dict()</h3>
-
-<p>Dict, in Python, is a <em>mapping</em> type which maps a key to a value. The mapping mechanism is implemented by hash function to the key. 
-Note in dict, the key has to be hashable (thus immutable) - this is because each time when requesting a value using a key, hash(key) should produce the same result, or otherwise you will get two values based on the same key - that means the definition of dict is wrong! As a result, the key should be hashable, or in other words, the hash(key) should always be the same. 
-If the key can be changed, then the hash functino will also return a different value, which shouldn&#39;t happen. Thus, the key has to be immutable (list cannot be the key in dict.)</p>
-
-<ul>
-<li>Define - use curly brackets {} to define.</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">students = {&#39;kevin&#39;:60,&#39;michael&#39;:70,&#39;jason&#39;:65}
-</code></pre></div>
-<ul>
-<li>Insert</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">students[&#39;mike&#39;] = 80
-</code></pre></div>
-<ul>
-<li>Remove</li>
-</ul>
-
-<p>Use key word <em>del</em></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">del students[&#39;mike&#39;]
-</code></pre></div>
-<p>or </p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">students.pop(&#39;mike&#39;) # this will return 80 and remove &#39;mike&#39;:80 in dict
-</code></pre></div>
-<ul>
-<li>Access</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">students[&#39;mike&#39;]
-</code></pre></div>
-<p>or</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">score=students.get(&#39;mike&#39;)
-</code></pre></div>
-<ul>
-<li>Iterate</li>
-</ul>
-
-<p>Use items() method</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">for key, value in students.items()
-    print key, value
-</code></pre></div>
-<p>Reference:
-<a href="https://wiki.python.org/moin/DictionaryKeys">Python Dictionary Keys</a></p>
 
         </div>
     </div>
