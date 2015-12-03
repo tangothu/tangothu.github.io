@@ -7,6 +7,83 @@
 		<atom:link href="http://tangothu.github.io/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>List Comprehension in Python</title>
+				<description>&lt;h2 id=&quot;list-comprehension-in-python-summary&quot;&gt;List Comprehension in Python - Summary&lt;/h2&gt;
+
+&lt;p&gt;This article is to write tips on what is list comprehension in Python, how to write it, and how to use it.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-is-python-list-comprehension&quot;&gt;What is Python list comprehension?&lt;/h3&gt;
+
+&lt;p&gt;List comprehension provides a convenient way to define lists in Python. Traditionally how we create lists in Python is: &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;nums = [0,1,2,3,4]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With list comprehension, we can create lists in this new way, as:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;nums = [x for x in range(5)]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&quot;how-to-write-list-comprehension&quot;&gt;How to write list comprehension&lt;/h3&gt;
+
+&lt;p&gt;In list comprehension, there are four components. Take below code piece as an example:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;nums = [x for x in range(5) if x &amp;gt; 2]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;There are four parts in this list comprehension, including:&lt;/p&gt;
+
+&lt;p&gt;input parameters: range(5)
+variable in input parameters: x
+condition: if x &amp;gt; 2
+list comprehension expression: []&lt;/p&gt;
+
+&lt;p&gt;Once you have above four components, you can write list comprehension. &lt;/p&gt;
+
+&lt;h3 id=&quot;creating-generator-by-using-list-comprehension-grammar&quot;&gt;Creating generator by using list comprehension grammar&lt;/h3&gt;
+
+&lt;p&gt;After a list comprehension is created, it will be taken by memory in Python runtime. However, if the list itself is a very large data set, it will occupy a lot of memory as well. Instead of creating list comprehension, we can create generator as an alternative. &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;nums_generator = (x for x in range(5) if x &amp;gt; 2)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note to create generator using list comprehension grammar, the only difference is we use parentheses () instead of square brackets [].&lt;/p&gt;
+
+&lt;p&gt;The benefits of using generator is, only the generator itself will be loaded into memory, which will let the code run faster if memory is limited. In order to retrieve the elements in generator, we only need to use for loop to access its element:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;for item in nums_generator:
+    print item
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+				<pubDate>Tue, 20 Oct 2015 00:00:00 -0400</pubDate>
+				<link>http://tangothu.github.io/2015/10/python-list-comprehension</link>
+				<guid isPermaLink="true">http://tangothu.github.io/2015/10/python-list-comprehension</guid>
+			</item>
+		
+			<item>
+				<title>Function parameter with default value in Python</title>
+				<description>&lt;h2 id=&quot;function-parameter-with-default-value-in-python&quot;&gt;Function parameter with default value in Python&lt;/h2&gt;
+
+&lt;p&gt;This article is to describe restrictions when defining python function parameter default values. &lt;/p&gt;
+
+&lt;p&gt;There are two types of Python objects, immutable objects and mutable objects.&lt;/p&gt;
+
+&lt;p&gt;Mutable objects include: dict(), list(), ...
+Immutable objects include: tuple(), string, int, float, ...&lt;/p&gt;
+
+&lt;p&gt;Take a look at below code piece:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;def append_to_list(value, default_list=[])
+    default_list.append(value)
+    return default_list
+
+&amp;gt;&amp;gt;&amp;gt; my_list = append_to_list(1)
+&amp;gt;&amp;gt;&amp;gt; my_list
+    [1] 
+
+&amp;gt;&amp;gt;&amp;gt; my_other_list = append_to_list(2)
+&amp;gt;&amp;gt;&amp;gt; my_other_list
+    [1,2]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;For my_other_list, we are expecting only 2 in the list, but it looks like the result is &amp;quot;remembering&amp;quot; the result from last run. Why is this happening? &lt;/p&gt;
+
+&lt;p&gt;Note that all python value are passed by its reference (address). When the function is defined, the function parameter is also defined. When using the mutable objects as the parameter, it will allocate a fixed memory address to the mutable object. When the function is called, it is actually using this mutable object&amp;#39;s address cache to get the result. &lt;/p&gt;
+</description>
+				<pubDate>Tue, 08 Sep 2015 00:00:00 -0400</pubDate>
+				<link>http://tangothu.github.io/2015/09/python-function-parameter</link>
+				<guid isPermaLink="true">http://tangothu.github.io/2015/09/python-function-parameter</guid>
+			</item>
+		
+			<item>
 				<title>Python data structure usage summary</title>
 				<description>&lt;h2 id=&quot;python-data-structure-usage-list-tuple-dict-and-set&quot;&gt;Python data structure usage - list, tuple, dict and set&lt;/h2&gt;
 

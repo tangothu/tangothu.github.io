@@ -79,55 +79,54 @@ As our circle of knowledge expands，so does the circumference of darkness surro
         <div class="col-md-9">
           <div class="article">
             <div class="well">
-                <h1><a href="/2015/08/css-display">Aug 13, 2015 - CSS display usage</a></h1>
+                <h1><a href="/2015/10/python-list-comprehension">Oct 20, 2015 - List Comprehension in Python</a></h1>
             
             <div class="post-content">
-            <h2 id="css-property-display">CSS property - display</h2>
+            <h2 id="list-comprehension-in-python-summary">List Comprehension in Python - Summary</h2>
 
-<p>I&#39;ve been recently writing client side code which uses css style. One important layout property in CSS is called display. Here I will write down my understanding of display property in CSS.</p>
+<p>This article is to write tips on what is list comprehension in Python, how to write it, and how to use it.</p>
 
-<p>There are multiple values display property can be assigned: inline, block, inline-block (introduced in CSS 2.1). In order to differenciate them, we need to take a look at HTML elements types first. </p>
+<h3 id="what-is-python-list-comprehension">What is Python list comprehension?</h3>
 
-<p>In HTML, elements can be classifies as two types: block elements and inline elements. </p>
-
-<p>block element: Every element will start from a new line. The element&#39;s width, height, and margin size can be set. By default, the element&#39;s width and height will be the same as its parents&#39; width and height.
-Examples: </p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;div&gt; &lt;p&gt; &lt;th&gt; &lt;tr&gt; &lt;table&gt;
+<p>List comprehension provides a convenient way to define lists in Python. Traditionally how we create lists in Python is: </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">nums = [0,1,2,3,4]
 </code></pre></div>
-<p>inline element: Element that does not start a new line. Will ignore top and bottom margin settings as well as width and height. The element width and height is the word&#39;s (or the image&#39;s) width and height.
-Examples: </p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;span&gt; &lt;input&gt; &lt;img&gt; &lt;label&gt; &lt;a&gt;
+<p>With list comprehension, we can create lists in this new way, as:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">nums = [x for x in range(5)]
 </code></pre></div>
-<p>For each element in HTML, it will correspond to either block or inline element. We can overwrite the way how an element is displayed by using the display property. For example:</p>
+<h3 id="how-to-write-list-comprehension">How to write list comprehension</h3>
 
-<blockquote>
-<ul>
-<li><p>This will convert the <em>div</em> element to a <em>span</em> element
-<code>
-&lt;div style=&quot;display: inline&quot;&gt; 
-</code></p></li>
-<li><p>This will convert the <em>span</em> element to a <em>div</em> element
-<code>
-&lt;span style=&quot;display: block&quot;&gt;
-</code></p></li>
-</ul>
-</blockquote>
+<p>In list comprehension, there are four components. Take below code piece as an example:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">nums = [x for x in range(5) if x &gt; 2]
+</code></pre></div>
+<p>There are four parts in this list comprehension, including:</p>
 
-<p>What is display: inline-block then?</p>
+<p>input parameters: range(5)
+variable in input parameters: x
+condition: if x &gt; 2
+list comprehension expression: []</p>
 
-<p>inline-block is the element who can be defined with width and height, and also can be aligned in the same line with other element. </p>
+<p>Once you have above four components, you can write list comprehension. </p>
 
-<p>jsfiddle example to test the attributes:
-<a href="http://jsfiddle.net/ayzLztau/">Link</a></p>
+<h3 id="creating-generator-by-using-list-comprehension-grammar">Creating generator by using list comprehension grammar</h3>
 
+<p>After a list comprehension is created, it will be taken by memory in Python runtime. However, if the list itself is a very large data set, it will occupy a lot of memory as well. Instead of creating list comprehension, we can create generator as an alternative. </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">nums_generator = (x for x in range(5) if x &gt; 2)
+</code></pre></div>
+<p>Note to create generator using list comprehension grammar, the only difference is we use parentheses () instead of square brackets [].</p>
+
+<p>The benefits of using generator is, only the generator itself will be loaded into memory, which will let the code run faster if memory is limited. In order to retrieve the elements in generator, we only need to use for loop to access its element:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">for item in nums_generator:
+    print item
+</code></pre></div>
             </div>
             
             </div>
           </div>
           <div class="pagination">
               
-                <a class="btn btn-default" href="/2015/08/css-top-and-margintop" class="next">Newer Post</a>
               
+                <a class="btn btn-default" href="/2015/09/python-function-parameter" class="previous">Older Post</a>
               
 </div>
 

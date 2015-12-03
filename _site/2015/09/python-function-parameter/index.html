@@ -79,46 +79,34 @@ As our circle of knowledge expands，so does the circumference of darkness surro
         <div class="col-md-9">
           <div class="article">
             <div class="well">
-                <h1><a href="/2015/08/css-display">Aug 13, 2015 - CSS display usage</a></h1>
+                <h1><a href="/2015/09/python-function-parameter">Sep 8, 2015 - Function parameter with default value in Python</a></h1>
             
             <div class="post-content">
-            <h2 id="css-property-display">CSS property - display</h2>
+            <h2 id="function-parameter-with-default-value-in-python">Function parameter with default value in Python</h2>
 
-<p>I&#39;ve been recently writing client side code which uses css style. One important layout property in CSS is called display. Here I will write down my understanding of display property in CSS.</p>
+<p>This article is to describe restrictions when defining python function parameter default values. </p>
 
-<p>There are multiple values display property can be assigned: inline, block, inline-block (introduced in CSS 2.1). In order to differenciate them, we need to take a look at HTML elements types first. </p>
+<p>There are two types of Python objects, immutable objects and mutable objects.</p>
 
-<p>In HTML, elements can be classifies as two types: block elements and inline elements. </p>
+<p>Mutable objects include: dict(), list(), ...
+Immutable objects include: tuple(), string, int, float, ...</p>
 
-<p>block element: Every element will start from a new line. The element&#39;s width, height, and margin size can be set. By default, the element&#39;s width and height will be the same as its parents&#39; width and height.
-Examples: </p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;div&gt; &lt;p&gt; &lt;th&gt; &lt;tr&gt; &lt;table&gt;
+<p>Take a look at below code piece:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">def append_to_list(value, default_list=[])
+    default_list.append(value)
+    return default_list
+
+&gt;&gt;&gt; my_list = append_to_list(1)
+&gt;&gt;&gt; my_list
+    [1] 
+
+&gt;&gt;&gt; my_other_list = append_to_list(2)
+&gt;&gt;&gt; my_other_list
+    [1,2]
 </code></pre></div>
-<p>inline element: Element that does not start a new line. Will ignore top and bottom margin settings as well as width and height. The element width and height is the word&#39;s (or the image&#39;s) width and height.
-Examples: </p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;span&gt; &lt;input&gt; &lt;img&gt; &lt;label&gt; &lt;a&gt;
-</code></pre></div>
-<p>For each element in HTML, it will correspond to either block or inline element. We can overwrite the way how an element is displayed by using the display property. For example:</p>
+<p>For my_other_list, we are expecting only 2 in the list, but it looks like the result is &quot;remembering&quot; the result from last run. Why is this happening? </p>
 
-<blockquote>
-<ul>
-<li><p>This will convert the <em>div</em> element to a <em>span</em> element
-<code>
-&lt;div style=&quot;display: inline&quot;&gt; 
-</code></p></li>
-<li><p>This will convert the <em>span</em> element to a <em>div</em> element
-<code>
-&lt;span style=&quot;display: block&quot;&gt;
-</code></p></li>
-</ul>
-</blockquote>
-
-<p>What is display: inline-block then?</p>
-
-<p>inline-block is the element who can be defined with width and height, and also can be aligned in the same line with other element. </p>
-
-<p>jsfiddle example to test the attributes:
-<a href="http://jsfiddle.net/ayzLztau/">Link</a></p>
+<p>Note that all python value are passed by its reference (address). When the function is defined, the function parameter is also defined. When using the mutable objects as the parameter, it will allocate a fixed memory address to the mutable object. When the function is called, it is actually using this mutable object&#39;s address cache to get the result. </p>
 
             </div>
             
@@ -126,8 +114,10 @@ Examples: </p>
           </div>
           <div class="pagination">
               
-                <a class="btn btn-default" href="/2015/08/css-top-and-margintop" class="next">Newer Post</a>
+                <a class="btn btn-default" href="/2015/10/python-list-comprehension" class="next">Newer Post</a>
               
+              
+                <a class="btn btn-default" href="/2015/09/python-data-structures" class="previous">Older Post</a>
               
 </div>
 
