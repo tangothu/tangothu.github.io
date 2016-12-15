@@ -43,7 +43,6 @@ We will demonstrate a simple "Hello Flask" example in Flask app.
 hello.py
 
 ```
-#!/usr/bin/env python
 import sys, os
 sys.path.append(os.path.dirname(__file__))
 
