@@ -19,7 +19,6 @@ In Python, magic methods are special methods where you can define to add "magic"
 
 - \_\_new\_\_(cls, [...): the first method to get called in an object's instantiation
 - \_\_init\_\_(self, [...): the method get called to create objects of class
-- \_\_del\_\_(self): the destructor to destruct object
 
 From the definition above, we see that \_\_new\_\_() accepts cls as it's first parameter, while \_\_init\_\_() accepts self. \_\_init\_\_() is called after \_\_new\_\_() when object is initialized. 
 
