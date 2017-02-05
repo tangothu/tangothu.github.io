@@ -105,7 +105,7 @@ BEGIN block is executed once only, before the first input record is read. Likewi
 
 In our example, we use BEGIN block only. BEGIN block can have multiple input builtin parameters. Because we are using RS and FS, we will explain how these two works. In this example, we choose RS as "}", which means the fields of this file are separated as below, in red blocks. FS is chosen as "\n" (newline), which means for each field it can be further separated by each line as records, in yellow blocks.
 
-![awk RF]({{ site.url }}/images/dhcpd.leases_sample.png)
+![awk RF]({{ site.url }}/images/dhcpd.leases.png)
 
 The variables in each record is stored as a variable starting with "$" sign, so the 
 
