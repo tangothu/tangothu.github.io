@@ -35,7 +35,7 @@ lease 192.168.124.117 {
 }
 lease 192.168.124.116 {
   starts 5 2015/06/05 14:48:40;
-  ends 5 2015/06/05 22:48:40;
+  ends 5 2031/06/05 22:48:40;
   tstp 5 2015/06/05 22:48:40;
   binding state free;
   hardware ethernet 00:0c:29:d1:3e:0d;
@@ -43,7 +43,7 @@ lease 192.168.124.116 {
 }
 lease 192.168.123.200 {
   starts 5 2012/07/13 11:54:46;
-  ends 5 2012/07/13 11:57:42;
+  ends 5 2031/07/13 11:57:42;
   tstp 5 2012/07/13 11:57:42;
   binding state free;
   hardware ethernet 88:c6:63:c6:08:52;
@@ -60,8 +60,8 @@ If we use awk, we can come up a command like this:
 ```
 awk 'BEGIN{RS = "}";FS = "\n";}
 {
-    split($3, start, " ");
-    split($4, end, " ");
+    split($2, start, " ");
+    split($3, end, " ");
     if (start[1] == "starts" && end[1] == "ends")
         {
             cmd="date +%Y%m%d%H%M%S";
@@ -84,7 +84,7 @@ awk 'BEGIN{RS = "}";FS = "\n";}
                     if (second == "ethernet") {
                         third=lineArray[3];
                         gsub(/\;/,"",third);
-                        split($2, lease, " ");
+                        split($1, lease, " ");
                         print lease[2], third;
                     }
                 }
@@ -103,8 +103,29 @@ awk 'BEGIN{...} {...} END{...}' input-file1
 
 BEGIN block is executed once only, before the first input record is read. Likewise, END block is executed once only, after all the input is read.
 
-In our example, we use BEGIN block only. BEGIN block can have multiple input builtin parameters. Because we are using RS and FS, we will explain how these two works. 
+In our example, we use BEGIN block only. BEGIN block can have multiple input builtin parameters. Because we are using RS and FS, we will explain how these two works. In this example, we choose RS as "}", which means the fields of this file are separated as below, in red blocks. FS is chosen as "\n" (newline), which means for each field it can be further separated by each line as records, in yellow blocks.
 
 ![awk RF]({{ site.url }}/images/dhcpd.leases_sample.png)
 
+The variables in each record is stored as a variable starting with "$" sign, so the 
 
+```
+lease 192.168.124.118 {
+```
+is $1, and 
+
+```
+starts 1 2014/12/01 12:42:49;
+```
+is $2, etc. By splitting each the file to fields/records, we are able to add additional logic to the awk code, to see if the current time is between the start and end time of the lease when it's validated.
+
+Finally, key word NF is used to record how many rows are in one field. In this case, for each field we have 8 rows and as such we scan from the end of field to get the Mac Address after key word ethernet. 
+
+The final output after using the awk command to parse dhcpd file is (note the time when parsing this file is in 2017):
+
+```
+192.168.124.116 00:0c:29:d1:3e:0d
+192.168.123.200 88:c6:63:c6:08:52
+```
+
+Thanks for reading!
