@@ -1,3 +1,3 @@
-Jekyll Clean
+Welcome to my blog!
 ============
 
