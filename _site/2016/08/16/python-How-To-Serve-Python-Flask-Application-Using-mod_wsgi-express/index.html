@@ -1,0 +1,118 @@
+<h1 id="how-to-serve-python-flask-application-using-mod_wsgi-express-and-apache-in-mac-os-x-el-capitan">How to serve Python Flask Application using mod_wsgi-express and Apache in Mac OS X El Capitan</h1>
+
+<p>If you have a python web application, you will need to deploy it to a physical server after the development is done. Python WSGI (web service gateway interface) is a protocal where separates the web framework (for example, Flask) with the web server (for example, Apache). The WSGI module provides an interconnect of sorts between Apache and your Python processes.</p>
+
+<p>It is suggested to deploy Flask application by using Apache and mod_wsgi, on Flask <a href="http://flask.pocoo.org/docs/0.11/deploying/mod_wsgi/" title="Flask">website</a>. To acheieve this we will install the python modules and setup the environment.</p>
+
+<h3 id="prepare-the-environment">Prepare the environment</h3>
+
+<ul>
+  <li>
+    <p>install virtualenv</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>$ pip install virtualenv
+</code></pre>
+    </div>
+
+    <p>once installed, we should also configure the virtual environment</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>$ mkdir MyFlaskProject
+$ cd MyFlaskProject
+$ virtualenv venv
+$ source ./bin/venv
+</code></pre>
+    </div>
+
+    <p>It is highly suggested to use virtualenv as this will isolate the workspace of your python runtime environment and create a separate code dependency of your python process. You have the option to deactivate this after using this environment.</p>
+  </li>
+  <li>
+    <p>install mod_wsgi</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>pip install mod_wsgi
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>install Flask</p>
+
+    <p>```
+pip install Flask</p>
+  </li>
+</ul>
+
+<p>All the modules are installed with its latest version. They will be installed to the virtual environment’s lib folder if this hasn’t been installed before.</p>
+
+<h3 id="create-a-flask-app">Create a Flask app</h3>
+
+<p>We will demonstrate a simple “Hello Flask” example in Flask app.</p>
+
+<p>hello.py</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>import sys, os
+sys.path.append(os.path.dirname(__file__))
+
+from flask import Flask
+app = Flask(__name__)
+@app.route("/")
+def hello():
+    return "Hello, I love Flask!"
+if __name__ == "__main__":
+    app.run(host= '0.0.0.0')
+</code></pre>
+</div>
+
+<h3 id="create-a-wsgi-file">Create a .wsgi file</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>import sys, os
+sys.path.insert(0, "&lt;root directory of your flask app&gt;") # e.g. /var/www/FlaskApp/
+
+from hello import app as application
+</code></pre>
+</div>
+
+<h3 id="run-the-service">Run the service</h3>
+
+<p>If you run this command,</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ mod_wsgi-express start-server hello.wsgi
+</code></pre>
+</div>
+
+<p>You should be able to see below message from your terminal:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Server URL         : http://localhost:8000/
+Server Root        : /tmp/mod_wsgi-localhost:8000:501
+Server Conf        : /tmp/mod_wsgi-localhost:8000:501/httpd.conf
+Error Log File     : /tmp/mod_wsgi-localhost:8000:501/error_log (warn)
+Request Capacity   : 5 (1 process * 5 threads)
+Request Timeout    : 60 (seconds)
+Queue Backlog      : 100 (connections)
+Queue Timeout      : 45 (seconds)
+Server Capacity    : 20 (event/worker), 20 (prefork)
+Server Backlog     : 500 (connections)
+Locale Setting     : en_CA.UTF-8
+</code></pre>
+</div>
+
+<p>If no error log is showing, this means that the Flask service is running and you should be able to open localhost URL <a href="http://localhost:8000/" title="localhost">localhost</a> to see it display “Hello Flask” message.</p>
+
+<p>The apache httpd.conf file is located at /etc/apache2/httpd.conf . It is suggested on the Flask website to modify httpd.conf file to configure Apache (<a href="http://flask.pocoo.org/docs/0.11/deploying/mod_wsgi/">here</a>). However, if you check the httpd.conf file in /tmp folder, you will find mod_wsgi is smart enough to pick up the Flask application by checking the path in .wsgi file, as below:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>...
+...
+WSGIDaemonProcess localhost:8000 \
+...
+   home='/var/www/FlaskApp/' \
+...
+...
+</code></pre>
+</div>
+
+<p>so you don’t have to modify the httpd.conf file.</p>
+
+<p>In OS X EI Capitan, it is possible if you see an error message as</p>
+
+<p>install: /usr/libexec/apache2/mod_wsgi.so: Operation not permitted</p>
+
+<p>when invoking mod_wsgi to start the server. This is due to the System Integrity Protection by Mac EI Capitan and you may follow this <a href="https://github.com/GrahamDumpleton/mod_wsgi/issues/98">site</a> thread to disable it.</p>
+

@@ -1,0 +1,64 @@
+---
+layout: page
+title: "Python tutor service"
+description: "To provide Python tutor service"
+header-img: "img/service.jpg"
+---
+
+<!-- Language Selector -->
+<select onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
+    <option value="0" selected> 中文 Chinese </option>
+    <option value="1"> 英语 English </option>
+</select>
+
+<!-- Chinese Version -->
+<div class="zh post-container">
+    <p>
+        提供Python相关的服务,包含课程辅导,程序编写以及题目和作业讨论.<br>
+        涵盖范围包括数据结构,算法设计,网页设计,数据处理,以及各种类库的使用.<br>
+        可以提供Assignment,Homework,Lab,Project的相关咨询和作业指导.<br>
+        如有需要,请联系<br>
+        <a href="mailto:pythontutorpro@gmail.com?Subject=Python%20Tutor">pythontutorpro@gmail.com</a><br>
+        谢谢.<br>
+    </p>
+    <p>
+        也可加微信tangothu, 或扫二维码:
+    </p>
+    <div class="short-about">
+        <img src="/img/icon_wechat_small.jpg" />
+    </div>
+</div>
+
+<!-- English Version -->
+<div class="en post-container">
+    <p>
+        I provide Python related services including course tutorship, software coding and homework discussion.<br>
+        It can cover data structures, algorithm design, web design, data analysis and library usages.<br>
+        Including your assignment, homework, lab, project related teaching assistant service and discussion.<br>
+        Please feel free to reach <br>
+        <a href="mailto:pythontutorpro@gmail.com?Subject=Python%20Tutor">pythontutorpro@gmail.com</a><br>
+        Thank you.<br>
+    </p>
+    <p>
+        Or you can add my wechat tangothu, or scan below QR code:
+    </p>
+    <div class="short-about">
+        <img src="/img/icon_wechat_small.jpg" />
+    </div>
+</div>
+
+<!-- Handle Language Change -->
+<script type="text/javascript">
+    var $zh = document.querySelector(".zh");
+    var $en = document.querySelector(".en");
+    function onLanChange(index){
+        if(index == 0){
+            $zh.style.display = "block";
+            $en.style.display = "none";
+        }else{
+            $en.style.display = "block";
+            $zh.style.display = "none";
+        }
+    }
+    onLanChange(0);
+</script>

@@ -1,0 +1,1051 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>All about Python</title>
+    <description></description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Thu, 06 Apr 2017 22:38:17 -0400</pubDate>
+    <lastBuildDate>Thu, 06 Apr 2017 22:38:17 -0400</lastBuildDate>
+    <generator>Jekyll v3.4.2</generator>
+    
+      <item>
+        <title>Python magic methods (2)</title>
+        <description>&lt;h2 id=&quot;python-magic-methods-2--__call__&quot;&gt;Python magic methods (2) : __call__()&lt;/h2&gt;
+
+&lt;p&gt;In Python, we can call a method using object.method(). Is it possible if we use object() to call a method or do something? __call__() method can help us to achieve this - by defining __call__(), the class’s instance can be called as a function.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Person(object):
+    def __init__(self, name):
+        self.name = name
+
+    def __call__(self):
+        print('Name is %s.' % self.name)
+
+if __name__ == '__main__':
+    p = Person('mike')
+    print p()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Name is mike.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;when-to-use-__call__&quot;&gt;When to use __call__()?&lt;/h3&gt;
+
+&lt;p&gt;If we need the objects to be callable, or the object wraps, abstracts the concept of a function, then use __call__().&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class  Factorial:    
+    def  __init__( self ):    
+        self .cache = {}    
+          
+    def  __call__( self , n):    
+        if  n  not  in  self .cache:    
+            if  n ==  0:    
+                self .cache[n] =  1    
+            else:    
+                self .cache[n] = n *  self .__call__(n-1)    
+        return  self .cache[n]    
+    
+fact = Factorial()    
+    
+for  i  in  xrange(10):                                                                 
+    print ( &quot;{}! = {}&quot; .format(i, fact(i)))  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;0! = 1
+1! = 1
+2! = 2
+3! = 6
+4! = 24
+5! = 120
+6! = 720
+7! = 5040
+8! = 40320
+9! = 362880
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Tue, 07 Feb 2017 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/programming/2017/02/07/python-magic-methods-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/programming/2017/02/07/python-magic-methods-2/</guid>
+        
+        <category>Python</category>
+        
+        <category>advanced features</category>
+        
+        
+        <category>Programming</category>
+        
+      </item>
+    
+      <item>
+        <title>Use awk to parse plain text large file (from DHCP lease for network IP address lookup)</title>
+        <description>&lt;p&gt;We will always need to use low level tools such as shell script to parse log files or plain text files in linux system. In this example we will show how to use awk command and shell script to parse ip leases file (dhcpd.leases) for network router Mac Address match.&lt;/p&gt;
+
+&lt;h2 id=&quot;use-awk-to-parse-plain-text-large-file&quot;&gt;Use awk to parse plain text large file&lt;/h2&gt;
+
+&lt;p&gt;Assume we have plain text file as below:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;lease 192.168.124.118 {
+  starts 1 2014/12/01 12:42:49;
+  ends 1 2014/12/01 20:42:49;
+  tstp 1 2014/12/01 20:42:49;
+  binding state free;
+  hardware ethernet 00:0c:29:d5:ff:cb;
+  uid &quot;\001\000\014)\325\377\313&quot;;
+}
+lease 192.168.124.117 {
+  starts 5 2015/05/01 18:49:10;
+  ends 6 2015/05/02 02:49:10;
+  tstp 6 2015/05/02 02:49:10;
+  binding state free;
+  hardware ethernet 00:0c:29:85:6f:62;
+  uid &quot;\001\000\014)\205ob&quot;;
+}
+lease 192.168.124.116 {
+  starts 5 2015/06/05 14:48:40;
+  ends 5 2031/06/05 22:48:40;
+  tstp 5 2015/06/05 22:48:40;
+  binding state free;
+  hardware ethernet 00:0c:29:d1:3e:0d;
+  uid &quot;\001\000\014)\321&amp;gt;\015&quot;;
+}
+lease 192.168.123.200 {
+  starts 5 2012/07/13 11:54:46;
+  ends 5 2031/07/13 11:57:42;
+  tstp 5 2012/07/13 11:57:42;
+  binding state free;
+  hardware ethernet 88:c6:63:c6:08:52;
+  uid &quot;\001\210\306c\306\010R&quot;;
+}
+...
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Given a Mac Address (the string after hardware ethernet, e.g. 00:0c:29:d5:ff:cb), our goal is to get the ip address (the string after lease, e.g. 192.168.124.118) with the current time is between the start time (in the first block example, 2014/12/01 12:42:49) and end time (2014/12/01 20:42:49).&lt;/p&gt;
+
+&lt;p&gt;If we use awk, we can come up a command like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;awk 'BEGIN{RS = &quot;}&quot;;FS = &quot;\n&quot;;}
+{
+    split($2, start, &quot; &quot;);
+    split($3, end, &quot; &quot;);
+    if (start[1] == &quot;starts&quot; &amp;amp;&amp;amp; end[1] == &quot;ends&quot;)
+        {
+            cmd=&quot;date +%Y%m%d%H%M%S&quot;;
+            cmd | getline currentDateTime;
+            startDate=start[3];
+            startTime=start[4];
+            gsub(/\//,&quot;&quot;,startDate);
+            gsub(/[:;]/,&quot;&quot;,startTime);
+            startDateTime=startDate&quot;&quot;startTime;
+            endDate=end[3];
+            endTime=end[4];
+            gsub(/\//,&quot;&quot;,endDate);
+            gsub(/[:;]/,&quot;&quot;,endTime);
+            endDateTime=endDate&quot;&quot;endTime;
+            if (currentDateTime &amp;gt;= startDateTime
+                &amp;amp;&amp;amp; currentDateTime &amp;lt;= endDateTime) {
+                for (I=NF;I&amp;gt;0;I--) {
+                    split($I, lineArray, &quot; &quot;);
+                    second=lineArray[2];
+                    if (second == &quot;ethernet&quot;) {
+                        third=lineArray[3];
+                        gsub(/\;/,&quot;&quot;,third);
+                        split($1, lease, &quot; &quot;);
+                        print lease[2], third;
+                    }
+                }
+            }
+        }
+}' dhcpd.leases
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Explaination:&lt;/p&gt;
+
+&lt;p&gt;awk can be used with the following syntax:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;awk 'BEGIN{...} {...} END{...}' input-file1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;BEGIN block is executed once only, before the first input record is read. Likewise, END block is executed once only, after all the input is read.&lt;/p&gt;
+
+&lt;p&gt;In our example, we use BEGIN block only. BEGIN block can have multiple input builtin parameters. Because we are using RS and FS, we will explain how these two works. In this example, we choose RS as “}”, which means the fields of this file are separated as below, in red blocks. FS is chosen as “\n” (newline), which means for each field it can be further separated by each line as records, in yellow blocks.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/dhcpd.leases.png&quot; alt=&quot;awk RF&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The variables in each record is stored as a variable starting with “$” sign, so the&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;lease 192.168.124.118 {
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;is $1, and&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;starts 1 2014/12/01 12:42:49;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;is $2, etc. By splitting each the file to fields/records, we are able to add additional logic to the awk code, to see if the current time is between the start and end time of the lease when it’s validated.&lt;/p&gt;
+
+&lt;p&gt;Finally, key word NF is used to record how many rows are in one field. In this case, for each field we have 8 rows and as such we scan from the end of field to get the Mac Address after key word ethernet.&lt;/p&gt;
+
+&lt;p&gt;The final output after using the awk command to parse dhcpd file is (note the time when parsing this file is in 2017):&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;192.168.124.116 00:0c:29:d1:3e:0d
+192.168.123.200 88:c6:63:c6:08:52
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Thanks for reading!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 03 Feb 2017 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/programming/2017/02/03/python-magic-methods-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/programming/2017/02/03/python-magic-methods-2/</guid>
+        
+        <category>Shell scripting</category>
+        
+        <category>awk</category>
+        
+        <category>text parsing</category>
+        
+        
+        <category>Programming</category>
+        
+      </item>
+    
+      <item>
+        <title>Python magic methods (1) continued - Use magic methods to simplify code in URL matching in Python Pyramid application</title>
+        <description>&lt;p&gt;In the last article we reviewed the features of python magic methods, __new__() and __init__(). We will look into a real example today about how to use the magic methods to simplify code in Python, with example of URL matching in Pyramid framework.&lt;/p&gt;
+
+&lt;h2 id=&quot;python-magic-methods-1-continued-use-descriptor-__new__-and-metaclass-to-simplify-url-matching&quot;&gt;Python magic methods (1) continued: Use descriptor, __new__ and metaclass to simplify URL Matching&lt;/h2&gt;
+
+&lt;p&gt;Assume we have code like below. The method get_route_param will get the parameter from current request object in Pyramid by the name.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class TitlesContext(RootContext):
+    def get_title(self):
+        title = self._db.query(Title).get(self.get_route_param('title_id'))
+        if not title:
+            raise HTTPNotFound()
+        return title
+
+    def get_route_param(self, name):
+        &quot;&quot;&quot;
+        Return the route parameter with the given ``name`` or raise a 404 if it
+        is False-y.
+
+        :rtype: unicode
+        :raise: :exc:`pyramid.httpexceptions.HTTPNotFound`
+        &quot;&quot;&quot;
+        value = self._request.matchdict[name].strip()
+        if not value:
+            raise HTTPNotFound()
+        return value
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In one pyramid application, for each Model-View-Controller, there could be multiple context object to query the database objects, thus the method get_route_param could exist in many places.&lt;/p&gt;
+
+&lt;p&gt;To improve, we can refactor the code by removing the get_route_param method by creating a new class, UrlMatch:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class TitlesContext(RootContext):
+
+    title_id = UrlMatch()
+    
+    def get_title(self):
+        title = self._db.query(Title).get(self.title_id)
+        if not title:
+            raise HTTPNotFound()
+        return title    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+class UrlMatch(object):
+    &quot;&quot;&quot;
+    Descriptor that will retrieve variable from the current requests matchdict.
+
+    This should be used on a context class to allow retrieving matchdict variables
+    from the context. When the context class uses :class:`UrlMatchMeta` as it's metaclass
+    then ``UrlMatch`` will use the class attribute name as the key to extract from
+    the matchdict. If the parent class of ``UrlMatch`` does not use `UrlMatchMeta`
+    as its metaclass then the ``name`` argument must be given to ``UrlMatch``.
+
+    Example with metaclass::
+
+        class MyContext(object):
+
+            __metaclass__ = UrlMatchMeta
+
+            def __init__(self, request):
+                self._request = request
+
+            my_var = UrlMatch()
+	 &quot;&quot;&quot;
+
+    def __init__(self, name=None):
+        self.name = name
+
+    def __get__(self, obj, type=None):
+        if not obj:
+            # Accessed via class, so return the descriptor
+            return self
+
+        if not self.name:
+            raise ValueError(
+                'UrlMatch property does not have a name to extract from matchdict. ' +
+                'Use viewutils.UrlMatchMeta as your metaclass or pass a name to UrlMatch().'
+            )
+
+        try:
+            return obj._request.matchdict[self.name]
+        except KeyError:
+            # Turn the KeyError into AttributeError because this will be accessed as
+            # an attribute
+            raise AttributeError(&quot;Matchdict does not have key '{}'&quot;.format(self.name))
+
+
+class UrlMatchMeta(abc.ABCMeta):
+    &quot;&quot;&quot;
+    Metaclass that provides support for the :class:`UrlMatch` descriptor.
+
+    This metaclass will set the ``name`` attribute of each ``UrlMatch`` class attribute
+    to the name of the class attribute.
+    &quot;&quot;&quot;
+
+    def __new__(cls, classname, bases, classDict):
+        new_class = super(UrlMatchMeta, cls).__new__(cls, classname, bases, classDict)
+        cls._set_url_match_names(new_class)
+
+        return new_class
+
+    @staticmethod
+    def _set_url_match_names(new_class):
+        for key, attr in vars(new_class).items():
+            if isinstance(attr, UrlMatch):
+                attr.name = key
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In this example, we used descriptor, metaclass __new__() to create this new class to simplify the code. 
+So how will this work?&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;__metaclass__ is used to redefine how a class is constructed. In UrlMatchMeta, __new__() is called to add the key in MyContext’s attributes (in this case, “title_id”) to the name of UrlMatch() object. Note __new__() is called automatically when calling the class name, even before __init__(). By using metaclass, we have created a UrlMatch object called title_id in TitlesContext and dynamically added title_id as its name.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;__get__() descriptor is used to retrieve the attribute from request context. Python descriptor says if we call obj.d, it will look for d in obj’s dictionary, and if d defines __get__(), it will call d.__get__(obj). In our case, when we call self.title_id (self is the TitlesContext), it finds __get__() method, so it will actually call title_id.__get__(TitlesContext). Since title_id is UrlMatch, it will return obj._request.matchdict[self.name], which is TitlesContext._request.matchdict[“title_id”]. As such, we complete the same way as to look for title_id parameter in request (which is the same as get_route_param from the old way).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Tue, 03 Jan 2017 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/programming/2017/01/03/python-magic-methods-1-continued/</link>
+        <guid isPermaLink="true">http://localhost:4000/programming/2017/01/03/python-magic-methods-1-continued/</guid>
+        
+        <category>Python</category>
+        
+        <category>advanced features</category>
+        
+        
+        <category>Programming</category>
+        
+      </item>
+    
+      <item>
+        <title>Python magic methods (1)</title>
+        <description>&lt;h2 id=&quot;python-magic-methods-1--__new__-and-__init__&quot;&gt;Python magic methods (1) : __new__() and __init__()&lt;/h2&gt;
+
+&lt;p&gt;In Python, magic methods are special methods where you can define to add “magic” to classes. They’re always surrounded by double underscores (called ‘dunder’). We will look into these magic methods in Object construction and initialization and see how they add advantages to python object oriented programming.&lt;/p&gt;
+
+&lt;h3 id=&quot;object-construction-and-initialization&quot;&gt;Object construction and initialization&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;__new__(cls, […): the first method to get called in an object’s instantiation&lt;/li&gt;
+  &lt;li&gt;__init__(self, […): the method get called to create objects of class&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;From the definition above, we see that __new__() accepts cls as it’s first parameter, while __init__() accepts self. __init__() is called after __new__() when object is initialized.&lt;/p&gt;
+
+&lt;p&gt;Let’s take a look at example below.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class MyClass(object):
+
+    def __new__(cls):
+        print &quot;MyClass.__new__ called&quot;
+        return super(MyClass, cls).__new__(cls) # here super is type
+
+    def __init__(self):
+        print &quot;MyClass.__init__ called&quot;
+
+
+
+if __name__ == '__main__':
+    c = MyClass()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;MyClass.__new__ called
+MyClass.__init__ called
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;As we can see, __new__() method took cls as the input to create &lt;em&gt;self&lt;/em&gt; object, then when a new MyClass object is instantiated, __init__() is called thereafter.&lt;/p&gt;
+
+&lt;p&gt;Another thing to note: __new__() is called automatically when calling the class name, which is when we do MyClass(). On the other hand, __init__() is called every time an instance of the class is returned by __new__() passing the returned instance to __init__() as ‘self’.&lt;/p&gt;
+
+&lt;p&gt;As such, __new__() will return the instance of &lt;em&gt;cls&lt;/em&gt;, and then, this new instance will be picked up by __init__(). If we ommit calling super for __new__() and not return anything, then __init__() won’t be executed.&lt;/p&gt;
+
+&lt;h3 id=&quot;when-to-use-__new__&quot;&gt;When to use __new__()?&lt;/h3&gt;
+
+&lt;p&gt;If you want to control the actual creation process, use the __new__() method. If you intend to alter something like the base classes or the attributes, you’ll have to do it in __new__().&lt;/p&gt;
+
+&lt;p&gt;Below example is to help to create a customized list with a method , “add”. By default, python list doesn’t have add method, but in this example we can create this customized list by adding add to the attr of the metaclass in __new__() method.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class ListMetaclass(type):
+    def __new__(cls, name, bases, attrs):
+        attrs['add'] = lambda self, value: self.append(value)
+        return type.__new__(cls, name, bases, attrs)
+
+class MyList(list):
+    __metaclass__ = ListMetaclass # use ListMetaclass to customize class
+
+if __name__ == '__main__':
+    #c = MyClass()
+    l = MyList()
+    l.add(1)
+    print (l)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[1]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The result shows this MyList() instance has a method add which adds elements to the list.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 23 Dec 2016 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/programming/2016/12/23/python-magic-methods-1/</link>
+        <guid isPermaLink="true">http://localhost:4000/programming/2016/12/23/python-magic-methods-1/</guid>
+        
+        <category>Python</category>
+        
+        <category>advanced features</category>
+        
+        
+        <category>Programming</category>
+        
+      </item>
+    
+      <item>
+        <title>Python How to assert a method is called in unit test using Mock/MagicMock</title>
+        <description>&lt;h2 id=&quot;why-do-we-need-unit-test&quot;&gt;Why do we need unit test?&lt;/h2&gt;
+
+&lt;p&gt;Sometimes developers are asked to restructure their code due to design, framework change or code cleanup purpose. One scenario is, the developer will implement same logic but move the code from one class to another, etc., and still keep the same business logic. Consequently, how to test if the code refactor / restructure doesn’t have any impact is crucial. If the unit test is already in place, then the developer doesn’t need to rerun the whole program again and again to test the code’s logic after the refactor.&lt;/p&gt;
+
+&lt;h2 id=&quot;real-problem---how-to-test-if-a-method-is-called-with-its-argument&quot;&gt;Real problem - how to test if a method is called with its argument?&lt;/h2&gt;
+
+&lt;p&gt;We have one web app views module which contains a method like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@action_config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;renderer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'offering_definition/edit_package.mako'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;offering_definition&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;copy_util&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CopyUtility&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;package_copy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;copy_util&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;copy_package&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;package&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;redirect&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;route_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;'package manager id'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'edit'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;package_copy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;definition_id&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HTTPFound&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;redirect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;What this function does is, we got an instance called “package”, and want to copy that object. Once copied the web page should be redirected to another page.&lt;/p&gt;
+
+&lt;p&gt;Now, we want an unit test that can verify if copy_package() method is actually called in copy() method, with the argument of package. How can we achieve that?&lt;/p&gt;
+
+&lt;h2 id=&quot;solution---use-mockmagicmock&quot;&gt;Solution - use Mock/MagicMock&lt;/h2&gt;
+
+&lt;p&gt;Python Mock/MagicMock enables us to reproduce expensive objects in our tests by using built-in methods (&lt;code class=&quot;highlighter-rouge&quot;&gt;__call__&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;__import__&lt;/code&gt;) and variables to “memorize” the status of attributes, and function calls. We can use them to mimic the resources by controlling how they were created, what their return value is. There is one method called &lt;em&gt;assert_called_with()&lt;/em&gt; which asserts that the patched function was called with the arguments specified as arguments, to assert_called_with(). Let’s take a look how this is implemented.&lt;/p&gt;
+
+&lt;p&gt;For above code, we can write a unit test like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_copy_processing_post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;make_offering_definition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'POST'&lt;/span&gt;
+    &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;POST&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;POST_EDIT_PARAMS&lt;/span&gt;
+    &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;definition_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;package&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;definition_id&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;odh&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OfferingDefinitionHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'boss.views.offering_definition.lib.CopyUtility.copy_package'&lt;/span&gt;
+               &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;copy_package_call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;copy_return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;odh&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;copy_package_call&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assert_called_with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;package&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;how-does-this-work&quot;&gt;How does this work?&lt;/h2&gt;
+
+&lt;p&gt;Let’s analyze the code line by line:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;with patch('boss.views.offering_definition.lib.CopyUtility.copy_package'
+    ) as copy_package_call:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This will create a new instance of mock.patch object and assign it to a variable called copy_package_call. copy_package_call is a MagicMock object with the name as copy_package. This object create all attributes and methods as you access them and store details of how they have been used. You can assume copy_package_call an object that keeps track of how its attributes (if any) or callable is called, how many times the callable is called, what are the arguments, etc.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    copy_return = odh.copy()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;When it comes to this line, because copy() includes package_copy = copy_util.copy_package(package) method call, and copy_package() is been defined as a MagicMock(), the CallableMixin’s &lt;strong&gt;call&lt;/strong&gt;() method will also be invoked.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def __call__(_mock_self, *args, **kwargs):
+    # can't use self in-case a function / method we are mocking uses self
+    # in the signature
+    _mock_self._mock_check_sig(*args, **kwargs)
+    return _mock_self._mock_call(*args, **kwargs)
+
+def _mock_call(_mock_self, *args, **kwargs):
+    self = _mock_self
+    self.called = True
+    self.call_count += 1
+    _new_name = self._mock_new_name
+    _new_parent = self._mock_new_parent
+    _call = _Call((args, kwargs), two=True)
+    self.call_args = _call
+    self.call_args_list.append(_call)
+    self.mock_calls.append(_Call(('', args, kwargs)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This line self.call_args = call keeps track of args / kwargs in a tuple that are used in function call. In this case, it will be the instance of OfferingDefinition. This self.callargs is used later to trace the call arguments.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    copy_package_call.assert_called_with(package)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If we go to the source code of assert_called_with(), we can see what it’s doing:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def assert_called_with(_mock_self, *args, **kwargs):
+    &quot;&quot;&quot;assert that the mock was called with the specified arguments.
+    Raises an AssertionError if the args and keyword args passed in are
+    different to the last call to the mock.&quot;&quot;&quot;
+    self = _mock_self
+    if self.call_args is None:
+        expected = self._format_mock_call_signature(args, kwargs)
+        raise AssertionError('Expected call: %s\nNot called' % (expected,))
+    def _error_message(cause):
+        msg = self._format_mock_failure_message(args, kwargs)
+        if six.PY2 and cause is not None:
+            # Tack on some diagnostics for Python without __cause__
+            msg = '%s\n%s' % (msg, str(cause))
+        return msg
+    expected = self._call_matcher((args, kwargs))
+    actual = self._call_matcher(self.call_args)
+    if expected != actual:
+        cause = expected if isinstance(expected, Exception) else None
+        six.raise_from(AssertionError(_error_message(cause)), cause)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In this call – assert_called_with(package), package is passed into function as args.
+This method assert_called_with compares if the expected mock object (copy_package()) and the actual object are invoked with by the same argument (OfferingDefinition). Because self.call_args also keeps track of package, the expected and actual object will be equal, and thus the unit test function will pass.&lt;/p&gt;
+
+&lt;h2 id=&quot;more-methods-about-magicmock-from-python-doc&quot;&gt;More methods about MagicMock (from Python doc)&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;assert_called_with()&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This method is a convenient way of asserting that calls are made in a particular way:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;assert_called_once_with()&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Assert that the mock was called exactly once and with the specified arguments.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;assert_any_call()&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;assert the mock has been called with the specified arguments. The assert passes if the mock has ever been called, unlike assert_called_with() and assert_called_once_with() that only pass if the call is the most recent one.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;assert_has_calls()&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;assert the mock has been called with the specified calls. The mock_calls list is checked for the calls. If any_order is false (the default) then the calls must be sequential. There can be extra calls before or after the specified calls. If any_order is true then the calls can be in any order, but they must all appear in mock_calls.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 18 Dec 2016 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/programming/2016/12/18/python-how-to-assert-method-is-called-in-unit-test/</link>
+        <guid isPermaLink="true">http://localhost:4000/programming/2016/12/18/python-how-to-assert-method-is-called-in-unit-test/</guid>
+        
+        <category>Python</category>
+        
+        <category>Unit Test</category>
+        
+        
+        <category>Programming</category>
+        
+      </item>
+    
+      <item>
+        <title>Python advanced data structure - collections</title>
+        <description>&lt;h2 id=&quot;python-advanced-data-structure---collections&quot;&gt;Python advanced data structure - collections&lt;/h2&gt;
+
+&lt;p&gt;In Python, dict, list, set and tuple are commonly used data structures. Other than these, Python also has several useful built-in data structures in its collections module, e.g., OrderedDict, Counter, deque. Let’s take a look at their behavior and sample usage.&lt;/p&gt;
+
+&lt;h3 id=&quot;ordereddict&quot;&gt;OrderedDict()&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;How to define a OrderedDict : 
+OrderedDict( [(key1, value1), (key2, value2)] )&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Difference with dict: dict is un-ordered data structure. When you want to iterate key value pairs based on their sequence in the dict&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Example&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from collections import OrderedDict
+
+items = (
+    ('d', 4),
+    ('a', 1),
+    ('b', 2),
+    ('c', 3),
+)
+
+regular_dict = dict(items)
+ordered_dict = OrderedDict(items)
+
+print 'regular_dict:'
+for k, v in regular_dict.items():
+    print k, v
+
+print 'ordered_dict:'
+for k, v in ordered_dict.items():
+    print k, v
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;regular_dict:
+a 1
+c 3
+b 2
+d 4
+ordered_dict:
+d 4
+a 1
+b 2
+c 3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Note the OrderedDict will iterate the elements with the sequence when the OrderedDict was defined. On the other hand, for dict, since there is no sequence of the key-value paire, the iteration is also not ordered.&lt;/p&gt;
+
+&lt;h3 id=&quot;counter&quot;&gt;Counter()&lt;/h3&gt;
+
+&lt;p&gt;Assume you have a list and you want to get the statistics of the elements in the list, for example, total number of item counts, the item that most frequently shows in the list, etc. Then you may use Counter() in collections to get these stats.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Example: get the item counts&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from collections import Counter
+ 
+li = [&quot;Roundness&quot;, &quot;Square&quot;, &quot;Triangle&quot;, \
+&quot;Roundness&quot;, &quot;Roundness&quot;, &quot;Square&quot;]
+a = Counter(li)
+ 
+print a
+print &quot;{0} : {1}&quot;.format(a.values(),a.keys())
+ 
+print(a.most_common(2)) 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Counter({'Roundness': 3, 'Square': 2, 'Triangle': 1})
+[3, 1, 2] : ['Roundness', 'Triangle', 'Square']
+[('Roundness', 3), ('Square', 2)]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;deque&quot;&gt;deque()&lt;/h3&gt;
+
+&lt;p&gt;deque stands for “double-ended queue”. It implements the fast append and pop element from the head.&lt;/p&gt;
+
+&lt;p&gt;In list, we can also do&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;l.insert(0, v)
+l.pop(0)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;But the time complexity of methods call above will be O(n), which is linear increasing to the number of elements in list. For deque, the time complexity of inserting and poping is O(1).&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Example&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from collections import deque
+
+q = deque(['a', 'b', 'c'])
+q.append('x')
+q.appendleft('y')
+q.popleft()
+q.popleft()
+print (q)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deque(['b', 'c', 'x'])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Thu, 01 Dec 2016 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/programming/2016/12/01/python-advanced-data-structures/</link>
+        <guid isPermaLink="true">http://localhost:4000/programming/2016/12/01/python-advanced-data-structures/</guid>
+        
+        <category>Python</category>
+        
+        <category>Data Structure</category>
+        
+        
+        <category>Programming</category>
+        
+      </item>
+    
+      <item>
+        <title>Python How To Serve Python Flask Application Using Mod_wsgi Express</title>
+        <description>&lt;h1 id=&quot;how-to-serve-python-flask-application-using-mod_wsgi-express-and-apache-in-mac-os-x-el-capitan&quot;&gt;How to serve Python Flask Application using mod_wsgi-express and Apache in Mac OS X El Capitan&lt;/h1&gt;
+
+&lt;p&gt;If you have a python web application, you will need to deploy it to a physical server after the development is done. Python WSGI (web service gateway interface) is a protocal where separates the web framework (for example, Flask) with the web server (for example, Apache). The WSGI module provides an interconnect of sorts between Apache and your Python processes.&lt;/p&gt;
+
+&lt;p&gt;It is suggested to deploy Flask application by using Apache and mod_wsgi, on Flask &lt;a href=&quot;http://flask.pocoo.org/docs/0.11/deploying/mod_wsgi/&quot; title=&quot;Flask&quot;&gt;website&lt;/a&gt;. To acheieve this we will install the python modules and setup the environment.&lt;/p&gt;
+
+&lt;h3 id=&quot;prepare-the-environment&quot;&gt;Prepare the environment&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;install virtualenv&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ pip install virtualenv
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;once installed, we should also configure the virtual environment&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ mkdir MyFlaskProject
+$ cd MyFlaskProject
+$ virtualenv venv
+$ source ./bin/venv
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;It is highly suggested to use virtualenv as this will isolate the workspace of your python runtime environment and create a separate code dependency of your python process. You have the option to deactivate this after using this environment.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;install mod_wsgi&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install mod_wsgi
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;install Flask&lt;/p&gt;
+
+    &lt;p&gt;```
+pip install Flask&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All the modules are installed with its latest version. They will be installed to the virtual environment’s lib folder if this hasn’t been installed before.&lt;/p&gt;
+
+&lt;h3 id=&quot;create-a-flask-app&quot;&gt;Create a Flask app&lt;/h3&gt;
+
+&lt;p&gt;We will demonstrate a simple “Hello Flask” example in Flask app.&lt;/p&gt;
+
+&lt;p&gt;hello.py&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import sys, os
+sys.path.append(os.path.dirname(__file__))
+
+from flask import Flask
+app = Flask(__name__)
+@app.route(&quot;/&quot;)
+def hello():
+    return &quot;Hello, I love Flask!&quot;
+if __name__ == &quot;__main__&quot;:
+    app.run(host= '0.0.0.0')
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;create-a-wsgi-file&quot;&gt;Create a .wsgi file&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import sys, os
+sys.path.insert(0, &quot;&amp;lt;root directory of your flask app&amp;gt;&quot;) # e.g. /var/www/FlaskApp/
+
+from hello import app as application
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;run-the-service&quot;&gt;Run the service&lt;/h3&gt;
+
+&lt;p&gt;If you run this command,&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ mod_wsgi-express start-server hello.wsgi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You should be able to see below message from your terminal:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Server URL         : http://localhost:8000/
+Server Root        : /tmp/mod_wsgi-localhost:8000:501
+Server Conf        : /tmp/mod_wsgi-localhost:8000:501/httpd.conf
+Error Log File     : /tmp/mod_wsgi-localhost:8000:501/error_log (warn)
+Request Capacity   : 5 (1 process * 5 threads)
+Request Timeout    : 60 (seconds)
+Queue Backlog      : 100 (connections)
+Queue Timeout      : 45 (seconds)
+Server Capacity    : 20 (event/worker), 20 (prefork)
+Server Backlog     : 500 (connections)
+Locale Setting     : en_CA.UTF-8
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If no error log is showing, this means that the Flask service is running and you should be able to open localhost URL &lt;a href=&quot;http://localhost:8000/&quot; title=&quot;localhost&quot;&gt;localhost&lt;/a&gt; to see it display “Hello Flask” message.&lt;/p&gt;
+
+&lt;p&gt;The apache httpd.conf file is located at /etc/apache2/httpd.conf . It is suggested on the Flask website to modify httpd.conf file to configure Apache (&lt;a href=&quot;http://flask.pocoo.org/docs/0.11/deploying/mod_wsgi/&quot;&gt;here&lt;/a&gt;). However, if you check the httpd.conf file in /tmp folder, you will find mod_wsgi is smart enough to pick up the Flask application by checking the path in .wsgi file, as below:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;...
+...
+WSGIDaemonProcess localhost:8000 \
+...
+   home='/var/www/FlaskApp/' \
+...
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;so you don’t have to modify the httpd.conf file.&lt;/p&gt;
+
+&lt;p&gt;In OS X EI Capitan, it is possible if you see an error message as&lt;/p&gt;
+
+&lt;p&gt;install: /usr/libexec/apache2/mod_wsgi.so: Operation not permitted&lt;/p&gt;
+
+&lt;p&gt;when invoking mod_wsgi to start the server. This is due to the System Integrity Protection by Mac EI Capitan and you may follow this &lt;a href=&quot;https://github.com/GrahamDumpleton/mod_wsgi/issues/98&quot;&gt;site&lt;/a&gt; thread to disable it.&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 16 Aug 2016 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2016/08/16/python-How-To-Serve-Python-Flask-Application-Using-mod_wsgi-express/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/08/16/python-How-To-Serve-Python-Flask-Application-Using-mod_wsgi-express/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Python function - pass by value or by reference?</title>
+        <description>&lt;h2 id=&quot;python-function---pass-by-value-or-by-reference&quot;&gt;Python function - pass by value or by reference?&lt;/h2&gt;
+
+&lt;p&gt;Let’s look at below examples to change int number and list in function variables.&lt;/p&gt;
+
+&lt;h3 id=&quot;changing-an-int-number-in-function-variable&quot;&gt;Changing an int number in function variable&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def changeNumber(num):
+	num = 2
+	print ('Changing num to %s',num)
+
+num = 1
+print ('Before change, num is %s',num)
+changeNumber(num)
+print ('After change, num is %s',num)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;('Before change, num is %s', 1)
+('Changing num to %s', 2)
+('After change, num is %s', 1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;changing-an-list-in-function-variable&quot;&gt;Changing an list in function variable&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def changeList(lst):
+	lst.append(50)
+	newlst = [1,2,3,4,5,6,7,8,9,10]
+	lst = newlst
+
+lst = [1,2,3,4]
+print ('Before change, list is ',lst)
+changeList(lst)
+print ('After change, list is ',lst)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;('Before change, list is ', [1, 2, 3, 4])
+('After change, list is ', [1, 2, 3, 4, 50])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;int-value-is-not-changed-while-list-is-changed-whats-happening&quot;&gt;int value is not changed while list is changed.. What’s happening?&lt;/h3&gt;
+
+&lt;p&gt;In Python, all variables can be seen as the reference to an object in memory (like a tag on an object). When changing the num (type: int), because int is a immutable data type in Python, so in changeNumber(num) method an local variable (also named “num”) is created locally with in the function, and it is assigned as int value 2. However, the original parameter num, is still pointing to 1, thus num is not changed after calling function changeNumber(num).&lt;/p&gt;
+
+&lt;p&gt;When changing the lst (type: list), the parameter lst is passed into the function. In the function it is calling append method, which is to change the content of the list (list is mutable, which means the content of it can be changed). But when we reassign the lst to a new list(newlst), it is the same case as changeNumber again - lst is assigned to a new list but it is a local variable assignment without impacting the external variable. So in this case, the variable itself is not changed externally outside of function, but the content already changed.&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 01 Dec 2015 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/programming/2015/12/01/python-pass-by-value-or-reference/</link>
+        <guid isPermaLink="true">http://localhost:4000/programming/2015/12/01/python-pass-by-value-or-reference/</guid>
+        
+        <category>Python</category>
+        
+        <category>Function</category>
+        
+        
+        <category>Programming</category>
+        
+      </item>
+    
+      <item>
+        <title>List Comprehension in Python</title>
+        <description>&lt;h2 id=&quot;list-comprehension-in-python---summary&quot;&gt;List Comprehension in Python - Summary&lt;/h2&gt;
+
+&lt;p&gt;This article is to write tips on what is list comprehension in Python, how to write it, and how to use it.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-is-python-list-comprehension&quot;&gt;What is Python list comprehension?&lt;/h3&gt;
+
+&lt;p&gt;List comprehension provides a convenient way to define lists in Python. Traditionally how we create lists in Python is:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nums = [0,1,2,3,4]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;With list comprehension, we can create lists in this new way, as:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nums = [x for x in range(5)]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;how-to-write-list-comprehension&quot;&gt;How to write list comprehension&lt;/h3&gt;
+
+&lt;p&gt;In list comprehension, there are four components. Take below code piece as an example:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nums = [x for x in range(5) if x &amp;gt; 2]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;There are four parts in this list comprehension, including:&lt;/p&gt;
+
+&lt;p&gt;input parameters: range(5)
+variable in input parameters: x
+condition: if x &amp;gt; 2
+list comprehension expression: []&lt;/p&gt;
+
+&lt;p&gt;Once you have above four components, you can write list comprehension.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-generator-by-using-list-comprehension-grammar&quot;&gt;Creating generator by using list comprehension grammar&lt;/h3&gt;
+
+&lt;p&gt;After a list comprehension is created, it will be taken by memory in Python runtime. However, if the list itself is a very large data set, it will occupy a lot of memory as well. Instead of creating list comprehension, we can create generator as an alternative.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nums_generator = (x for x in range(5) if x &amp;gt; 2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Note to create generator using list comprehension grammar, the only difference is we use parentheses () instead of square brackets [].&lt;/p&gt;
+
+&lt;p&gt;The benefits of using generator is, only the generator itself will be loaded into memory, which will let the code run faster if memory is limited. In order to retrieve the elements in generator, we only need to use for loop to access its element:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for item in nums_generator:
+	print item
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Tue, 20 Oct 2015 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/programming/2015/10/20/python-list-comprehension/</link>
+        <guid isPermaLink="true">http://localhost:4000/programming/2015/10/20/python-list-comprehension/</guid>
+        
+        <category>Python</category>
+        
+        <category>Data Structure</category>
+        
+        
+        <category>Programming</category>
+        
+      </item>
+    
+      <item>
+        <title>Function parameter with default value in Python</title>
+        <description>&lt;h2 id=&quot;function-parameter-with-default-value-in-python&quot;&gt;Function parameter with default value in Python&lt;/h2&gt;
+
+&lt;p&gt;This article is to describe restrictions when defining python function parameter default values.&lt;/p&gt;
+
+&lt;p&gt;There are two types of Python objects, immutable objects and mutable objects.&lt;/p&gt;
+
+&lt;p&gt;Mutable objects include: dict(), list(), …
+Immutable objects include: tuple(), string, int, float, …&lt;/p&gt;
+
+&lt;p&gt;Take a look at below code piece:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def append_to_list(value, default_list=[])
+	default_list.append(value)
+	return default_list
+
+&amp;gt;&amp;gt;&amp;gt; my_list = append_to_list(1)
+&amp;gt;&amp;gt;&amp;gt; my_list
+    [1] 
+
+&amp;gt;&amp;gt;&amp;gt; my_other_list = append_to_list(2)
+&amp;gt;&amp;gt;&amp;gt; my_other_list
+    [1,2]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For my_other_list, we are expecting only 2 in the list, but it looks like the result is “remembering” the result from last run. Why is this happening?&lt;/p&gt;
+
+&lt;p&gt;Note that all python value are passed by its reference (address). When the function is defined, the function parameter is also defined. When using the mutable objects as the parameter, it will allocate a fixed memory address to the mutable object. When the function is called, it is actually using this mutable object’s address cache to get the result.&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 08 Sep 2015 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/programming/2015/09/08/python-function-parameter/</link>
+        <guid isPermaLink="true">http://localhost:4000/programming/2015/09/08/python-function-parameter/</guid>
+        
+        <category>Python</category>
+        
+        <category>Function</category>
+        
+        
+        <category>Programming</category>
+        
+      </item>
+    
+  </channel>
+</rss>

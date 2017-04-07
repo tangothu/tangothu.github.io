@@ -1,0 +1,9 @@
+echo "# jekyll_blog_boilerplate" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote remove origin
+git remote add origin https://github.com/tangothu/jekyll_blog_boilerplate.git
+git push -u origin master
+jekyll build
+jekyll serve --watch
