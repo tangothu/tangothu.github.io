@@ -1,11 +1,12 @@
 ---
 layout: post
-title: Python assignment
+title: Python assignment - CSC108 : Exploring the Twitterverse
 categories:
 - assignment
 tags:
 - Python
 - Data Structure
+- dict
 ---
 
 ## Python assignment - CSC108 : Exploring the Twitterverse
