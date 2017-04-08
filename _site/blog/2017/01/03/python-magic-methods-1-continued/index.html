@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Python advanced data structure - collections - All about Python | Kevin's Blog</title>
+    <title>Python magic methods (1) continued - Use magic methods to simplify code in URL matching in Python Pyramid application - All about Python | Kevin's Blog</title>
 
-    <link rel="canonical" href="http://localhost:4000/programming/2016/12/01/python-advanced-data-structures/">
+    <link rel="canonical" href="http://localhost:4000/blog/2017/01/03/python-magic-methods-1-continued/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -146,15 +146,15 @@
                         
                         <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
-                        <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
+                        <a class="tag" href="/tags/#advanced features" title="advanced features">advanced features</a>
                         
                     </div>
-                    <h1>Python advanced data structure - collections</h1>
+                    <h1>Python magic methods (1) continued - Use magic methods to simplify code in URL matching in Python Pyramid application</h1>
                     
                     
                     <h2 class="subheading"></h2>
                     
-                    <span class="meta">Posted by All about Python on December 1, 2016</span>
+                    <span class="meta">Posted by All about Python on January 3, 2017</span>
                 </div>
             </div>
         </div>
@@ -172,127 +172,128 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h2 id="python-advanced-data-structure---collections">Python advanced data structure - collections</h2>
+				<p>In the last article we reviewed the features of python magic methods, __new__() and __init__(). We will look into a real example today about how to use the magic methods to simplify code in Python, with example of URL matching in Pyramid framework.</p>
 
-<p>In Python, dict, list, set and tuple are commonly used data structures. Other than these, Python also has several useful built-in data structures in its collections module, e.g., OrderedDict, Counter, deque. Let’s take a look at their behavior and sample usage.</p>
+<h2 id="python-magic-methods-1-continued-use-descriptor-__new__-and-metaclass-to-simplify-url-matching">Python magic methods (1) continued: Use descriptor, __new__ and metaclass to simplify URL Matching</h2>
 
-<h3 id="ordereddict">OrderedDict()</h3>
+<p>Assume we have code like below. The method get_route_param will get the parameter from current request object in Pyramid by the name.</p>
 
-<ul>
+<div class="highlighter-rouge"><pre class="highlight"><code>class TitlesContext(RootContext):
+    def get_title(self):
+        title = self._db.query(Title).get(self.get_route_param('title_id'))
+        if not title:
+            raise HTTPNotFound()
+        return title
+
+    def get_route_param(self, name):
+        """
+        Return the route parameter with the given ``name`` or raise a 404 if it
+        is False-y.
+
+        :rtype: unicode
+        :raise: :exc:`pyramid.httpexceptions.HTTPNotFound`
+        """
+        value = self._request.matchdict[name].strip()
+        if not value:
+            raise HTTPNotFound()
+        return value
+</code></pre>
+</div>
+
+<p>In one pyramid application, for each Model-View-Controller, there could be multiple context object to query the database objects, thus the method get_route_param could exist in many places.</p>
+
+<p>To improve, we can refactor the code by removing the get_route_param method by creating a new class, UrlMatch:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class TitlesContext(RootContext):
+
+    title_id = UrlMatch()
+    
+    def get_title(self):
+        title = self._db.query(Title).get(self.title_id)
+        if not title:
+            raise HTTPNotFound()
+        return title    
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+class UrlMatch(object):
+    """
+    Descriptor that will retrieve variable from the current requests matchdict.
+
+    This should be used on a context class to allow retrieving matchdict variables
+    from the context. When the context class uses :class:`UrlMatchMeta` as it's metaclass
+    then ``UrlMatch`` will use the class attribute name as the key to extract from
+    the matchdict. If the parent class of ``UrlMatch`` does not use `UrlMatchMeta`
+    as its metaclass then the ``name`` argument must be given to ``UrlMatch``.
+
+    Example with metaclass::
+
+        class MyContext(object):
+
+            __metaclass__ = UrlMatchMeta
+
+            def __init__(self, request):
+                self._request = request
+
+            my_var = UrlMatch()
+	 """
+
+    def __init__(self, name=None):
+        self.name = name
+
+    def __get__(self, obj, type=None):
+        if not obj:
+            # Accessed via class, so return the descriptor
+            return self
+
+        if not self.name:
+            raise ValueError(
+                'UrlMatch property does not have a name to extract from matchdict. ' +
+                'Use viewutils.UrlMatchMeta as your metaclass or pass a name to UrlMatch().'
+            )
+
+        try:
+            return obj._request.matchdict[self.name]
+        except KeyError:
+            # Turn the KeyError into AttributeError because this will be accessed as
+            # an attribute
+            raise AttributeError("Matchdict does not have key '{}'".format(self.name))
+
+
+class UrlMatchMeta(abc.ABCMeta):
+    """
+    Metaclass that provides support for the :class:`UrlMatch` descriptor.
+
+    This metaclass will set the ``name`` attribute of each ``UrlMatch`` class attribute
+    to the name of the class attribute.
+    """
+
+    def __new__(cls, classname, bases, classDict):
+        new_class = super(UrlMatchMeta, cls).__new__(cls, classname, bases, classDict)
+        cls._set_url_match_names(new_class)
+
+        return new_class
+
+    @staticmethod
+    def _set_url_match_names(new_class):
+        for key, attr in vars(new_class).items():
+            if isinstance(attr, UrlMatch):
+                attr.name = key
+</code></pre>
+</div>
+
+<p>In this example, we used descriptor, metaclass __new__() to create this new class to simplify the code. 
+So how will this work?</p>
+
+<ol>
   <li>
-    <p>How to define a OrderedDict : 
-OrderedDict( [(key1, value1), (key2, value2)] )</p>
+    <p>__metaclass__ is used to redefine how a class is constructed. In UrlMatchMeta, __new__() is called to add the key in MyContext’s attributes (in this case, “title_id”) to the name of UrlMatch() object. Note __new__() is called automatically when calling the class name, even before __init__(). By using metaclass, we have created a UrlMatch object called title_id in TitlesContext and dynamically added title_id as its name.</p>
   </li>
   <li>
-    <p>Difference with dict: dict is un-ordered data structure. When you want to iterate key value pairs based on their sequence in the dict</p>
+    <p>__get__() descriptor is used to retrieve the attribute from request context. Python descriptor says if we call obj.d, it will look for d in obj’s dictionary, and if d defines __get__(), it will call d.__get__(obj). In our case, when we call self.title_id (self is the TitlesContext), it finds __get__() method, so it will actually call title_id.__get__(TitlesContext). Since title_id is UrlMatch, it will return obj._request.matchdict[self.name], which is TitlesContext._request.matchdict[“title_id”]. As such, we complete the same way as to look for title_id parameter in request (which is the same as get_route_param from the old way).</p>
   </li>
-  <li>
-    <p>Example</p>
-  </li>
-</ul>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>from collections import OrderedDict
-
-items = (
-    ('d', 4),
-    ('a', 1),
-    ('b', 2),
-    ('c', 3),
-)
-
-regular_dict = dict(items)
-ordered_dict = OrderedDict(items)
-
-print 'regular_dict:'
-for k, v in regular_dict.items():
-    print k, v
-
-print 'ordered_dict:'
-for k, v in ordered_dict.items():
-    print k, v
-</code></pre>
-</div>
-
-<p>Result:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>regular_dict:
-a 1
-c 3
-b 2
-d 4
-ordered_dict:
-d 4
-a 1
-b 2
-c 3
-</code></pre>
-</div>
-
-<p>Note the OrderedDict will iterate the elements with the sequence when the OrderedDict was defined. On the other hand, for dict, since there is no sequence of the key-value paire, the iteration is also not ordered.</p>
-
-<h3 id="counter">Counter()</h3>
-
-<p>Assume you have a list and you want to get the statistics of the elements in the list, for example, total number of item counts, the item that most frequently shows in the list, etc. Then you may use Counter() in collections to get these stats.</p>
-
-<ul>
-  <li>Example: get the item counts</li>
-</ul>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>from collections import Counter
- 
-li = ["Roundness", "Square", "Triangle", \
-"Roundness", "Roundness", "Square"]
-a = Counter(li)
- 
-print a
-print "{0} : {1}".format(a.values(),a.keys())
- 
-print(a.most_common(2)) 
-</code></pre>
-</div>
-
-<p>Result:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>Counter({'Roundness': 3, 'Square': 2, 'Triangle': 1})
-[3, 1, 2] : ['Roundness', 'Triangle', 'Square']
-[('Roundness', 3), ('Square', 2)]
-</code></pre>
-</div>
-
-<h3 id="deque">deque()</h3>
-
-<p>deque stands for “double-ended queue”. It implements the fast append and pop element from the head.</p>
-
-<p>In list, we can also do</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>l.insert(0, v)
-l.pop(0)
-</code></pre>
-</div>
-
-<p>But the time complexity of methods call above will be O(n), which is linear increasing to the number of elements in list. For deque, the time complexity of inserting and poping is O(1).</p>
-
-<ul>
-  <li>Example</li>
-</ul>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>from collections import deque
-
-q = deque(['a', 'b', 'c'])
-q.append('x')
-q.appendleft('y')
-q.popleft()
-q.popleft()
-print (q)
-</code></pre>
-</div>
-
-<p>Result:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>deque(['b', 'c', 'x'])
-</code></pre>
-</div>
-
+</ol>
 
 
                 <hr>
@@ -303,12 +304,12 @@ print (q)
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/blog/2016/08/16/python-How-To-Serve-Python-Flask-Application-Using-mod_wsgi-express/" data-toggle="tooltip" data-placement="top" title="Serve Python Flask application using mod_wsgi">&larr; Previous Post</a>
+                        <a href="/blog/2016/12/23/python-magic-methods-1/" data-toggle="tooltip" data-placement="top" title="Python magic methods (1)">&larr; Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/blog/2016/12/18/python-how-to-assert-method-is-called-in-unit-test/" data-toggle="tooltip" data-placement="top" title="Python How to assert a method is called in unit test using Mock/MagicMock">Next Post &rarr;</a>
+                        <a href="/blog/2017/02/03/python-magic-methods-2/" data-toggle="tooltip" data-placement="top" title="Use awk to parse plain text large file (from DHCP lease for network IP address lookup)">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -402,8 +403,8 @@ print (q)
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "tangothu";
-    var disqus_identifier = "/programming/2016/12/01/python-advanced-data-structures";
-    var disqus_url = "http://localhost:4000/programming/2016/12/01/python-advanced-data-structures/";
+    var disqus_identifier = "/blog/2017/01/03/python-magic-methods-1-continued";
+    var disqus_url = "http://localhost:4000/blog/2017/01/03/python-magic-methods-1-continued/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Python tutor service - All about Python | Kevin's Blog</title>
+    <title>Serve Python Flask application using mod_wsgi - All about Python | Kevin's Blog</title>
 
-    <link rel="canonical" href="http://localhost:4000/tutorservice/">
+    <link rel="canonical" href="http://localhost:4000/blog/2016/08/16/python-How-To-Serve-Python-Flask-Application-Using-mod_wsgi-express/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -127,182 +127,257 @@
 </script>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/service.jpg')">
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Python tutor service</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">To provide Python tutor service</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                        <a class="tag" href="/tags/#web application" title="web application">web application</a>
+                        
+                        <a class="tag" href="/tags/#Flask" title="Flask">Flask</a>
+                        
+                    </div>
+                    <h1>Serve Python Flask application using mod_wsgi</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by All about Python on August 16, 2016</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
-        
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-    			<!-- Language Selector -->
-<select onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
-    <option value="0" selected> 中文 Chinese </option>
-    <option value="1"> 英语 English </option>
-</select>
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-<!-- Chinese Version -->
-<div class="zh post-container">
-    <p>
-        提供Python相关的服务,包含课程辅导,程序编写以及题目和作业讨论.<br>
-        涵盖范围包括数据结构,算法设计,网页设计,数据处理,以及各种类库的使用.<br>
-        可以提供Assignment,Homework,Lab,Project的相关咨询和作业指导.<br>
-        如有需要,请联系<br>
-        <a href="mailto:pythontutorpro@gmail.com?Subject=Python%20Tutor">pythontutorpro@gmail.com</a><br>
-        谢谢.<br>
-    </p>
-    <p>
-        也可加微信tangothu, 或扫二维码:
-    </p>
-    <div class="short-about">
-        <img src="/img/icon_wechat_small.jpg" />
+				<h1 id="how-to-serve-python-flask-application-using-mod_wsgi-express-and-apache-in-mac-os-x-el-capitan">How to serve Python Flask Application using mod_wsgi-express and Apache in Mac OS X El Capitan</h1>
+
+<p>If you have a python web application, you will need to deploy it to a physical server after the development is done. Python WSGI (web service gateway interface) is a protocal where separates the web framework (for example, Flask) with the web server (for example, Apache). The WSGI module provides an interconnect of sorts between Apache and your Python processes.</p>
+
+<p>It is suggested to deploy Flask application by using Apache and mod_wsgi, on Flask <a href="http://flask.pocoo.org/docs/0.11/deploying/mod_wsgi/" title="Flask">website</a>. To acheieve this we will install the python modules and setup the environment.</p>
+
+<h3 id="prepare-the-environment">Prepare the environment</h3>
+
+<ul>
+  <li>
+    <p>install virtualenv</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>$ pip install virtualenv
+</code></pre>
     </div>
+
+    <p>once installed, we should also configure the virtual environment</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>$ mkdir MyFlaskProject
+$ cd MyFlaskProject
+$ virtualenv venv
+$ source ./bin/venv
+</code></pre>
+    </div>
+
+    <p>It is highly suggested to use virtualenv as this will isolate the workspace of your python runtime environment and create a separate code dependency of your python process. You have the option to deactivate this after using this environment.</p>
+  </li>
+  <li>
+    <p>install mod_wsgi</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>pip install mod_wsgi
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>install Flask</p>
+
+    <p>```
+pip install Flask</p>
+  </li>
+</ul>
+
+<p>All the modules are installed with its latest version. They will be installed to the virtual environment’s lib folder if this hasn’t been installed before.</p>
+
+<h3 id="create-a-flask-app">Create a Flask app</h3>
+
+<p>We will demonstrate a simple “Hello Flask” example in Flask app.</p>
+
+<p>hello.py</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>import sys, os
+sys.path.append(os.path.dirname(__file__))
+
+from flask import Flask
+app = Flask(__name__)
+@app.route("/")
+def hello():
+    return "Hello, I love Flask!"
+if __name__ == "__main__":
+    app.run(host= '0.0.0.0')
+</code></pre>
 </div>
 
-<!-- English Version -->
-<div class="en post-container">
-    <p>
-        I provide Python related services including course tutorship, software coding and homework discussion.<br>
-        It can cover data structures, algorithm design, web design, data analysis and library usages.<br>
-        Including your assignment, homework, lab, project related teaching assistant service and discussion.<br>
-        Please feel free to reach <br>
-        <a href="mailto:pythontutorpro@gmail.com?Subject=Python%20Tutor">pythontutorpro@gmail.com</a><br>
-        Thank you.<br>
-    </p>
-    <p>
-        Or you can add my wechat tangothu, or scan below QR code:
-    </p>
-    <div class="short-about">
-        <img src="/img/icon_wechat_small.jpg" />
-    </div>
+<h3 id="create-a-wsgi-file">Create a .wsgi file</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>import sys, os
+sys.path.insert(0, "&lt;root directory of your flask app&gt;") # e.g. /var/www/FlaskApp/
+
+from hello import app as application
+</code></pre>
 </div>
 
-<!-- Handle Language Change -->
-<script type="text/javascript">
-    var $zh = document.querySelector(".zh");
-    var $en = document.querySelector(".en");
-    function onLanChange(index){
-        if(index == 0){
-            $zh.style.display = "block";
-            $en.style.display = "none";
-        }else{
-            $en.style.display = "block";
-            $zh.style.display = "none";
-        }
-    }
-    onLanChange(0);
-</script>
+<h3 id="run-the-service">Run the service</h3>
 
-    		</div>
+<p>If you run this command,</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ mod_wsgi-express start-server hello.wsgi
+</code></pre>
+</div>
+
+<p>You should be able to see below message from your terminal:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Server URL         : http://localhost:8000/
+Server Root        : /tmp/mod_wsgi-localhost:8000:501
+Server Conf        : /tmp/mod_wsgi-localhost:8000:501/httpd.conf
+Error Log File     : /tmp/mod_wsgi-localhost:8000:501/error_log (warn)
+Request Capacity   : 5 (1 process * 5 threads)
+Request Timeout    : 60 (seconds)
+Queue Backlog      : 100 (connections)
+Queue Timeout      : 45 (seconds)
+Server Capacity    : 20 (event/worker), 20 (prefork)
+Server Backlog     : 500 (connections)
+Locale Setting     : en_CA.UTF-8
+</code></pre>
+</div>
+
+<p>If no error log is showing, this means that the Flask service is running and you should be able to open localhost URL <a href="http://localhost:8000/" title="localhost">localhost</a> to see it display “Hello Flask” message.</p>
+
+<p>The apache httpd.conf file is located at /etc/apache2/httpd.conf . It is suggested on the Flask website to modify httpd.conf file to configure Apache (<a href="http://flask.pocoo.org/docs/0.11/deploying/mod_wsgi/">here</a>). However, if you check the httpd.conf file in /tmp folder, you will find mod_wsgi is smart enough to pick up the Flask application by checking the path in .wsgi file, as below:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>...
+...
+WSGIDaemonProcess localhost:8000 \
+...
+   home='/var/www/FlaskApp/' \
+...
+...
+</code></pre>
+</div>
+
+<p>so you don’t have to modify the httpd.conf file.</p>
+
+<p>In OS X EI Capitan, it is possible if you see an error message as</p>
+
+<p>install: /usr/libexec/apache2/mod_wsgi.so: Operation not permitted</p>
+
+<p>when invoking mod_wsgi to start the server. This is due to the System Integrity Protection by Mac EI Capitan and you may follow this <a href="https://github.com/GrahamDumpleton/mod_wsgi/issues/98">site</a> thread to disable it.</p>
+
+
+
+                <hr>
+
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/blog/2015/12/01/python-pass-by-value-or-reference/" data-toggle="tooltip" data-placement="top" title="Python function - pass by value or by reference?">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/programming/2016/12/01/python-advanced-data-structures/" data-toggle="tooltip" data-placement="top" title="Python advanced data structure - collections">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+
     <!-- Sidebar Container -->
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
+        				
                             
-                                <a href="/tags/#Python" title="Python" rel="10">
+                				<a href="/tags/#Python" title="Python" rel="10">
                                     Python
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#Data Structure" title="Data Structure" rel="3">
+                				<a href="/tags/#Data Structure" title="Data Structure" rel="3">
                                     Data Structure
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#Function" title="Function" rel="2">
+                				<a href="/tags/#Function" title="Function" rel="2">
                                     Function
                                 </a>
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
+        				
                             
-                                <a href="/tags/#advanced features" title="advanced features" rel="3">
+                				<a href="/tags/#advanced features" title="advanced features" rel="3">
                                     advanced features
                                 </a>
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
-                    </div>
+        				
+        			</div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-                        
-                            <img src="/img/avatar_profile.jpg" />
-                        
-                        
-                            <p>提供Python作业辅导, Python代写解答辅导服务,有意请加微信tangothu</p>
-                        
-                        
-                            <img src="/img/icon_wechat.jpg" />
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-                            
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/tangothu">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -313,10 +388,67 @@
                     
                 </ul>
                 
-    		</div>
-        
-	</div>
-</div>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "tangothu";
+    var disqus_identifier = "/blog/2016/08/16/python-How-To-Serve-Python-Flask-Application-Using-mod_wsgi-express";
+    var disqus_url = "http://localhost:4000/blog/2016/08/16/python-How-To-Serve-Python-Flask-Application-Using-mod_wsgi-express/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->

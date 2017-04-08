@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Python tutor service - All about Python | Kevin's Blog</title>
+    <title>Function parameter with default value in Python - All about Python | Kevin's Blog</title>
 
-    <link rel="canonical" href="http://localhost:4000/tutorservice/">
+    <link rel="canonical" href="http://localhost:4000/blog/2015/09/08/python-function-parameter/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -127,182 +127,166 @@
 </script>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/service.jpg')">
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Python tutor service</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">To provide Python tutor service</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                        <a class="tag" href="/tags/#Function" title="Function">Function</a>
+                        
+                    </div>
+                    <h1>Function parameter with default value in Python</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by All about Python on September 8, 2015</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
-        
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-    			<!-- Language Selector -->
-<select onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
-    <option value="0" selected> 中文 Chinese </option>
-    <option value="1"> 英语 English </option>
-</select>
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-<!-- Chinese Version -->
-<div class="zh post-container">
-    <p>
-        提供Python相关的服务,包含课程辅导,程序编写以及题目和作业讨论.<br>
-        涵盖范围包括数据结构,算法设计,网页设计,数据处理,以及各种类库的使用.<br>
-        可以提供Assignment,Homework,Lab,Project的相关咨询和作业指导.<br>
-        如有需要,请联系<br>
-        <a href="mailto:pythontutorpro@gmail.com?Subject=Python%20Tutor">pythontutorpro@gmail.com</a><br>
-        谢谢.<br>
-    </p>
-    <p>
-        也可加微信tangothu, 或扫二维码:
-    </p>
-    <div class="short-about">
-        <img src="/img/icon_wechat_small.jpg" />
-    </div>
+				<h2 id="function-parameter-with-default-value-in-python">Function parameter with default value in Python</h2>
+
+<p>This article is to describe restrictions when defining python function parameter default values.</p>
+
+<p>There are two types of Python objects, immutable objects and mutable objects.</p>
+
+<p>Mutable objects include: dict(), list(), …
+Immutable objects include: tuple(), string, int, float, …</p>
+
+<p>Take a look at below code piece:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>def append_to_list(value, default_list=[])
+	default_list.append(value)
+	return default_list
+
+&gt;&gt;&gt; my_list = append_to_list(1)
+&gt;&gt;&gt; my_list
+    [1] 
+
+&gt;&gt;&gt; my_other_list = append_to_list(2)
+&gt;&gt;&gt; my_other_list
+    [1,2]
+</code></pre>
 </div>
 
-<!-- English Version -->
-<div class="en post-container">
-    <p>
-        I provide Python related services including course tutorship, software coding and homework discussion.<br>
-        It can cover data structures, algorithm design, web design, data analysis and library usages.<br>
-        Including your assignment, homework, lab, project related teaching assistant service and discussion.<br>
-        Please feel free to reach <br>
-        <a href="mailto:pythontutorpro@gmail.com?Subject=Python%20Tutor">pythontutorpro@gmail.com</a><br>
-        Thank you.<br>
-    </p>
-    <p>
-        Or you can add my wechat tangothu, or scan below QR code:
-    </p>
-    <div class="short-about">
-        <img src="/img/icon_wechat_small.jpg" />
-    </div>
-</div>
+<p>For my_other_list, we are expecting only 2 in the list, but it looks like the result is “remembering” the result from last run. Why is this happening?</p>
 
-<!-- Handle Language Change -->
-<script type="text/javascript">
-    var $zh = document.querySelector(".zh");
-    var $en = document.querySelector(".en");
-    function onLanChange(index){
-        if(index == 0){
-            $zh.style.display = "block";
-            $en.style.display = "none";
-        }else{
-            $en.style.display = "block";
-            $zh.style.display = "none";
-        }
-    }
-    onLanChange(0);
-</script>
+<p>Note that all python value are passed by its reference (address). When the function is defined, the function parameter is also defined. When using the mutable objects as the parameter, it will allocate a fixed memory address to the mutable object. When the function is called, it is actually using this mutable object’s address cache to get the result.</p>
 
-    		</div>
+
+
+                <hr>
+
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/blog/2015/09/01/python-data-structures/" data-toggle="tooltip" data-placement="top" title="Python data structure usage summary">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/blog/2015/10/20/python-list-comprehension/" data-toggle="tooltip" data-placement="top" title="List Comprehension in Python">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+
     <!-- Sidebar Container -->
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
+        				
                             
-                                <a href="/tags/#Python" title="Python" rel="10">
+                				<a href="/tags/#Python" title="Python" rel="10">
                                     Python
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#Data Structure" title="Data Structure" rel="3">
+                				<a href="/tags/#Data Structure" title="Data Structure" rel="3">
                                     Data Structure
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#Function" title="Function" rel="2">
+                				<a href="/tags/#Function" title="Function" rel="2">
                                     Function
                                 </a>
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
+        				
                             
-                                <a href="/tags/#advanced features" title="advanced features" rel="3">
+                				<a href="/tags/#advanced features" title="advanced features" rel="3">
                                     advanced features
                                 </a>
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
-                    </div>
+        				
+        			</div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-                        
-                            <img src="/img/avatar_profile.jpg" />
-                        
-                        
-                            <p>提供Python作业辅导, Python代写解答辅导服务,有意请加微信tangothu</p>
-                        
-                        
-                            <img src="/img/icon_wechat.jpg" />
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-                            
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/tangothu">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -313,10 +297,67 @@
                     
                 </ul>
                 
-    		</div>
-        
-	</div>
-</div>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "tangothu";
+    var disqus_identifier = "/blog/2015/09/08/python-function-parameter";
+    var disqus_url = "http://localhost:4000/blog/2015/09/08/python-function-parameter/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->

@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Python tutor service - All about Python | Kevin's Blog</title>
+    <title>Python data structure usage summary - All about Python | Kevin's Blog</title>
 
-    <link rel="canonical" href="http://localhost:4000/tutorservice/">
+    <link rel="canonical" href="http://localhost:4000/blog/2015/09/01/python-data-structures/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -127,182 +127,339 @@
 </script>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/service.jpg')">
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Python tutor service</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">To provide Python tutor service</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                        <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
+                        
+                    </div>
+                    <h1>Python data structure usage summary</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by All about Python on September 1, 2015</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
-        
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-    			<!-- Language Selector -->
-<select onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
-    <option value="0" selected> 中文 Chinese </option>
-    <option value="1"> 英语 English </option>
-</select>
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-<!-- Chinese Version -->
-<div class="zh post-container">
-    <p>
-        提供Python相关的服务,包含课程辅导,程序编写以及题目和作业讨论.<br>
-        涵盖范围包括数据结构,算法设计,网页设计,数据处理,以及各种类库的使用.<br>
-        可以提供Assignment,Homework,Lab,Project的相关咨询和作业指导.<br>
-        如有需要,请联系<br>
-        <a href="mailto:pythontutorpro@gmail.com?Subject=Python%20Tutor">pythontutorpro@gmail.com</a><br>
-        谢谢.<br>
-    </p>
-    <p>
-        也可加微信tangothu, 或扫二维码:
-    </p>
-    <div class="short-about">
-        <img src="/img/icon_wechat_small.jpg" />
-    </div>
+				<h2 id="python-data-structure-usage---list-tuple-dict-and-set">Python data structure usage - list, tuple, dict and set</h2>
+
+<p>This article is to write notes to record how to define, insert/remove, access and iterate python data structures.</p>
+
+<h3 id="list">list()</h3>
+
+<ul>
+  <li>Define - use square brackets [] to define.</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>classmates = ['Macro','Bob','Julia']
+</code></pre>
+</div>
+<ul>
+  <li>Insert</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>position = 1
+classmates.insert(position,'Aaron') # or use classmates.append('Stephen') which will append data to the last position of list 
+</code></pre>
+</div>
+<ul>
+  <li>Remove</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>classmates.remove('Aaron') # or use classmates.pop(), which will return the last element 
+</code></pre>
+</div>
+<ul>
+  <li>Access</li>
+</ul>
+
+<p>We can use square bracket with index to access element</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>classmates[0] 
+</code></pre>
 </div>
 
-<!-- English Version -->
-<div class="en post-container">
-    <p>
-        I provide Python related services including course tutorship, software coding and homework discussion.<br>
-        It can cover data structures, algorithm design, web design, data analysis and library usages.<br>
-        Including your assignment, homework, lab, project related teaching assistant service and discussion.<br>
-        Please feel free to reach <br>
-        <a href="mailto:pythontutorpro@gmail.com?Subject=Python%20Tutor">pythontutorpro@gmail.com</a><br>
-        Thank you.<br>
-    </p>
-    <p>
-        Or you can add my wechat tangothu, or scan below QR code:
-    </p>
-    <div class="short-about">
-        <img src="/img/icon_wechat_small.jpg" />
-    </div>
+<ul>
+  <li>Iterate</li>
+</ul>
+
+<p>We can use enumerate, to loop list. Enumerate method will get the iterator of list, yield its index and related element, and loop the index until the very end of list. It will create an <em>indexed series</em> of data.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>for i, item in enumerate(classmates):
+	print i, item
+</code></pre>
 </div>
 
-<!-- Handle Language Change -->
-<script type="text/javascript">
-    var $zh = document.querySelector(".zh");
-    var $en = document.querySelector(".en");
-    function onLanChange(index){
-        if(index == 0){
-            $zh.style.display = "block";
-            $en.style.display = "none";
-        }else{
-            $en.style.display = "block";
-            $zh.style.display = "none";
-        }
-    }
-    onLanChange(0);
-</script>
+<p>Alternatively we can also use</p>
 
-    		</div>
+<div class="highlighter-rouge"><pre class="highlight"><code>for i in range(0, len(classmates)):
+	print i, classmates[i]
+</code></pre>
+</div>
+
+<p>Note, in Python, list() is not <em>hashable</em>. What hashable means is an object will have a hashvalue (provided by its own <strong>hash</strong>() method and can be compared to other objects) which never changes during its lifetime. For list(), since it is not immutable, the value of itself might be changed, thus if it has hashvalue it will get changed too during its lifetime. That’s why python list() doesn’t have <strong>hash</strong>() method and is not hashable.</p>
+
+<h3 id="tuple">tuple()</h3>
+
+<ul>
+  <li>Define - use parenthesis () to define</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>month = ('Tom','Feb','Dec')
+</code></pre>
+</div>
+
+<ul>
+  <li>Insert</li>
+</ul>
+
+<p>Once a tuple is created, it cannot be inserted with an element since it is immutable.</p>
+
+<ul>
+  <li>Remove</li>
+</ul>
+
+<p>Once a tuple is created, it cannot remove an element since it is immutable.</p>
+
+<ul>
+  <li>Access</li>
+</ul>
+
+<p>We can use square bracket with index to access element</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>month[0] 
+</code></pre>
+</div>
+
+<ul>
+  <li>Iterate
+We can use enumerate, to loop tuple.</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>for i, item in enumerate(month):
+	print i, item
+</code></pre>
+</div>
+
+<h3 id="set">set()</h3>
+
+<ul>
+  <li>Define - use set() with a list in the parenthesis to define it</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>s = set([3,4,5])
+</code></pre>
+</div>
+
+<ul>
+  <li>Insert</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>s.add('5') # s will now become set(['5',3,4,5])
+</code></pre>
+</div>
+
+<ul>
+  <li>Remove</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>s.remove(5) # s will not become set(['5',3,4])
+</code></pre>
+</div>
+
+<ul>
+  <li>Access</li>
+</ul>
+
+<p>Note we cannot use s[0] to access an element in set because set is unordered collection without index.</p>
+
+<ul>
+  <li>Iterate</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>for i in s
+	print i
+</code></pre>
+</div>
+
+<h3 id="dict">dict()</h3>
+
+<p>Dict, in Python, is a <em>mapping</em> type which maps a key to a value. The mapping mechanism is implemented by hash function to the key. 
+Note in dict, the key has to be hashable (thus immutable) - this is because each time when requesting a value using a key, hash(key) should produce the same result, or otherwise you will get two values based on the same key - that means the definition of dict is wrong! As a result, the key should be hashable, or in other words, the hash(key) should always be the same. 
+If the key can be changed, then the hash functino will also return a different value, which shouldn’t happen. Thus, the key has to be immutable (list cannot be the key in dict.)</p>
+
+<ul>
+  <li>Define - use curly brackets {} to define.</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>students = {'kevin':60,'michael':70,'jason':65}
+</code></pre>
+</div>
+
+<ul>
+  <li>Insert</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>students['mike'] = 80
+</code></pre>
+</div>
+
+<ul>
+  <li>Remove</li>
+</ul>
+
+<p>Use key word <em>del</em></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>del students['mike']
+</code></pre>
+</div>
+
+<p>or</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>students.pop('mike') # this will return 80 and remove 'mike':80 in dict
+</code></pre>
+</div>
+
+<ul>
+  <li>Access</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>students['mike']
+</code></pre>
+</div>
+
+<p>or</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>score=students.get('mike')
+</code></pre>
+</div>
+
+<ul>
+  <li>Iterate</li>
+</ul>
+
+<p>Use items() method</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>for key, value in students.items()
+	print key, value
+</code></pre>
+</div>
+
+<p>Reference:
+<a href="https://wiki.python.org/moin/DictionaryKeys">Python Dictionary Keys</a></p>
+
+
+
+                <hr>
+
+                
+
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/blog/2015/09/08/python-function-parameter/" data-toggle="tooltip" data-placement="top" title="Function parameter with default value in Python">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+
     <!-- Sidebar Container -->
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
+        				
                             
-                                <a href="/tags/#Python" title="Python" rel="10">
+                				<a href="/tags/#Python" title="Python" rel="10">
                                     Python
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#Data Structure" title="Data Structure" rel="3">
+                				<a href="/tags/#Data Structure" title="Data Structure" rel="3">
                                     Data Structure
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#Function" title="Function" rel="2">
+                				<a href="/tags/#Function" title="Function" rel="2">
                                     Function
                                 </a>
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
+        				
                             
-                                <a href="/tags/#advanced features" title="advanced features" rel="3">
+                				<a href="/tags/#advanced features" title="advanced features" rel="3">
                                     advanced features
                                 </a>
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
-                    </div>
+        				
+        			</div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-                        
-                            <img src="/img/avatar_profile.jpg" />
-                        
-                        
-                            <p>提供Python作业辅导, Python代写解答辅导服务,有意请加微信tangothu</p>
-                        
-                        
-                            <img src="/img/icon_wechat.jpg" />
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-                            
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/tangothu">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -313,10 +470,67 @@
                     
                 </ul>
                 
-    		</div>
-        
-	</div>
-</div>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "tangothu";
+    var disqus_identifier = "/blog/2015/09/01/python-data-structures";
+    var disqus_url = "http://localhost:4000/blog/2015/09/01/python-data-structures/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->

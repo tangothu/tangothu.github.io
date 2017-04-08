@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 06 Apr 2017 23:02:54 -0400</pubDate>
-    <lastBuildDate>Thu, 06 Apr 2017 23:02:54 -0400</lastBuildDate>
+    <pubDate>Fri, 07 Apr 2017 22:06:53 -0400</pubDate>
+    <lastBuildDate>Fri, 07 Apr 2017 22:06:53 -0400</lastBuildDate>
     <generator>Jekyll v3.4.2</generator>
     
       <item>
@@ -78,15 +78,15 @@ for  i  in  xrange(10):
 
 </description>
         <pubDate>Tue, 07 Feb 2017 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/programming/2017/02/07/python-magic-methods-2/</link>
-        <guid isPermaLink="true">http://localhost:4000/programming/2017/02/07/python-magic-methods-2/</guid>
+        <link>http://localhost:4000/blog/2017/02/07/python-magic-methods-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/02/07/python-magic-methods-2/</guid>
         
         <category>Python</category>
         
         <category>advanced features</category>
         
         
-        <category>Programming</category>
+        <category>blog</category>
         
       </item>
     
@@ -213,8 +213,8 @@ lease 192.168.123.200 {
 &lt;p&gt;Thanks for reading!&lt;/p&gt;
 </description>
         <pubDate>Fri, 03 Feb 2017 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/programming/2017/02/03/python-magic-methods-2/</link>
-        <guid isPermaLink="true">http://localhost:4000/programming/2017/02/03/python-magic-methods-2/</guid>
+        <link>http://localhost:4000/blog/2017/02/03/python-magic-methods-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/02/03/python-magic-methods-2/</guid>
         
         <category>Shell scripting</category>
         
@@ -223,7 +223,7 @@ lease 192.168.123.200 {
         <category>text parsing</category>
         
         
-        <category>Programming</category>
+        <category>blog</category>
         
       </item>
     
@@ -353,15 +353,15 @@ So how will this work?&lt;/p&gt;
 &lt;/ol&gt;
 </description>
         <pubDate>Tue, 03 Jan 2017 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/programming/2017/01/03/python-magic-methods-1-continued/</link>
-        <guid isPermaLink="true">http://localhost:4000/programming/2017/01/03/python-magic-methods-1-continued/</guid>
+        <link>http://localhost:4000/blog/2017/01/03/python-magic-methods-1-continued/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/01/03/python-magic-methods-1-continued/</guid>
         
         <category>Python</category>
         
         <category>advanced features</category>
         
         
-        <category>Programming</category>
+        <category>blog</category>
         
       </item>
     
@@ -441,15 +441,15 @@ if __name__ == '__main__':
 &lt;p&gt;The result shows this MyList() instance has a method add which adds elements to the list.&lt;/p&gt;
 </description>
         <pubDate>Fri, 23 Dec 2016 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/programming/2016/12/23/python-magic-methods-1/</link>
-        <guid isPermaLink="true">http://localhost:4000/programming/2016/12/23/python-magic-methods-1/</guid>
+        <link>http://localhost:4000/blog/2016/12/23/python-magic-methods-1/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2016/12/23/python-magic-methods-1/</guid>
         
         <category>Python</category>
         
         <category>advanced features</category>
         
         
-        <category>Programming</category>
+        <category>blog</category>
         
       </item>
     
@@ -589,15 +589,15 @@ This method assert_called_with compares if the expected mock object (copy_packag
 
 </description>
         <pubDate>Sun, 18 Dec 2016 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/programming/2016/12/18/python-how-to-assert-method-is-called-in-unit-test/</link>
-        <guid isPermaLink="true">http://localhost:4000/programming/2016/12/18/python-how-to-assert-method-is-called-in-unit-test/</guid>
+        <link>http://localhost:4000/blog/2016/12/18/python-how-to-assert-method-is-called-in-unit-test/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2016/12/18/python-how-to-assert-method-is-called-in-unit-test/</guid>
         
         <category>Python</category>
         
         <category>Unit Test</category>
         
         
-        <category>Programming</category>
+        <category>blog</category>
         
       </item>
     
@@ -739,7 +739,7 @@ print (q)
       </item>
     
       <item>
-        <title>Python How To Serve Python Flask Application Using Mod_wsgi Express</title>
+        <title>Serve Python Flask application using mod_wsgi</title>
         <description>&lt;h1 id=&quot;how-to-serve-python-flask-application-using-mod_wsgi-express-and-apache-in-mac-os-x-el-capitan&quot;&gt;How to serve Python Flask Application using mod_wsgi-express and Apache in Mac OS X El Capitan&lt;/h1&gt;
 
 &lt;p&gt;If you have a python web application, you will need to deploy it to a physical server after the development is done. Python WSGI (web service gateway interface) is a protocal where separates the web framework (for example, Flask) with the web server (for example, Apache). The WSGI module provides an interconnect of sorts between Apache and your Python processes.&lt;/p&gt;
@@ -860,9 +860,17 @@ WSGIDaemonProcess localhost:8000 \
 
 </description>
         <pubDate>Tue, 16 Aug 2016 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2016/08/16/python-How-To-Serve-Python-Flask-Application-Using-mod_wsgi-express/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/08/16/python-How-To-Serve-Python-Flask-Application-Using-mod_wsgi-express/</guid>
+        <link>http://localhost:4000/blog/2016/08/16/python-How-To-Serve-Python-Flask-Application-Using-mod_wsgi-express/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2016/08/16/python-How-To-Serve-Python-Flask-Application-Using-mod_wsgi-express/</guid>
         
+        <category>Python</category>
+        
+        <category>web application</category>
+        
+        <category>Flask</category>
+        
+        
+        <category>blog</category>
         
       </item>
     
@@ -922,15 +930,15 @@ print ('After change, list is ',lst)
 
 </description>
         <pubDate>Tue, 01 Dec 2015 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/programming/2015/12/01/python-pass-by-value-or-reference/</link>
-        <guid isPermaLink="true">http://localhost:4000/programming/2015/12/01/python-pass-by-value-or-reference/</guid>
+        <link>http://localhost:4000/blog/2015/12/01/python-pass-by-value-or-reference/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2015/12/01/python-pass-by-value-or-reference/</guid>
         
         <category>Python</category>
         
         <category>Function</category>
         
         
-        <category>Programming</category>
+        <category>blog</category>
         
       </item>
     
@@ -990,15 +998,15 @@ list comprehension expression: []&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 20 Oct 2015 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/programming/2015/10/20/python-list-comprehension/</link>
-        <guid isPermaLink="true">http://localhost:4000/programming/2015/10/20/python-list-comprehension/</guid>
+        <link>http://localhost:4000/blog/2015/10/20/python-list-comprehension/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2015/10/20/python-list-comprehension/</guid>
         
         <category>Python</category>
         
         <category>Data Structure</category>
         
         
-        <category>Programming</category>
+        <category>blog</category>
         
       </item>
     
@@ -1035,15 +1043,15 @@ Immutable objects include: tuple(), string, int, float, …&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 08 Sep 2015 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/programming/2015/09/08/python-function-parameter/</link>
-        <guid isPermaLink="true">http://localhost:4000/programming/2015/09/08/python-function-parameter/</guid>
+        <link>http://localhost:4000/blog/2015/09/08/python-function-parameter/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2015/09/08/python-function-parameter/</guid>
         
         <category>Python</category>
         
         <category>Function</category>
         
         
-        <category>Programming</category>
+        <category>blog</category>
         
       </item>
     
