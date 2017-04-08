@@ -3,7 +3,7 @@
     <title type="text" xml:lang="en">Blog 1</title>
     <link type="application/atom+xml" href="http://www.example.com/blog1/atom.xml" rel="self"/>
     <link type="text" href="http://garron.me" rel="alternate"/>
-    <updated>2017-04-07T23:45:46-04:00</updated>
+    <updated>2017-04-07T23:54:06-04:00</updated>
     <id>http://example.com</id>
     <author>
         <name>Guillermo Garron</name>

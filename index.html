@@ -1,9 +1,11 @@
 ---
 layout: page
+categories: blog
 description: "Cool features and frameworks"
 ---
 
 {% for post in paginator.posts %}
+{% if post.categories contains 'blog' %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
@@ -23,6 +25,7 @@ description: "Cool features and frameworks"
     </p>
 </div>
 <hr>
+{% endif %}
 {% endfor %}
 
 <!-- Pager -->
