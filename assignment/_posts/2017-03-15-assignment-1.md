@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Python assignment - CSC108 : Exploring the Twitterverse
+title: Python CSC108 - Exploring the Twitterverse
 categories:
 - assignment
 tags:
