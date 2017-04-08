@@ -68,7 +68,7 @@ ga_domain: tangothu.github.io #huangxuan.me
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "提供Python编程和课程辅导服务,有意请加微信tangothu"
+sidebar-about-description: "提供Python作业辅导, Python代写解答辅导服务,有意请加微信tangothu"
 sidebar-avatar: /img/avatar_profile.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 sidebar-wechat: /img/icon_wechat.jpg
 
