@@ -3,7 +3,7 @@
     <title type="text" xml:lang="en">Blog 1</title>
     <link type="application/atom+xml" href="http://www.example.com/blog1/atom.xml" rel="self"/>
     <link type="text" href="http://garron.me" rel="alternate"/>
-    <updated>2017-04-08T07:32:16-04:00</updated>
+    <updated>2017-04-08T23:21:00-04:00</updated>
     <id>http://example.com</id>
     <author>
         <name>Guillermo Garron</name>
@@ -12,10 +12,10 @@
     
     
     <entry>
-        <title></title>
-        <link href="http://garron.me/assignment/2017/04/08/2017-03-15-assignment-1/"/>
-        <updated>2017-04-08T07:32:16-04:00</updated>
-        <id>http://garron.me/assignment/2017/04/08/2017-03-15-assignment-1/</id>
+        <title>Python CSC108 - Exploring the Twitterverse</title>
+        <link href="http://garron.me/assignment/2017/03/15/assignment-1/"/>
+        <updated>2017-03-15T00:00:00-04:00</updated>
+        <id>http://garron.me/assignment/2017/03/15/assignment-1/</id>
         <summary type="html">&lt;h2 id=&quot;python-assignment---csc108--exploring-the-twitterverse&quot;&gt;Python assignment - CSC108 : Exploring the Twitterverse&lt;/h2&gt;
 
 &lt;p&gt;Assignment 3: Exploring the Twitterverse&lt;/p&gt;

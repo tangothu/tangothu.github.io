@@ -5,12 +5,12 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 08 Apr 2017 07:32:16 -0400</pubDate>
-    <lastBuildDate>Sat, 08 Apr 2017 07:32:16 -0400</lastBuildDate>
+    <pubDate>Sat, 08 Apr 2017 23:21:00 -0400</pubDate>
+    <lastBuildDate>Sat, 08 Apr 2017 23:21:00 -0400</lastBuildDate>
     <generator>Jekyll v3.4.2</generator>
     
       <item>
-        <title></title>
+        <title>Python CSC108 - Exploring the Twitterverse</title>
         <description>&lt;h2 id=&quot;python-assignment---csc108--exploring-the-twitterverse&quot;&gt;Python assignment - CSC108 : Exploring the Twitterverse&lt;/h2&gt;
 
 &lt;p&gt;Assignment 3: Exploring the Twitterverse&lt;/p&gt;
@@ -188,9 +188,15 @@ The bio begins on the line after the line containing ‘bio:’, unlike the othe
 The bio itself is also reproduced exactly as it was in the Twitter data file, including upper and lower case, newline characters, etc.
 The “following” list is produced simply by converting the list of username strings to a string.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 08 Apr 2017 07:32:16 -0400</pubDate>
-        <link>http://localhost:4000/assignment/2017/04/08/2017-03-15-assignment-1/</link>
-        <guid isPermaLink="true">http://localhost:4000/assignment/2017/04/08/2017-03-15-assignment-1/</guid>
+        <pubDate>Wed, 15 Mar 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/assignment/2017/03/15/assignment-1/</link>
+        <guid isPermaLink="true">http://localhost:4000/assignment/2017/03/15/assignment-1/</guid>
+        
+        <category>Python</category>
+        
+        <category>Data Structure</category>
+        
+        <category>dict</category>
         
         
         <category>assignment</category>
