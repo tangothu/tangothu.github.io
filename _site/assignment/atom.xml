@@ -3,7 +3,7 @@
     <title type="text" xml:lang="en">Blog 1</title>
     <link type="application/atom+xml" href="http://www.example.com/blog1/atom.xml" rel="self"/>
     <link type="text" href="http://garron.me" rel="alternate"/>
-    <updated>2017-04-08T23:21:00-04:00</updated>
+    <updated>2017-04-13T21:01:34-04:00</updated>
     <id>http://example.com</id>
     <author>
         <name>Guillermo Garron</name>
@@ -13,9 +13,9 @@
     
     <entry>
         <title>Python CSC108 - Exploring the Twitterverse</title>
-        <link href="http://garron.me/assignment/2017/03/15/assignment-1/"/>
+        <link href="http://garron.me/assignment/2017/03/15/CSC108-a3-Exploring-the-Twitterverse/"/>
         <updated>2017-03-15T00:00:00-04:00</updated>
-        <id>http://garron.me/assignment/2017/03/15/assignment-1/</id>
+        <id>http://garron.me/assignment/2017/03/15/CSC108-a3-Exploring-the-Twitterverse/</id>
         <summary type="html">&lt;h2 id=&quot;python-assignment---csc108--exploring-the-twitterverse&quot;&gt;Python assignment - CSC108 : Exploring the Twitterverse&lt;/h2&gt;
 
 &lt;p&gt;Assignment 3: Exploring the Twitterverse&lt;/p&gt;
@@ -197,11 +197,219 @@ The “following” list is produced simply by converting the list of username s
     
     
     
+    <entry>
+        <title>Python CS116 Winter - to write a function phone_word</title>
+        <link href="http://garron.me/assignment/2017/02/16/CS116-iteration-Q4/"/>
+        <updated>2017-02-16T00:00:00-05:00</updated>
+        <id>http://garron.me/assignment/2017/02/16/CS116-iteration-Q4/</id>
+        <summary type="html">&lt;h3 id=&quot;question-4&quot;&gt;Question 4&lt;/h3&gt;
+
+&lt;p&gt;A fun game people sometimes play is figuring out which words their 
+phone number spells using the mapping given by 
+(cite http://static.trustedreviews.com/94/000026330/c000/OT-­‐282.jpg):&lt;br /&gt;
+0 – [] 
+1 – [] 
+2 – [A,B,C] 
+3 – [D,E,F] 
+4 – [G,H,I] 
+5 – [J,K,L] 
+6 – [M,N,O] 
+7 – [P,Q,R,S] 
+8 – [T,U,V] 
+9 – [W,X,Y,Z]&lt;/p&gt;
+
+&lt;p&gt;Your job will be to write a function phone_word which consumes a phone number 
+num which is a natural number consisting of 7 digits or less and returns a 
+list of all possible phone words that can be achieved (in all capital letters). 
+For example, if the number consumed was 2629327, then some words in the 
+output list include COBWEBS, BOAWEBS, COAXEAR, ANAXEAR and others. 
+Note that all these words need not be valid English words; just strings 
+consisting of capital letters. As another example, if the number entered 
+was 6391866 one of the output words would be NEWTON. The phone words 
+in the list should be in alphabetical order. Here are two complete 
+examples: phone_word(2160) =&amp;gt; [‘AM’, ‘AN’, ‘AO’, ‘BM’, ‘BN’, ‘BO’, ‘CM’, ‘CN’, ‘CO’] 
+phone_word(1001100) =&amp;gt; [] You may (and should) use the global constant 
+phone_dictionary as given in the interface file.&lt;/p&gt;
+
+&lt;p&gt;Hints: Try to keep your testing data small – restrict yourself to 
+numbers with at most 4 digits in your testing and/or numbers with 
+more 0s and 1s. Given a list of phone words using the first `n’ digits, 
+how would you add the next digit to this list? Removing and adding 
+elements to the same list might be a useful technique.&lt;/p&gt;
+</summary>
+    </entry>
     
     
     
+    <entry>
+        <title>Python CS116 Winter - special version of the popular game Mastermind verbal_mastermind</title>
+        <link href="http://garron.me/assignment/2017/02/16/CS116-iteration-Q3/"/>
+        <updated>2017-02-16T00:00:00-05:00</updated>
+        <id>http://garron.me/assignment/2017/02/16/CS116-iteration-Q3/</id>
+        <summary type="html">&lt;h3 id=&quot;question-3&quot;&gt;Question 3&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;In this question, you are going to play a special version of the popular game Mastermind. 
+The object of the game for the user is to identify a keyword by making a series of guesses. 
+You will write a function verbal_mastermind which consumes a target string of all lowercase letters 
+called a keyword of length between 2 and 100, informs the user how many characters are in the keyword 
+and prompts the user for input until the user guesses the keyword or quits (see below). 
+The function produces None. Your program starts by telling the user how many 
+characters the keyword has using the string: The keyword has # characters. 
+(where # is replaced by the number of characters in the keyword). 
+Then, you are to prompt the user using the sentence:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please enter a guess: (Notice there is a space after the colon above).&lt;/p&gt;
+
+&lt;p&gt;Guesses will consist of only lowercase letters or the string “!quit”. 
+For a given guess, your program will request a new word if the length of the guess 
+is not the same as the target using these lines printed on separate lines: 
+Your guess contains an incorrect number of characters. The keyword has # characters. 
+(where # is replaced by the number of characters in the keyword). 
+Otherwise, the program will print to the screen the number of characters that 
+are correct and in the correct position and also print the number of characters 
+(excluding those already correct) that are in the word but not in the correct position.&lt;/p&gt;
+
+&lt;p&gt;For example, if the keyword was the string “answers” and the guessed word was “peelers”, 
+the program would output: Exact: 3, Other: 0 The letters “ers” match exactly 
+whereas the remaining letters “peel” and “answ” share no common letters. 
+See the first example below for other cases. If the user guesses “!quit” (no quotes), 
+your program should stop and tell the user the correct answer (see the prompt below). 
+If the user guesses the correct answer. The program should print out the word Congratulations! 
+followed by telling the user the correct answer using the prompt 
+(on the same line with a space after the exclamation point):&lt;/p&gt;
+
+&lt;p&gt;The correct keyword was answers. Here are three  examples:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;blockquote&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;verbal_mastermind(“answers”)
+The keyword has 7 characters.
+Please enter a guess: bananas
+Exact: 1, Other: 2
+Please enter a guess: aaaaaaa
+Exact: 1, Other: 0
+Please enter a guess: andoras
+Exact: 3, Other: 1
+Please enter a guess: peelers
+Exact: 3, Other: 0
+Please enter a guess: startle
+Exact: 0, Other: 4
+Please enter a guess: answers
+Congratulations! The correct keyword was answers.
+verbal_mastermind(“money”)
+The keyword has 5 characters.
+Please enter a guess: money
+Congratulations! The correct keyword was money.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;blockquote&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;verbal_mastermind(“failed”)
+The keyword has 6 characters.
+Please enter a guess: banana
+Exact: 1, Other: 0
+Please enter a guess: toomanycharacters
+Your guess contains an incorrect number of characters.
+The keyword has 6 characters.
+Please enter a guess: !quit
+The correct keyword was failed.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;question-4&quot;&gt;Question 4&lt;/h3&gt;
+&lt;p&gt;A fun game people sometimes play is figuring out which words their phone number spells using the mapping given by (cite http://static.trustedreviews.com/94/000026330/c000/OT-­‐282.jpg):  0 – [] 1 – [] 2 – [A,B,C] 3 – [D,E,F] 4 – [G,H,I] 5 – [J,K,L] 6 – [M,N,O] 7 – [P,Q,R,S] 8 – [T,U,V] 9 – [W,X,Y,Z]  Your job will be to write a function phone_word which consumes a phone number num which is a natural number consisting of 7 digits or less and returns a list of all possible phone words that can be achieved (in all capital letters). For example, if the number consumed was 2629327, then some words in the output list include COBWEBS, BOAWEBS, COAXEAR, ANAXEAR and others. Note that all these words need not be valid English words; just strings consisting of capital letters. As another example, if the number entered was 6391866 one of the output words would be NEWTON. The phone words in the list should be in alphabetical order. Here are two complete examples: phone_word(2160) =&amp;gt; [‘AM’, ‘AN’, ‘AO’, ‘BM’, ‘BN’, ‘BO’, ‘CM’, ‘CN’, ‘CO’] phone_word(1001100) =&amp;gt; [] You may (and should) use the global constant phone_dictionary as given in the interface file. Hints: Try to keep your testing data small – restrict yourself to numbers with at most 4 digits in your testing and/or numbers with more 0s and 1s. Given a list of phone words using the first `n’ digits, how would you add the next digit to this list? Removing and adding elements to the same list might be a useful technique.&lt;/p&gt;
+</summary>
+    </entry>
     
     
+    
+    <entry>
+        <title>Python CS116 Winter - Use accumulative recursion to complete the function find_group</title>
+        <link href="http://garron.me/assignment/2017/02/10/CS116-accumulative-recursion-Q4/"/>
+        <updated>2017-02-10T00:00:00-05:00</updated>
+        <id>http://garron.me/assignment/2017/02/10/CS116-accumulative-recursion-Q4/</id>
+        <summary type="html">&lt;h3 id=&quot;question-4&quot;&gt;Question 4&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Consider the following scenario, in which there are n different “people”, each represented by a distinct
+natural number labelled from 0 to n–1.
+Each person has been asked to “choose” a single person that they would prefer to have as a group
+member for some project. These choices are recorded in a list L of length n &amp;gt; 1, where the ith
+element of L contains the choice for person i.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For example, if L = [2, 0, 1, 4, 0], then (see picture):
+• person 0 has chosen person 2
+• person 1 has chosen person 0
+• person 2 has chosen person 1
+• person 3 has chosen person 4
+• person 4 has chosen person 0
+and note that people are not allowed to choose themselves.
+Now we want to automate the task of finding the smallest “group” that contains a given person.
+However, we will only consider a group to be “good” if it has at least two people, and everyone in the
+group chose someone else from the same group.
+For instance, in the above example, the group of people [0, 1, 2] is good because all of these
+people chose others from the same group. However, the group [3, 4] is not good because person
+4 chose person 0, and person 0 is not in the group. In order for the group to be good, each person’s
+choice must also be (recursively) added to the same group, and therefore [0, 1, 2, 3, 4] would
+be the smallest good group that includes person 3.
+Your task is to use any kind of recursion to complete the function find_group, that consumes some
+list L of choices, and an initial person i — according to all of the above conditions — and then
+produces a sorted list of people that represents a good group containing person i. If there is a good
+group that contains person i, then your function should produce that group in sorted order. If multiple
+groups are good, then produce the shortest one.
+For example,
+• find_group([2, 0, 1, 4, 0], 0) =&amp;gt; [0, 1, 2]
+• find_group([2, 0, 1, 4, 0], 4) =&amp;gt; [0, 1, 2, 4]
+• find_group([2, 0, 1, 4, 0], 3) =&amp;gt; [0, 1, 2, 3, 4]&lt;/p&gt;
+
+&lt;p&gt;The first example finds the group [0, 1, 2], which is good and contains person 0. The second
+example finds the group [0, 1, 2, 4], since including person 4 means we must include person 0,
+which in turns includes person 2, and then finally person 1. The third example is [0, 1, 2, 3, 4],
+since everyone can be put into one group containing all 5 people, which is the smallest good group that
+contains person 3.
+Hints:
+• Work through some examples first, by hand, in order to see the pattern. Try drawing pictures to
+get some intuition. There is an elegant solution!&lt;/p&gt;
+
+</summary>
+    </entry>
+    
+    
+    
+    <entry>
+        <title>Python CS116 Winter - Complete the function longest_subpalindrome</title>
+        <link href="http://garron.me/assignment/2017/02/10/CS116-accumulative-recursion-Q3/"/>
+        <updated>2017-02-10T00:00:00-05:00</updated>
+        <id>http://garron.me/assignment/2017/02/10/CS116-accumulative-recursion-Q3/</id>
+        <summary type="html">&lt;h3 id=&quot;question-3&quot;&gt;Question 3&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A palindrome is a string that is the same forwards and backwards. For example, “racecar”, “anna”, and
+“aibohphobia” (the fear of long palindromes) are all palindromes, but “abc” and “sata” are not.
+We say that a string is a “subpalindrome of s” if it is both a substring of s and a palindrome.
+Complete the function longest_subpalindrome, that consumes a lowercase alphabetical strings of 
+length at most 15, and produces the longest subpalindrome of s. If there are multiple
+subpalindromes that are the same size, then return the one that comes first alphabetically.
+For example,
+• longest_subpalindrome(“abaca”) =&amp;gt; “aba”
+• longest_subpalindrome(“anna”) =&amp;gt; “anna”
+• longest_subpalindrome(“sata”) =&amp;gt; “ata”
+• longest_subpalindrome(“abc”) =&amp;gt; “a”
+Hints:
+• You may use examples from class as helper functions.
+• Use generative recursion to break up the problem into a number of smaller sub-problems.
+• Your solution does not need to be efficient!&lt;/li&gt;
+&lt;/ul&gt;
+</summary>
+    </entry>
     
     
 </feed>
