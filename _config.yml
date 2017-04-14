@@ -35,6 +35,7 @@ anchorjs: true                          # if you want to customize anchor. check
 gems:
   - jekyll-paginate
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 
 # Markdown settings
