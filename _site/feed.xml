@@ -3,10 +3,10 @@
   <channel>
     <title>All about Python</title>
     <description></description>
-    <link>tangothu.github.io/</link>
-    <atom:link href="tangothu.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 13 Apr 2017 21:49:00 -0400</pubDate>
-    <lastBuildDate>Thu, 13 Apr 2017 21:49:00 -0400</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Thu, 13 Apr 2017 22:08:17 -0400</pubDate>
+    <lastBuildDate>Thu, 13 Apr 2017 22:08:17 -0400</lastBuildDate>
     <generator>Jekyll v3.4.2</generator>
     
       <item>
@@ -189,8 +189,8 @@ The bio itself is also reproduced exactly as it was in the Twitter data file, in
 The “following” list is produced simply by converting the list of username strings to a string.&lt;/p&gt;
 </description>
         <pubDate>Wed, 15 Mar 2017 00:00:00 -0400</pubDate>
-        <link>tangothu.github.io/assignment/2017/03/15/CSC108-a3-Exploring-the-Twitterverse/</link>
-        <guid isPermaLink="true">tangothu.github.io/assignment/2017/03/15/CSC108-a3-Exploring-the-Twitterverse/</guid>
+        <link>http://localhost:4000/assignment/2017/03/15/CSC108-a3-Exploring-the-Twitterverse/</link>
+        <guid isPermaLink="true">http://localhost:4000/assignment/2017/03/15/CSC108-a3-Exploring-the-Twitterverse/</guid>
         
         <category>Python</category>
         
@@ -241,8 +241,8 @@ how would you add the next digit to this list? Removing and adding
 elements to the same list might be a useful technique.&lt;/p&gt;
 </description>
         <pubDate>Thu, 16 Feb 2017 00:00:00 -0500</pubDate>
-        <link>tangothu.github.io/assignment/2017/02/16/CS116-iteration-Q4/</link>
-        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/16/CS116-iteration-Q4/</guid>
+        <link>http://localhost:4000/assignment/2017/02/16/CS116-iteration-Q4/</link>
+        <guid isPermaLink="true">http://localhost:4000/assignment/2017/02/16/CS116-iteration-Q4/</guid>
         
         <category>Python</category>
         
@@ -338,8 +338,8 @@ The correct keyword was failed.&lt;/p&gt;
 &lt;p&gt;A fun game people sometimes play is figuring out which words their phone number spells using the mapping given by (cite http://static.trustedreviews.com/94/000026330/c000/OT-­‐282.jpg):  0 – [] 1 – [] 2 – [A,B,C] 3 – [D,E,F] 4 – [G,H,I] 5 – [J,K,L] 6 – [M,N,O] 7 – [P,Q,R,S] 8 – [T,U,V] 9 – [W,X,Y,Z]  Your job will be to write a function phone_word which consumes a phone number num which is a natural number consisting of 7 digits or less and returns a list of all possible phone words that can be achieved (in all capital letters). For example, if the number consumed was 2629327, then some words in the output list include COBWEBS, BOAWEBS, COAXEAR, ANAXEAR and others. Note that all these words need not be valid English words; just strings consisting of capital letters. As another example, if the number entered was 6391866 one of the output words would be NEWTON. The phone words in the list should be in alphabetical order. Here are two complete examples: phone_word(2160) =&amp;gt; [‘AM’, ‘AN’, ‘AO’, ‘BM’, ‘BN’, ‘BO’, ‘CM’, ‘CN’, ‘CO’] phone_word(1001100) =&amp;gt; [] You may (and should) use the global constant phone_dictionary as given in the interface file. Hints: Try to keep your testing data small – restrict yourself to numbers with at most 4 digits in your testing and/or numbers with more 0s and 1s. Given a list of phone words using the first `n’ digits, how would you add the next digit to this list? Removing and adding elements to the same list might be a useful technique.&lt;/p&gt;
 </description>
         <pubDate>Thu, 16 Feb 2017 00:00:00 -0500</pubDate>
-        <link>tangothu.github.io/assignment/2017/02/16/CS116-iteration-Q3/</link>
-        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/16/CS116-iteration-Q3/</guid>
+        <link>http://localhost:4000/assignment/2017/02/16/CS116-iteration-Q3/</link>
+        <guid isPermaLink="true">http://localhost:4000/assignment/2017/02/16/CS116-iteration-Q3/</guid>
         
         <category>Python</category>
         
@@ -400,8 +400,8 @@ get some intuition. There is an elegant solution!&lt;/p&gt;
 
 </description>
         <pubDate>Fri, 10 Feb 2017 00:00:00 -0500</pubDate>
-        <link>tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q4/</link>
-        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q4/</guid>
+        <link>http://localhost:4000/assignment/2017/02/10/CS116-accumulative-recursion-Q4/</link>
+        <guid isPermaLink="true">http://localhost:4000/assignment/2017/02/10/CS116-accumulative-recursion-Q4/</guid>
         
         <category>Python</category>
         
@@ -437,8 +437,8 @@ Hints:
 &lt;/ul&gt;
 </description>
         <pubDate>Fri, 10 Feb 2017 00:00:00 -0500</pubDate>
-        <link>tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q3/</link>
-        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q3/</guid>
+        <link>http://localhost:4000/assignment/2017/02/10/CS116-accumulative-recursion-Q3/</link>
+        <guid isPermaLink="true">http://localhost:4000/assignment/2017/02/10/CS116-accumulative-recursion-Q3/</guid>
         
         <category>Python</category>
         
@@ -467,8 +467,8 @@ For example,
 &lt;/ul&gt;
 </description>
         <pubDate>Fri, 10 Feb 2017 00:00:00 -0500</pubDate>
-        <link>tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q2/</link>
-        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q2/</guid>
+        <link>http://localhost:4000/assignment/2017/02/10/CS116-accumulative-recursion-Q2/</link>
+        <guid isPermaLink="true">http://localhost:4000/assignment/2017/02/10/CS116-accumulative-recursion-Q2/</guid>
         
         <category>Python</category>
         
@@ -501,8 +501,8 @@ For example,
 you are not allowed to use here, and also shares the semantics of string / list slicing!&lt;/p&gt;
 </description>
         <pubDate>Fri, 10 Feb 2017 00:00:00 -0500</pubDate>
-        <link>tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q1/</link>
-        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q1/</guid>
+        <link>http://localhost:4000/assignment/2017/02/10/CS116-accumulative-recursion-Q1/</link>
+        <guid isPermaLink="true">http://localhost:4000/assignment/2017/02/10/CS116-accumulative-recursion-Q1/</guid>
         
         <category>Python</category>
         
@@ -584,8 +584,8 @@ for  i  in  xrange(10):
 
 </description>
         <pubDate>Tue, 07 Feb 2017 00:00:00 -0500</pubDate>
-        <link>tangothu.github.io/blog/2017/02/07/python-magic-methods-2/</link>
-        <guid isPermaLink="true">tangothu.github.io/blog/2017/02/07/python-magic-methods-2/</guid>
+        <link>http://localhost:4000/blog/2017/02/07/python-magic-methods-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/02/07/python-magic-methods-2/</guid>
         
         <category>Python</category>
         
@@ -693,7 +693,7 @@ lease 192.168.123.200 {
 
 &lt;p&gt;In our example, we use BEGIN block only. BEGIN block can have multiple input builtin parameters. Because we are using RS and FS, we will explain how these two works. In this example, we choose RS as “}”, which means the fields of this file are separated as below, in red blocks. FS is chosen as “\n” (newline), which means for each field it can be further separated by each line as records, in yellow blocks.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;tangothu.github.io/images/dhcpd.leases.png&quot; alt=&quot;awk RF&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/dhcpd.leases.png&quot; alt=&quot;awk RF&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The variables in each record is stored as a variable starting with “$” sign, so the&lt;/p&gt;
 
@@ -719,8 +719,8 @@ lease 192.168.123.200 {
 &lt;p&gt;Thanks for reading!&lt;/p&gt;
 </description>
         <pubDate>Fri, 03 Feb 2017 00:00:00 -0500</pubDate>
-        <link>tangothu.github.io/blog/2017/02/03/python-magic-methods-2/</link>
-        <guid isPermaLink="true">tangothu.github.io/blog/2017/02/03/python-magic-methods-2/</guid>
+        <link>http://localhost:4000/blog/2017/02/03/python-magic-methods-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/02/03/python-magic-methods-2/</guid>
         
         <category>Shell scripting</category>
         
@@ -859,8 +859,8 @@ So how will this work?&lt;/p&gt;
 &lt;/ol&gt;
 </description>
         <pubDate>Tue, 03 Jan 2017 00:00:00 -0500</pubDate>
-        <link>tangothu.github.io/blog/2017/01/03/python-magic-methods-1-continued/</link>
-        <guid isPermaLink="true">tangothu.github.io/blog/2017/01/03/python-magic-methods-1-continued/</guid>
+        <link>http://localhost:4000/blog/2017/01/03/python-magic-methods-1-continued/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/01/03/python-magic-methods-1-continued/</guid>
         
         <category>Python</category>
         

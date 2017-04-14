@@ -1,0 +1,10 @@
+How to create sitemap for google engine:
+https://support.google.com/webmasters/answer/183668?hl=en#sitemapformat
+
+sitemap location:
+_site/sitemap.xml
+specified in robots.txt
+
+https://www.google.com/webmasters/verification/verification?hl=en&authuser=0&theme=wmt&siteUrl=https://tangothu.github.io/&continue=https://www.google.com/webmasters/tools/dashboard?hl%3Den%26authuser%3D0%26siteUrl%3Dhttps://tangothu.github.io/%26sig%3DALjLGbOiMXex1b_uG84mSwBxHTzlj6Ks_g&pli=1
+
+
