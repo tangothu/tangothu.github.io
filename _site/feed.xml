@@ -3,11 +3,125 @@
   <channel>
     <title>All about Python</title>
     <description></description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 13 Apr 2017 22:08:17 -0400</pubDate>
-    <lastBuildDate>Thu, 13 Apr 2017 22:08:17 -0400</lastBuildDate>
+    <link>tangothu.github.io/</link>
+    <atom:link href="tangothu.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sat, 06 May 2017 13:47:33 -0400</pubDate>
+    <lastBuildDate>Sat, 06 May 2017 13:47:33 -0400</lastBuildDate>
     <generator>Jekyll v3.4.2</generator>
+    
+      <item>
+        <title>Python coroutine - make a generator to coroutine and send data</title>
+        <description>&lt;p&gt;This artical will talk about generator in Python coroutines. 
+All the demo code below is from http://www.dabeaz.com/coroutines/ .&lt;/p&gt;
+
+&lt;p&gt;In Python, generator is used to produce a sequence of results. Everytime 
+you call the generator, it will iterate the next value of the results, 
+instead of returning the complete list of results and return them together. 
+We use key word &lt;em&gt;yield&lt;/em&gt;, to make a regular function as generator.&lt;/p&gt;
+
+&lt;p&gt;Let’s look at the sample code below:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# grep.py
+#
+# A very simple coroutine
+
+def grep(pattern):
+    print &quot;Looking for %s&quot; % pattern
+    while True:
+        line = (yield)
+        if pattern in line:
+            print line,
+
+# Example use
+if __name__ == '__main__':
+    g = grep(&quot;python&quot;)
+    g.next()
+    g.send(&quot;Yeah, but no, but yeah, but no&quot;)
+    g.send(&quot;A series of tubes&quot;)
+    g.send(&quot;python generators rock!&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In the __main__ function, we first create a generator using&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;g = grep(&quot;python&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;So now g is a generator. We also see that there line of code’s grammar a bit weird:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;line = (yield)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;When yield is placed on the right hand side of equation, or say, when we ‘assign’ 
+the yield to a variable, it means this generator becomes a coroutine. Note coroutine is 
+a special case of generator but more powerful. Will provide how to make use of coroutine
+in next articles.&lt;/p&gt;
+
+&lt;p&gt;To make the coroutine work, it must be “primed” by first calling .next() 
+(or send(None)), where this is the activation step. See code below:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;g.next()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then, we can send values to the function by calling the method send()&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;g.send(&quot;Yeah, but no, but yeah, but no&quot;)
+g.send(&quot;A series of tubes&quot;)
+g.send(&quot;python generators rock!&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;From above, everytime when we make a call g.send(), we send the string data
+and the string value will be assigned to line. In this way, we are able 
+to send data to generator. Traditionally, we will just iterate a generator 
+and get the value. By using send(), we can now send the data to generator now.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 04 May 2017 00:00:00 -0400</pubDate>
+        <link>tangothu.github.io/blog/2017/05/04/python-coroutine-generator/</link>
+        <guid isPermaLink="true">tangothu.github.io/blog/2017/05/04/python-coroutine-generator/</guid>
+        
+        <category>Python</category>
+        
+        <category>coroutine</category>
+        
+        <category>generator</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Python COMP112 - tic tac toe</title>
+        <description>&lt;p&gt;Tic Tac Toe 
+You will implement a version of the classic “tic-tac-toe” game, in which the player competes against the computer to create a three-in-a-row pattern in vertical, horizontal, or diagonal directions. 
+The game is played in a 3-by-3 grid, which is initially empty. There are two players, the human and the computer, who take turns. The human always moves first. When it’s the human’s turn, he or she may place an “O” symbol in any empty position on the game grid by clicking on the grid position with the mouse; afterwards, it becomes the computer’s move, and the computer will place a “X” symbol in any empty position on the grid. The players continue to alternate moves until the game ends. The game is over when any of the following conditions occurs: 
+•	there are three “O” symbols in a line in any row or column, or diagonally from corner to corner, which means that the human has won 
+•	there are three “X” symbols in a line in any row or column, or diagonally from corner to corner, which means that the computer has won 
+•	there are no empty positions on the board, meaning that no further moves are possible, and the game ends in a stalemate 
+As part of this project, you must develop a reasonable (but simple) “artificial intelligence” to dictate the behavior of the computer player. Although you may provide a more advanced algorithm (which your instructor will help you develop, if you ask), at a minimum, you must implement the following logic for the computer player: 
+•	If it’s possible for the computer player to win in the current move (i.e. there are two “X”s and one empty position in a line somewhere on the board), the computer player must win by occupying that empty position. 
+•	If it’s possible for the human player to win on the next move (i.e. there are two “O”s and one empty position in a line somewhere on the board), the computer player must prevent the human’s win by occupying that empty position. 
+•	If neither of the above cases apply, the computer may randomly occupy any unoccupied position. 1 
+Getting started We provide you with starter code to help you begin this project. See the file in starter.zip. This is a starting point; you should replace the pass lines with code to perform the ap- propriate actions.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 27 Apr 2017 00:00:00 -0400</pubDate>
+        <link>tangothu.github.io/assignment/2017/04/27/COMP112-tic-tac-toe/</link>
+        <guid isPermaLink="true">tangothu.github.io/assignment/2017/04/27/COMP112-tic-tac-toe/</guid>
+        
+        <category>Python</category>
+        
+        <category>Data Structure</category>
+        
+        <category>turtle</category>
+        
+        
+        <category>assignment</category>
+        
+      </item>
     
       <item>
         <title>Python CSC108 - Exploring the Twitterverse</title>
@@ -189,8 +303,8 @@ The bio itself is also reproduced exactly as it was in the Twitter data file, in
 The “following” list is produced simply by converting the list of username strings to a string.&lt;/p&gt;
 </description>
         <pubDate>Wed, 15 Mar 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/assignment/2017/03/15/CSC108-a3-Exploring-the-Twitterverse/</link>
-        <guid isPermaLink="true">http://localhost:4000/assignment/2017/03/15/CSC108-a3-Exploring-the-Twitterverse/</guid>
+        <link>tangothu.github.io/assignment/2017/03/15/CSC108-a3-Exploring-the-Twitterverse/</link>
+        <guid isPermaLink="true">tangothu.github.io/assignment/2017/03/15/CSC108-a3-Exploring-the-Twitterverse/</guid>
         
         <category>Python</category>
         
@@ -241,8 +355,8 @@ how would you add the next digit to this list? Removing and adding
 elements to the same list might be a useful technique.&lt;/p&gt;
 </description>
         <pubDate>Thu, 16 Feb 2017 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/assignment/2017/02/16/CS116-iteration-Q4/</link>
-        <guid isPermaLink="true">http://localhost:4000/assignment/2017/02/16/CS116-iteration-Q4/</guid>
+        <link>tangothu.github.io/assignment/2017/02/16/CS116-iteration-Q4/</link>
+        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/16/CS116-iteration-Q4/</guid>
         
         <category>Python</category>
         
@@ -338,8 +452,8 @@ The correct keyword was failed.&lt;/p&gt;
 &lt;p&gt;A fun game people sometimes play is figuring out which words their phone number spells using the mapping given by (cite http://static.trustedreviews.com/94/000026330/c000/OT-­‐282.jpg):  0 – [] 1 – [] 2 – [A,B,C] 3 – [D,E,F] 4 – [G,H,I] 5 – [J,K,L] 6 – [M,N,O] 7 – [P,Q,R,S] 8 – [T,U,V] 9 – [W,X,Y,Z]  Your job will be to write a function phone_word which consumes a phone number num which is a natural number consisting of 7 digits or less and returns a list of all possible phone words that can be achieved (in all capital letters). For example, if the number consumed was 2629327, then some words in the output list include COBWEBS, BOAWEBS, COAXEAR, ANAXEAR and others. Note that all these words need not be valid English words; just strings consisting of capital letters. As another example, if the number entered was 6391866 one of the output words would be NEWTON. The phone words in the list should be in alphabetical order. Here are two complete examples: phone_word(2160) =&amp;gt; [‘AM’, ‘AN’, ‘AO’, ‘BM’, ‘BN’, ‘BO’, ‘CM’, ‘CN’, ‘CO’] phone_word(1001100) =&amp;gt; [] You may (and should) use the global constant phone_dictionary as given in the interface file. Hints: Try to keep your testing data small – restrict yourself to numbers with at most 4 digits in your testing and/or numbers with more 0s and 1s. Given a list of phone words using the first `n’ digits, how would you add the next digit to this list? Removing and adding elements to the same list might be a useful technique.&lt;/p&gt;
 </description>
         <pubDate>Thu, 16 Feb 2017 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/assignment/2017/02/16/CS116-iteration-Q3/</link>
-        <guid isPermaLink="true">http://localhost:4000/assignment/2017/02/16/CS116-iteration-Q3/</guid>
+        <link>tangothu.github.io/assignment/2017/02/16/CS116-iteration-Q3/</link>
+        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/16/CS116-iteration-Q3/</guid>
         
         <category>Python</category>
         
@@ -400,8 +514,8 @@ get some intuition. There is an elegant solution!&lt;/p&gt;
 
 </description>
         <pubDate>Fri, 10 Feb 2017 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/assignment/2017/02/10/CS116-accumulative-recursion-Q4/</link>
-        <guid isPermaLink="true">http://localhost:4000/assignment/2017/02/10/CS116-accumulative-recursion-Q4/</guid>
+        <link>tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q4/</link>
+        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q4/</guid>
         
         <category>Python</category>
         
@@ -437,8 +551,8 @@ Hints:
 &lt;/ul&gt;
 </description>
         <pubDate>Fri, 10 Feb 2017 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/assignment/2017/02/10/CS116-accumulative-recursion-Q3/</link>
-        <guid isPermaLink="true">http://localhost:4000/assignment/2017/02/10/CS116-accumulative-recursion-Q3/</guid>
+        <link>tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q3/</link>
+        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q3/</guid>
         
         <category>Python</category>
         
@@ -467,8 +581,8 @@ For example,
 &lt;/ul&gt;
 </description>
         <pubDate>Fri, 10 Feb 2017 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/assignment/2017/02/10/CS116-accumulative-recursion-Q2/</link>
-        <guid isPermaLink="true">http://localhost:4000/assignment/2017/02/10/CS116-accumulative-recursion-Q2/</guid>
+        <link>tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q2/</link>
+        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q2/</guid>
         
         <category>Python</category>
         
@@ -501,8 +615,8 @@ For example,
 you are not allowed to use here, and also shares the semantics of string / list slicing!&lt;/p&gt;
 </description>
         <pubDate>Fri, 10 Feb 2017 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/assignment/2017/02/10/CS116-accumulative-recursion-Q1/</link>
-        <guid isPermaLink="true">http://localhost:4000/assignment/2017/02/10/CS116-accumulative-recursion-Q1/</guid>
+        <link>tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q1/</link>
+        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q1/</guid>
         
         <category>Python</category>
         
@@ -584,283 +698,8 @@ for  i  in  xrange(10):
 
 </description>
         <pubDate>Tue, 07 Feb 2017 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/blog/2017/02/07/python-magic-methods-2/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2017/02/07/python-magic-methods-2/</guid>
-        
-        <category>Python</category>
-        
-        <category>advanced features</category>
-        
-        
-        <category>blog</category>
-        
-      </item>
-    
-      <item>
-        <title>Use awk to parse plain text large file (from DHCP lease for network IP address lookup)</title>
-        <description>&lt;p&gt;We will always need to use low level tools such as shell script to parse log files or plain text files in linux system. In this example we will show how to use awk command and shell script to parse ip leases file (dhcpd.leases) for network router Mac Address match.&lt;/p&gt;
-
-&lt;h2 id=&quot;use-awk-to-parse-plain-text-large-file&quot;&gt;Use awk to parse plain text large file&lt;/h2&gt;
-
-&lt;p&gt;Assume we have plain text file as below:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;lease 192.168.124.118 {
-  starts 1 2014/12/01 12:42:49;
-  ends 1 2014/12/01 20:42:49;
-  tstp 1 2014/12/01 20:42:49;
-  binding state free;
-  hardware ethernet 00:0c:29:d5:ff:cb;
-  uid &quot;\001\000\014)\325\377\313&quot;;
-}
-lease 192.168.124.117 {
-  starts 5 2015/05/01 18:49:10;
-  ends 6 2015/05/02 02:49:10;
-  tstp 6 2015/05/02 02:49:10;
-  binding state free;
-  hardware ethernet 00:0c:29:85:6f:62;
-  uid &quot;\001\000\014)\205ob&quot;;
-}
-lease 192.168.124.116 {
-  starts 5 2015/06/05 14:48:40;
-  ends 5 2031/06/05 22:48:40;
-  tstp 5 2015/06/05 22:48:40;
-  binding state free;
-  hardware ethernet 00:0c:29:d1:3e:0d;
-  uid &quot;\001\000\014)\321&amp;gt;\015&quot;;
-}
-lease 192.168.123.200 {
-  starts 5 2012/07/13 11:54:46;
-  ends 5 2031/07/13 11:57:42;
-  tstp 5 2012/07/13 11:57:42;
-  binding state free;
-  hardware ethernet 88:c6:63:c6:08:52;
-  uid &quot;\001\210\306c\306\010R&quot;;
-}
-...
-...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Given a Mac Address (the string after hardware ethernet, e.g. 00:0c:29:d5:ff:cb), our goal is to get the ip address (the string after lease, e.g. 192.168.124.118) with the current time is between the start time (in the first block example, 2014/12/01 12:42:49) and end time (2014/12/01 20:42:49).&lt;/p&gt;
-
-&lt;p&gt;If we use awk, we can come up a command like this:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;awk 'BEGIN{RS = &quot;}&quot;;FS = &quot;\n&quot;;}
-{
-    split($2, start, &quot; &quot;);
-    split($3, end, &quot; &quot;);
-    if (start[1] == &quot;starts&quot; &amp;amp;&amp;amp; end[1] == &quot;ends&quot;)
-        {
-            cmd=&quot;date +%Y%m%d%H%M%S&quot;;
-            cmd | getline currentDateTime;
-            startDate=start[3];
-            startTime=start[4];
-            gsub(/\//,&quot;&quot;,startDate);
-            gsub(/[:;]/,&quot;&quot;,startTime);
-            startDateTime=startDate&quot;&quot;startTime;
-            endDate=end[3];
-            endTime=end[4];
-            gsub(/\//,&quot;&quot;,endDate);
-            gsub(/[:;]/,&quot;&quot;,endTime);
-            endDateTime=endDate&quot;&quot;endTime;
-            if (currentDateTime &amp;gt;= startDateTime
-                &amp;amp;&amp;amp; currentDateTime &amp;lt;= endDateTime) {
-                for (I=NF;I&amp;gt;0;I--) {
-                    split($I, lineArray, &quot; &quot;);
-                    second=lineArray[2];
-                    if (second == &quot;ethernet&quot;) {
-                        third=lineArray[3];
-                        gsub(/\;/,&quot;&quot;,third);
-                        split($1, lease, &quot; &quot;);
-                        print lease[2], third;
-                    }
-                }
-            }
-        }
-}' dhcpd.leases
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Explaination:&lt;/p&gt;
-
-&lt;p&gt;awk can be used with the following syntax:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;awk 'BEGIN{...} {...} END{...}' input-file1
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;BEGIN block is executed once only, before the first input record is read. Likewise, END block is executed once only, after all the input is read.&lt;/p&gt;
-
-&lt;p&gt;In our example, we use BEGIN block only. BEGIN block can have multiple input builtin parameters. Because we are using RS and FS, we will explain how these two works. In this example, we choose RS as “}”, which means the fields of this file are separated as below, in red blocks. FS is chosen as “\n” (newline), which means for each field it can be further separated by each line as records, in yellow blocks.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/dhcpd.leases.png&quot; alt=&quot;awk RF&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The variables in each record is stored as a variable starting with “$” sign, so the&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;lease 192.168.124.118 {
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;is $1, and&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;starts 1 2014/12/01 12:42:49;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;is $2, etc. By splitting each the file to fields/records, we are able to add additional logic to the awk code, to see if the current time is between the start and end time of the lease when it’s validated.&lt;/p&gt;
-
-&lt;p&gt;Finally, key word NF is used to record how many rows are in one field. In this case, for each field we have 8 rows and as such we scan from the end of field to get the Mac Address after key word ethernet.&lt;/p&gt;
-
-&lt;p&gt;The final output after using the awk command to parse dhcpd file is (note the time when parsing this file is in 2017):&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;192.168.124.116 00:0c:29:d1:3e:0d
-192.168.123.200 88:c6:63:c6:08:52
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Thanks for reading!&lt;/p&gt;
-</description>
-        <pubDate>Fri, 03 Feb 2017 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/blog/2017/02/03/python-magic-methods-2/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2017/02/03/python-magic-methods-2/</guid>
-        
-        <category>Shell scripting</category>
-        
-        <category>awk</category>
-        
-        <category>text parsing</category>
-        
-        
-        <category>blog</category>
-        
-      </item>
-    
-      <item>
-        <title>Python magic methods (1) continued - Use magic methods to simplify code in URL matching in Python Pyramid application</title>
-        <description>&lt;p&gt;In the last article we reviewed the features of python magic methods, __new__() and __init__(). We will look into a real example today about how to use the magic methods to simplify code in Python, with example of URL matching in Pyramid framework.&lt;/p&gt;
-
-&lt;h2 id=&quot;python-magic-methods-1-continued-use-descriptor-__new__-and-metaclass-to-simplify-url-matching&quot;&gt;Python magic methods (1) continued: Use descriptor, __new__ and metaclass to simplify URL Matching&lt;/h2&gt;
-
-&lt;p&gt;Assume we have code like below. The method get_route_param will get the parameter from current request object in Pyramid by the name.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class TitlesContext(RootContext):
-    def get_title(self):
-        title = self._db.query(Title).get(self.get_route_param('title_id'))
-        if not title:
-            raise HTTPNotFound()
-        return title
-
-    def get_route_param(self, name):
-        &quot;&quot;&quot;
-        Return the route parameter with the given ``name`` or raise a 404 if it
-        is False-y.
-
-        :rtype: unicode
-        :raise: :exc:`pyramid.httpexceptions.HTTPNotFound`
-        &quot;&quot;&quot;
-        value = self._request.matchdict[name].strip()
-        if not value:
-            raise HTTPNotFound()
-        return value
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;In one pyramid application, for each Model-View-Controller, there could be multiple context object to query the database objects, thus the method get_route_param could exist in many places.&lt;/p&gt;
-
-&lt;p&gt;To improve, we can refactor the code by removing the get_route_param method by creating a new class, UrlMatch:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class TitlesContext(RootContext):
-
-    title_id = UrlMatch()
-    
-    def get_title(self):
-        title = self._db.query(Title).get(self.title_id)
-        if not title:
-            raise HTTPNotFound()
-        return title    
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-class UrlMatch(object):
-    &quot;&quot;&quot;
-    Descriptor that will retrieve variable from the current requests matchdict.
-
-    This should be used on a context class to allow retrieving matchdict variables
-    from the context. When the context class uses :class:`UrlMatchMeta` as it's metaclass
-    then ``UrlMatch`` will use the class attribute name as the key to extract from
-    the matchdict. If the parent class of ``UrlMatch`` does not use `UrlMatchMeta`
-    as its metaclass then the ``name`` argument must be given to ``UrlMatch``.
-
-    Example with metaclass::
-
-        class MyContext(object):
-
-            __metaclass__ = UrlMatchMeta
-
-            def __init__(self, request):
-                self._request = request
-
-            my_var = UrlMatch()
-	 &quot;&quot;&quot;
-
-    def __init__(self, name=None):
-        self.name = name
-
-    def __get__(self, obj, type=None):
-        if not obj:
-            # Accessed via class, so return the descriptor
-            return self
-
-        if not self.name:
-            raise ValueError(
-                'UrlMatch property does not have a name to extract from matchdict. ' +
-                'Use viewutils.UrlMatchMeta as your metaclass or pass a name to UrlMatch().'
-            )
-
-        try:
-            return obj._request.matchdict[self.name]
-        except KeyError:
-            # Turn the KeyError into AttributeError because this will be accessed as
-            # an attribute
-            raise AttributeError(&quot;Matchdict does not have key '{}'&quot;.format(self.name))
-
-
-class UrlMatchMeta(abc.ABCMeta):
-    &quot;&quot;&quot;
-    Metaclass that provides support for the :class:`UrlMatch` descriptor.
-
-    This metaclass will set the ``name`` attribute of each ``UrlMatch`` class attribute
-    to the name of the class attribute.
-    &quot;&quot;&quot;
-
-    def __new__(cls, classname, bases, classDict):
-        new_class = super(UrlMatchMeta, cls).__new__(cls, classname, bases, classDict)
-        cls._set_url_match_names(new_class)
-
-        return new_class
-
-    @staticmethod
-    def _set_url_match_names(new_class):
-        for key, attr in vars(new_class).items():
-            if isinstance(attr, UrlMatch):
-                attr.name = key
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;In this example, we used descriptor, metaclass __new__() to create this new class to simplify the code. 
-So how will this work?&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;__metaclass__ is used to redefine how a class is constructed. In UrlMatchMeta, __new__() is called to add the key in MyContext’s attributes (in this case, “title_id”) to the name of UrlMatch() object. Note __new__() is called automatically when calling the class name, even before __init__(). By using metaclass, we have created a UrlMatch object called title_id in TitlesContext and dynamically added title_id as its name.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;__get__() descriptor is used to retrieve the attribute from request context. Python descriptor says if we call obj.d, it will look for d in obj’s dictionary, and if d defines __get__(), it will call d.__get__(obj). In our case, when we call self.title_id (self is the TitlesContext), it finds __get__() method, so it will actually call title_id.__get__(TitlesContext). Since title_id is UrlMatch, it will return obj._request.matchdict[self.name], which is TitlesContext._request.matchdict[“title_id”]. As such, we complete the same way as to look for title_id parameter in request (which is the same as get_route_param from the old way).&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-</description>
-        <pubDate>Tue, 03 Jan 2017 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/blog/2017/01/03/python-magic-methods-1-continued/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2017/01/03/python-magic-methods-1-continued/</guid>
+        <link>tangothu.github.io/blog/2017/02/07/python-magic-methods-2/</link>
+        <guid isPermaLink="true">tangothu.github.io/blog/2017/02/07/python-magic-methods-2/</guid>
         
         <category>Python</category>
         
