@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 06 May 2017 14:04:24 -0400</pubDate>
-    <lastBuildDate>Sat, 06 May 2017 14:04:24 -0400</lastBuildDate>
+    <pubDate>Sat, 06 May 2017 14:17:16 -0400</pubDate>
+    <lastBuildDate>Sat, 06 May 2017 14:17:16 -0400</lastBuildDate>
     <generator>Jekyll v3.4.2</generator>
     
       <item>
@@ -39,6 +39,7 @@ if __name__ == '__main__':
     g.send(&quot;Yeah, but no, but yeah, but no&quot;)
     g.send(&quot;A series of tubes&quot;)
     g.send(&quot;python generators rock!&quot;)
+    g.close()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -78,6 +79,21 @@ g.send(&quot;python generators rock!&quot;)
 and the string value will be assigned to line. In this way, we are able 
 to send data to generator. Traditionally, we will just iterate a generator 
 and get the value. By using send(), we can now send the data to generator now.&lt;/p&gt;
+
+&lt;p&gt;Note that, there is a infinite while loop in the generator/coroutine definition:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;while True:
+    ...
+    ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;To stop the coroutine from running, we need to explicitly call close() method:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;g.close()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 </description>
         <pubDate>Thu, 04 May 2017 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/blog/2017/05/04/python-coroutine-generator/</link>

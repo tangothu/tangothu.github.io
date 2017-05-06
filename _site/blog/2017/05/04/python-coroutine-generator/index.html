@@ -224,6 +224,7 @@ if __name__ == '__main__':
     g.send("Yeah, but no, but yeah, but no")
     g.send("A series of tubes")
     g.send("python generators rock!")
+    g.close()
 </code></pre>
 </div>
 
@@ -263,6 +264,21 @@ g.send("python generators rock!")
 and the string value will be assigned to line. In this way, we are able 
 to send data to generator. Traditionally, we will just iterate a generator 
 and get the value. By using send(), we can now send the data to generator now.</p>
+
+<p>Note that, there is a infinite while loop in the generator/coroutine definition:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>while True:
+    ...
+    ...
+</code></pre>
+</div>
+
+<p>To stop the coroutine from running, we need to explicitly call close() method:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>g.close()
+</code></pre>
+</div>
+
 
 
                 <hr>
