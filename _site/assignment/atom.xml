@@ -12,7 +12,7 @@
 
     <title>Python代写 | Python辅导 | Python assignment | CS代写 | 作业代写 | Python tutor</title>
 
-    <link rel="canonical" href="tangothu.github.io/assignment/atom.xml">
+    <link rel="canonical" href="http://localhost:4000/assignment/atom.xml">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -51,15 +51,15 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="" />
 <meta property="og:description" content="" />
-<link rel="canonical" href="tangothu.github.io/assignment/atom.xml" />
-<meta property="og:url" content="tangothu.github.io/assignment/atom.xml" />
+<link rel="canonical" href="http://localhost:4000/assignment/atom.xml" />
+<meta property="og:url" content="http://localhost:4000/assignment/atom.xml" />
 <meta property="og:site_name" content="All about Python" />
 <script type="application/ld+json">
 {"@context": "http://schema.org",
 "@type": "WebPage",
 "headline": "All about Python",
 "description": "",
-"url": "tangothu.github.io/assignment/atom.xml"}</script>
+"url": "http://localhost:4000/assignment/atom.xml"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -190,7 +190,7 @@
     <title type="text" xml:lang="en">Blog 1</title>
     <link type="application/atom+xml" href="http://www.example.com/blog1/atom.xml" rel="self"/>
     <link type="text" href="http://garron.me" rel="alternate"/>
-    <updated>2017-05-06T22:49:03-04:00</updated>
+    <updated>2017-05-07T12:22:41-04:00</updated>
     <id>http://example.com</id>
     <author>
         <name>Guillermo Garron</name>
@@ -685,7 +685,7 @@ The correct keyword was failed.&lt;/p&gt;
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "tangothu";
     var disqus_identifier = "";
-    var disqus_url = "tangothu.github.io/assignment/atom.xml";
+    var disqus_url = "http://localhost:4000/assignment/atom.xml";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
