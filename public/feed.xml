@@ -1,0 +1,754 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>All about Python</title>
+    <description></description>
+    <link>tangothu.github.io/</link>
+    <atom:link href="tangothu.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sun, 21 May 2017 22:50:47 -0400</pubDate>
+    <lastBuildDate>Sun, 21 May 2017 22:50:47 -0400</lastBuildDate>
+    <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Python coroutine - make a generator to coroutine and send data</title>
+        <description>&lt;p&gt;This artical will talk about generator in Python coroutines. 
+All the demo code below is from http://www.dabeaz.com/coroutines/ .&lt;/p&gt;
+
+&lt;p&gt;In Python, generator is used to produce a sequence of results. Everytime 
+you call the generator, it will iterate the next value of the results, 
+instead of returning the complete list of results and return them together. 
+We use key word &lt;em&gt;yield&lt;/em&gt;, to make a regular function as generator.&lt;/p&gt;
+
+&lt;p&gt;Let’s look at the sample code below:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# grep.py
+#
+# A very simple coroutine
+
+def grep(pattern):
+    print &quot;Looking for %s&quot; % pattern
+    while True:
+        line = (yield)
+        if pattern in line:
+            print line,
+
+# Example use
+if __name__ == '__main__':
+    g = grep(&quot;python&quot;)
+    g.next()
+    g.send(&quot;Yeah, but no, but yeah, but no&quot;)
+    g.send(&quot;A series of tubes&quot;)
+    g.send(&quot;python generators rock!&quot;)
+    g.close()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In the __main__ function, we first create a generator using&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;g = grep(&quot;python&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;So now g is a generator. We also see that there line of code’s grammar a bit weird:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;line = (yield)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;When yield is placed on the right hand side of equation, or say, when we ‘assign’ 
+the yield to a variable, it means this generator becomes a coroutine. Note coroutine is 
+a special case of generator but more powerful. Will provide how to make use of coroutine
+in next articles.&lt;/p&gt;
+
+&lt;p&gt;To make the coroutine work, it must be “primed” by first calling .next() 
+(or send(None)), where this is the activation step. See code below:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;g.next()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then, we can send values to the function by calling the method send()&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;g.send(&quot;Yeah, but no, but yeah, but no&quot;)
+g.send(&quot;A series of tubes&quot;)
+g.send(&quot;python generators rock!&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;From above, everytime when we make a call g.send(), we send the string data
+and the string value will be assigned to line. In this way, we are able 
+to send data to generator. Traditionally, we will just iterate a generator 
+and get the value. By using send(), we can now send the data to generator now.&lt;/p&gt;
+
+&lt;p&gt;Note that, there is a infinite while loop in the generator/coroutine definition:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;while True:
+    ...
+    ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;To stop the coroutine from running, we need to explicitly call close() method:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;g.close()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Thu, 04 May 2017 00:00:00 -0400</pubDate>
+        <link>tangothu.github.io/blog/2017/05/04/python-coroutine-generator/</link>
+        <guid isPermaLink="true">tangothu.github.io/blog/2017/05/04/python-coroutine-generator/</guid>
+        
+        <category>Python</category>
+        
+        <category>coroutine</category>
+        
+        <category>generator</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Python COMP112 - tic tac toe</title>
+        <description>&lt;h2 id=&quot;tic-tac-toe&quot;&gt;Tic Tac Toe&lt;/h2&gt;
+&lt;p&gt;You will implement a version of the classic “tic-tac-toe” game, in which the player 
+competes against the computer to create a three-in-a-row pattern in vertical, horizontal, 
+or diagonal directions.&lt;/p&gt;
+
+&lt;p&gt;The game is played in a 3-by-3 grid, which is initially empty. 
+There are two players, the human and the computer, who take turns. 
+The human always moves first. When it’s the human’s turn, 
+he or she may place an “O” symbol in any empty position on the game grid 
+by clicking on the grid position with the mouse; afterwards, it becomes 
+the computer’s move, and the computer will place a “X” symbol in any empty position on the grid. 
+The players continue to alternate moves until the game ends. 
+The game is over when any of the following conditions occurs:&lt;/p&gt;
+
+&lt;p&gt;there are three “O” symbols in a line in any row or column, or diagonally from corner to corner, which means that the human has won 
+there are three “X” symbols in a line in any row or column, or diagonally from corner to corner, which means that the computer has won 
+there are no empty positions on the board, meaning that no further moves are possible, and the game ends in a stalemate&lt;/p&gt;
+
+&lt;p&gt;As part of this project, you must develop a reasonable (but simple) 
+“artificial intelligence” to dictate the behavior of the computer player. 
+Although you may provide a more advanced algorithm (which your instructor 
+will help you develop, if you ask), at a minimum, you must implement the 
+following logic for the computer player:&lt;/p&gt;
+
+&lt;p&gt;If it’s possible for the computer player to win in the current move 
+(i.e. there are two “X”s and one empty position in a line somewhere on the board), 
+the computer player must win by occupying that empty position. 
+If it’s possible for the human player to win on the next move 
+(i.e. there are two “O”s and one empty position in a line somewhere on the board), 
+the computer player must prevent the human’s win by occupying that empty position. 
+If neither of the above cases apply, the computer may randomly occupy any unoccupied position.&lt;/p&gt;
+
+&lt;p&gt;Getting started We provide you with starter code to help you begin this project. 
+See the file in starter.zip. This is a starting point; 
+you should replace the pass lines with code to perform the appropriate actions.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 27 Apr 2017 00:00:00 -0400</pubDate>
+        <link>tangothu.github.io/assignment/2017/04/27/COMP112-tic-tac-toe/</link>
+        <guid isPermaLink="true">tangothu.github.io/assignment/2017/04/27/COMP112-tic-tac-toe/</guid>
+        
+        <category>Python</category>
+        
+        <category>Data Structure</category>
+        
+        <category>turtle</category>
+        
+        
+        <category>assignment</category>
+        
+      </item>
+    
+      <item>
+        <title>Python CSC108 - Exploring the Twitterverse</title>
+        <description>&lt;h2 id=&quot;python-assignment---csc108--exploring-the-twitterverse&quot;&gt;Python assignment - CSC108 : Exploring the Twitterverse&lt;/h2&gt;
+
+&lt;p&gt;Assignment 3: Exploring the Twitterverse&lt;/p&gt;
+
+&lt;p&gt;Purpose&lt;/p&gt;
+
+&lt;p&gt;The purpose of this assignment is to give you practise working with files, building and using dictionaries, designing functions, and writing unit tests.&lt;/p&gt;
+
+&lt;p&gt;Introduction: The Twitterverse&lt;/p&gt;
+
+&lt;p&gt;Twitter is a social networking website where users can post very short messages know as “tweets”. Each Twitter user can choose to “follow” other users, which means that they see those users’ tweets. A Twitter user sees the tweets of users they are “following”, and their tweets are seen by their “followers” (the users who follow them).&lt;/p&gt;
+
+&lt;p&gt;All the “follow” connections define a network among Twitter users, and it’s quite interesting to look for patterns in the connections. Tools like Twiangulate let you explore questions like “what connections do my two friends have in common?”. In this assignment, you’ll write a program that lets you ask questions (or “queries”) about a Twitter dataset.&lt;/p&gt;
+
+&lt;p&gt;Any tool for exploring the Twitterverse must get its data from Twitter itself. Twitter provides an API to allow programmers to write programs that interact with Twitter and extract data from it. In general, an API is a module that defines functions for accessing underlying data and performing other tasks without having to know how that data is actually stored and retrieved.&lt;/p&gt;
+
+&lt;p&gt;To make this assignment more manageable for you, we will assume that the information we need has already been extracted from Twitter and stored in a file.&lt;/p&gt;
+
+&lt;p&gt;How to tackle this assignment&lt;/p&gt;
+
+&lt;p&gt;This is your first experience designing a program of this size. We are providing detailed advice to help you break the task down into manageable pieces.&lt;/p&gt;
+
+&lt;p&gt;Make sure your twitterverse_functions.py module runs without error before submitting. If you have syntax errors in your module, comment them out before submitting, or we will not be able to test your functions!&lt;/p&gt;
+
+&lt;p&gt;The Twitter Data File&lt;/p&gt;
+
+&lt;p&gt;A Twitter data file contains a series of one or more user profiles, one after the other. Each user profile has the following elements, in this order:
+A line containing a non-blank, non-empty username. You may assume that usernames are unique, that is, a single username will not occur more than once in the file, and that usernames do not contain any whitespace.
+A line for the user’s actual name. If they did not provide a name, this line will be blank.
+A line for the user’s location, or a blank line if they did not provide one.
+A line for the URL of a website, or a blank line if they did not provide one.
+Zero or more lines for the user’s bio, then a line with nothing but the keyword ENDBIO on it. This marks the end of the bio, and is not considered part of it. (You may assume that no bio has the string ENDBIO within it.) If the user did not provide a bio, the ENDBIO line will come immediately after the website line, with no blank line in between.
+Zero or more lines each containing the username of someone that this user is following, then a line with the keyword END on it. (You may assume that no one has END as their username.) A user cannot be on his or her own following list. You may assume that every user on a following list has a user profile in the Twitter data file.
+Notice that the keywords act as separators in this file. All of their letters are capitalized, and the keywords contain no punctuation.
+Examples&lt;/p&gt;
+
+&lt;p&gt;Here is a sample user profile that might occur among many in a file:
+tomCruise
+Tom Cruise
+Los Angeles, CA
+http://www.tomcruise.com
+Official TomCruise.com crew tweets. We love you guys!
+Visit us at Facebook!
+ENDBIO
+katieH
+NicoleKidman
+END
+The file data.txt is a smallish example of a complete Twitter data file (and was made by hand) and the file rdata.txt is a much larger example (and is made from real data extracted from Twitter). These should help you confirm your understanding of the file format and will also be useful in testing your program.
+Cycles in the data&lt;/p&gt;
+
+&lt;p&gt;Although a user cannot be on their own following or followers lists, there can be “loops” (we call them “cycles”) such as this: user A can be following B who is following A. This is the shortest possible cycle. Of course, cycles can be longer.&lt;/p&gt;
+
+&lt;p&gt;The Query File&lt;/p&gt;
+
+&lt;p&gt;Note that the word “query” just means “question”. In computer science, we use it to mean a request for information. For this assignment, a query will be provided in a file. Below we will review the high level parts of the query, look at an example, and then describe the format of the query file.
+Overview&lt;/p&gt;
+
+&lt;p&gt;A query has three components: a search specification, a filter specification, and a presentation specification.&lt;/p&gt;
+
+&lt;p&gt;The search specification describes how to generate a list of Twitter usernames, starting with an initial username (a list of length one) and then finding their followers or people they are following, then people that are those people’s followers or who they are following, and so on. When processing the search specification, don’t try to do anything to avoid cycles. For instance, if the search specification says to find the people who user A is following, and from there the people they are following, you could find yourself back at user A. Don’t try to avoid that.&lt;/p&gt;
+
+&lt;p&gt;After processing the search specification, we have a list of Twitter usernames. Its length could be zero. For example, if the initial username is ‘dianelynnhorton’ and the search specification contains a single ‘followers’ keyword, then the length of the list will be zero if ‘dianelynnhorton’ has no followers.&lt;/p&gt;
+
+&lt;p&gt;The filter specification describes how to filter the list of usernames produced by the search specification. The filtering can be based on&lt;/p&gt;
+
+&lt;p&gt;whether or not they are following a particular user,
+whether or not a particular user is their follower,
+whether their name contains a particular string (case-insensitive), or
+whether their location contains a particular string (case-insensitive).
+After processing the filter specification, we have a possibly reduced list of usernames.
+Once the search results have been found and filtered, the presentation specification describes how the output should be presented. It specifies on what basis the results should be sorted, and whether the results should be presented in a short or long format.&lt;/p&gt;
+
+&lt;p&gt;Example query&lt;/p&gt;
+
+&lt;p&gt;Here is an example query:&lt;/p&gt;
+
+&lt;p&gt;SEARCH
+tomCruise
+following
+following
+following
+FILTER
+following KatieH
+location-includes USA
+PRESENT
+sort-by popularity
+format long&lt;/p&gt;
+
+&lt;p&gt;The search specification in this particular query has four steps.
+Start with a list containing the username to start the search from; ie. [‘tomCruise’]. Let’s call that list L1.
+The search keyword ‘following’ says to replace each username p in L1 with the usernames of the users who p is following. This yields a new list, L2.
+For the next ‘following’ keyword, we start with L2 and repeat the same operation as in the previous step, yielding another list, L3.
+For the final ‘following’ keyword, we start with L3 and repeat that operation one last time, yielding list L4.
+Notice that each step yields a list of zero or more usernames that is the input to the next step. There should be no duplicates in the final results list. Duplicates should be removed after each step.
+The Twitter data file diagram_data.txt contains the follower/following relationships as represented by this diagram. For those relationships, the search specification above would yield this list of usernames: [‘i’, ‘j’, ‘h’, ‘k’, ‘tomCruise’]. Make sure that you can see how the four lists, ending with this final one, are generated. Notice that the final list contains the users you can get to in three “steps” of the “following” relationship, starting from ‘tomCruise’.&lt;/p&gt;
+
+&lt;p&gt;The final list generated by the search specification becomes the input to the filter specification. For our current example, the filter specification says that the list should be filtered in this way: a user should be kept only if they are following ‘KatieH’ and has a location that includes the string ‘USA’. The presentation specification says to present the results in long format and to order the users according to their popularity.&lt;/p&gt;
+
+&lt;p&gt;Now let’s look in detail at the exact format and meaning of a query.&lt;/p&gt;
+
+&lt;p&gt;Overall format of a query&lt;/p&gt;
+
+&lt;p&gt;The format of the query data file is as described below, in this order:&lt;/p&gt;
+
+&lt;p&gt;The keyword SEARCH alone on a line.
+The search specification.
+The keyword FILTER alone on a line.
+The filter specification.
+The keyword PRESENT alone on a line.
+The presentation specification.
+Notice that the keywords above all act as separators in this file and are in all capital letters. There are other keywords (such as following which can be part of a search specification) that are not separators; they are not capitalized.
+Format and meaning of the search specification&lt;/p&gt;
+
+&lt;p&gt;The format of a search specification is as shown below, in this order:&lt;/p&gt;
+
+&lt;p&gt;A single username
+Zero or more lines, in any order, each containing one of:
+the keyword followers
+the keyword following
+Each step in the search specification involves modifying the current list of users by going through each user in the current list and finding their followers or who they are following. Importantly, at each step, we want to create the new results list by replacing each user from the current list with the users that they are following or who are their followers.&lt;/p&gt;
+
+&lt;p&gt;The possible search operations for a given user are:&lt;/p&gt;
+
+&lt;p&gt;followers operation: a list of all usernames for users who are following the given user (ie. that have the given username in the value list paired with the key ‘following’ in their data in the Twitterverse dictionary).
+following operation: a list of all usernames for users who the given user is following (ie. the value list paired with the key ‘following’ in the data associated with the given user in the Twitterverse dictionary).
+Note that, if the list of usernames is [‘A’], and we perform a ‘followers’ or ‘following’ operation, ‘A’ will not be in the resulting list, since users cannot follow themselves. If ‘A’ is one of multiple usernames in the current list, then ‘A’ can appear in the results list, but only if one of the other usernames produces ‘A’ from the search operation.&lt;/p&gt;
+
+&lt;p&gt;The final list of results should not contain any duplicates. It is most efficient to remove duplicates after each operation is performed.&lt;/p&gt;
+
+&lt;p&gt;Format and meaning of the filter specification&lt;/p&gt;
+
+&lt;p&gt;The format of a filter specification is:&lt;/p&gt;
+
+&lt;p&gt;Zero or more lines, in any order, each containing one of the following:
+the keyword name-includes, a space, and a string to match
+the keyword location-includes, a space, and a string to match
+the keyword follower, a space, and a string which is a valid username
+the keyword following, a space, and a string which is a valid username
+Each of the lines has exactly one blank within it (the space separating the keyword from the next string), and each keyword will appear at most once.
+The filters are “additive” in that each filter step should be applied to the list that resulted from the previous filter step. That is, you start with the list from the search specification, filter it based on the first filter step to get a new list L1, filter L1 in the second filter step to get L2, and so on.&lt;/p&gt;
+
+&lt;p&gt;The ‘following’ and ‘follower’ filters will keep users in the list if they are following a particular user, or if a particular user is their follower. These filters are defined as:&lt;/p&gt;
+
+&lt;p&gt;The ‘following’ filter keeps only users who have the provided username in their ‘following’ list.
+The ‘follower’ filter keeps only users who appear in the ‘following’ list for the provided username.
+The filters that have ‘includes’ as part of the keyword will do a simple substring search on the string representing the relevant data for the user in the Twitterverse dictionary. This means that if the given string occurs anywhere in a user’s name (for a ‘name-includes filter’) or a user’s location (for a ‘location-includes’ filter), then that user is to be kept in the list. The substring search should be case-insensitive. For example, if the filter specifies users whose locations include the string “USA”, then users with location “USA”, “Modesto, California, USA”, “kansas, usa” or “Musala, Bulgaria” would be kept, and users with location “United States of America” would be excluded. This is far from perfect, but don’t try to improve on it.&lt;/p&gt;
+
+&lt;p&gt;Format and meaning of the presentation specification&lt;/p&gt;
+
+&lt;p&gt;The output from your program must include every user whose username is still in the list after the search and filter specifications have been processed.&lt;/p&gt;
+
+&lt;p&gt;The presentation specification describes how the output should be presented. It consists of these two lines, in order:&lt;/p&gt;
+
+&lt;p&gt;The keyword ‘sort-by’, then a space, then one of these keywords: ‘username’, ‘name’, ‘popularity’
+Either ‘format short’ or ‘format long’.
+The users must be listed in the order indicated by the ‘sort-by’ portion of the presentation specification. Output that is sorted by username or name should be in alphabetical order, so that strings starting with ‘a’ are at the beginning of the output. Although usernames are unique, names are not. If any users have the same name, sort them by username. When sorting users by popularity, the most popular users should come first. A user’s popularity is defined to be the number of followers they have. (Not the number of people they are following!) If any users are tied for popularity, sort them by username.&lt;/p&gt;
+
+&lt;p&gt;If the presentation specification is for short format output, the output should consist of the usernames as a Python list of strings. If the presentation specification is for long format output, the output for each user should consist of a series of lines about the user, as shown in the example below. The long format output must include a line of ten dashes between each pair of users, as well as a line of dashes at the very top and very bottom of the output.&lt;/p&gt;
+
+&lt;p&gt;If there are no users to be presented (i.e., the 2nd parameter in get_present_string represents an empty list), then the long format output should just include two lines of dashes.&lt;/p&gt;
+
+&lt;p&gt;For the long format, the series of lines describing a single user should be formatted as shown below:&lt;/p&gt;
+
+&lt;p&gt;tomCruise
+name: Tom Cruise
+location: Los Angeles, CA
+website: http://www.tomcruise.com
+bio:
+Official TomCruise.com crew tweets. We love you guys!
+Visit us at Facebook!
+following: [‘katieH’, ‘NicoleKidman’]
+Notice that:
+The name, location, and website text is reproduced exactly as it was in the Twitter data file, with the addition of the labels at the start of the line.
+The bio begins on the line after the line containing ‘bio:’, unlike the other components that appear on the same line as their “tag”.
+The bio itself is also reproduced exactly as it was in the Twitter data file, including upper and lower case, newline characters, etc.
+The “following” list is produced simply by converting the list of username strings to a string.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 15 Mar 2017 00:00:00 -0400</pubDate>
+        <link>tangothu.github.io/assignment/2017/03/15/CSC108-a3-Exploring-the-Twitterverse/</link>
+        <guid isPermaLink="true">tangothu.github.io/assignment/2017/03/15/CSC108-a3-Exploring-the-Twitterverse/</guid>
+        
+        <category>Python</category>
+        
+        <category>Data Structure</category>
+        
+        <category>dict</category>
+        
+        
+        <category>assignment</category>
+        
+      </item>
+    
+      <item>
+        <title>Python CS116 Winter - to write a function phone_word</title>
+        <description>&lt;h3 id=&quot;question-4&quot;&gt;Question 4&lt;/h3&gt;
+
+&lt;p&gt;A fun game people sometimes play is figuring out which words their 
+phone number spells using the mapping given by 
+(cite http://static.trustedreviews.com/94/000026330/c000/OT-­‐282.jpg):&lt;br /&gt;
+0 – [] 
+1 – [] 
+2 – [A,B,C] 
+3 – [D,E,F] 
+4 – [G,H,I] 
+5 – [J,K,L] 
+6 – [M,N,O] 
+7 – [P,Q,R,S] 
+8 – [T,U,V] 
+9 – [W,X,Y,Z]&lt;/p&gt;
+
+&lt;p&gt;Your job will be to write a function phone_word which consumes a phone number 
+num which is a natural number consisting of 7 digits or less and returns a 
+list of all possible phone words that can be achieved (in all capital letters). 
+For example, if the number consumed was 2629327, then some words in the 
+output list include COBWEBS, BOAWEBS, COAXEAR, ANAXEAR and others. 
+Note that all these words need not be valid English words; just strings 
+consisting of capital letters. As another example, if the number entered 
+was 6391866 one of the output words would be NEWTON. The phone words 
+in the list should be in alphabetical order. Here are two complete 
+examples: phone_word(2160) =&amp;gt; [‘AM’, ‘AN’, ‘AO’, ‘BM’, ‘BN’, ‘BO’, ‘CM’, ‘CN’, ‘CO’] 
+phone_word(1001100) =&amp;gt; [] You may (and should) use the global constant 
+phone_dictionary as given in the interface file.&lt;/p&gt;
+
+&lt;p&gt;Hints: Try to keep your testing data small – restrict yourself to 
+numbers with at most 4 digits in your testing and/or numbers with 
+more 0s and 1s. Given a list of phone words using the first `n’ digits, 
+how would you add the next digit to this list? Removing and adding 
+elements to the same list might be a useful technique.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 16 Feb 2017 00:00:00 -0500</pubDate>
+        <link>tangothu.github.io/assignment/2017/02/16/CS116-iteration-Q4/</link>
+        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/16/CS116-iteration-Q4/</guid>
+        
+        <category>Python</category>
+        
+        <category>Data Structure</category>
+        
+        <category>iteration (while and for loops)</category>
+        
+        
+        <category>assignment</category>
+        
+      </item>
+    
+      <item>
+        <title>Python CS116 Winter - special version of the popular game Mastermind verbal_mastermind</title>
+        <description>&lt;h3 id=&quot;question-3&quot;&gt;Question 3&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;In this question, you are going to play a special version of the popular game Mastermind. 
+The object of the game for the user is to identify a keyword by making a series of guesses. 
+You will write a function verbal_mastermind which consumes a target string of all lowercase letters 
+called a keyword of length between 2 and 100, informs the user how many characters are in the keyword 
+and prompts the user for input until the user guesses the keyword or quits (see below). 
+The function produces None. Your program starts by telling the user how many 
+characters the keyword has using the string: The keyword has # characters. 
+(where # is replaced by the number of characters in the keyword). 
+Then, you are to prompt the user using the sentence:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please enter a guess: (Notice there is a space after the colon above).&lt;/p&gt;
+
+&lt;p&gt;Guesses will consist of only lowercase letters or the string “!quit”. 
+For a given guess, your program will request a new word if the length of the guess 
+is not the same as the target using these lines printed on separate lines: 
+Your guess contains an incorrect number of characters. The keyword has # characters. 
+(where # is replaced by the number of characters in the keyword). 
+Otherwise, the program will print to the screen the number of characters that 
+are correct and in the correct position and also print the number of characters 
+(excluding those already correct) that are in the word but not in the correct position.&lt;/p&gt;
+
+&lt;p&gt;For example, if the keyword was the string “answers” and the guessed word was “peelers”, 
+the program would output: Exact: 3, Other: 0 The letters “ers” match exactly 
+whereas the remaining letters “peel” and “answ” share no common letters. 
+See the first example below for other cases. If the user guesses “!quit” (no quotes), 
+your program should stop and tell the user the correct answer (see the prompt below). 
+If the user guesses the correct answer. The program should print out the word Congratulations! 
+followed by telling the user the correct answer using the prompt 
+(on the same line with a space after the exclamation point):&lt;/p&gt;
+
+&lt;p&gt;The correct keyword was answers. Here are three  examples:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;blockquote&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;verbal_mastermind(“answers”)
+The keyword has 7 characters.
+Please enter a guess: bananas
+Exact: 1, Other: 2
+Please enter a guess: aaaaaaa
+Exact: 1, Other: 0
+Please enter a guess: andoras
+Exact: 3, Other: 1
+Please enter a guess: peelers
+Exact: 3, Other: 0
+Please enter a guess: startle
+Exact: 0, Other: 4
+Please enter a guess: answers
+Congratulations! The correct keyword was answers.
+verbal_mastermind(“money”)
+The keyword has 5 characters.
+Please enter a guess: money
+Congratulations! The correct keyword was money.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;blockquote&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;verbal_mastermind(“failed”)
+The keyword has 6 characters.
+Please enter a guess: banana
+Exact: 1, Other: 0
+Please enter a guess: toomanycharacters
+Your guess contains an incorrect number of characters.
+The keyword has 6 characters.
+Please enter a guess: !quit
+The correct keyword was failed.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;question-4&quot;&gt;Question 4&lt;/h3&gt;
+&lt;p&gt;A fun game people sometimes play is figuring out which words their phone number spells using the mapping given by (cite http://static.trustedreviews.com/94/000026330/c000/OT-­‐282.jpg):  0 – [] 1 – [] 2 – [A,B,C] 3 – [D,E,F] 4 – [G,H,I] 5 – [J,K,L] 6 – [M,N,O] 7 – [P,Q,R,S] 8 – [T,U,V] 9 – [W,X,Y,Z]  Your job will be to write a function phone_word which consumes a phone number num which is a natural number consisting of 7 digits or less and returns a list of all possible phone words that can be achieved (in all capital letters). For example, if the number consumed was 2629327, then some words in the output list include COBWEBS, BOAWEBS, COAXEAR, ANAXEAR and others. Note that all these words need not be valid English words; just strings consisting of capital letters. As another example, if the number entered was 6391866 one of the output words would be NEWTON. The phone words in the list should be in alphabetical order. Here are two complete examples: phone_word(2160) =&amp;gt; [‘AM’, ‘AN’, ‘AO’, ‘BM’, ‘BN’, ‘BO’, ‘CM’, ‘CN’, ‘CO’] phone_word(1001100) =&amp;gt; [] You may (and should) use the global constant phone_dictionary as given in the interface file. Hints: Try to keep your testing data small – restrict yourself to numbers with at most 4 digits in your testing and/or numbers with more 0s and 1s. Given a list of phone words using the first `n’ digits, how would you add the next digit to this list? Removing and adding elements to the same list might be a useful technique.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 16 Feb 2017 00:00:00 -0500</pubDate>
+        <link>tangothu.github.io/assignment/2017/02/16/CS116-iteration-Q3/</link>
+        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/16/CS116-iteration-Q3/</guid>
+        
+        <category>Python</category>
+        
+        <category>Data Structure</category>
+        
+        <category>iteration (while and for loops)</category>
+        
+        
+        <category>assignment</category>
+        
+      </item>
+    
+      <item>
+        <title>Python CS116 Winter - Use accumulative recursion to complete the function find_group</title>
+        <description>&lt;h3 id=&quot;question-4&quot;&gt;Question 4&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Consider the following scenario, in which there are n different “people”, each represented by a distinct
+natural number labelled from 0 to n–1.
+Each person has been asked to “choose” a single person that they would prefer to have as a group
+member for some project. These choices are recorded in a list L of length n &amp;gt; 1, where the ith
+element of L contains the choice for person i.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For example, if L = [2, 0, 1, 4, 0], then (see picture):
+• person 0 has chosen person 2
+• person 1 has chosen person 0
+• person 2 has chosen person 1
+• person 3 has chosen person 4
+• person 4 has chosen person 0
+and note that people are not allowed to choose themselves.
+Now we want to automate the task of finding the smallest “group” that contains a given person.
+However, we will only consider a group to be “good” if it has at least two people, and everyone in the
+group chose someone else from the same group.
+For instance, in the above example, the group of people [0, 1, 2] is good because all of these
+people chose others from the same group. However, the group [3, 4] is not good because person
+4 chose person 0, and person 0 is not in the group. In order for the group to be good, each person’s
+choice must also be (recursively) added to the same group, and therefore [0, 1, 2, 3, 4] would
+be the smallest good group that includes person 3.
+Your task is to use any kind of recursion to complete the function find_group, that consumes some
+list L of choices, and an initial person i — according to all of the above conditions — and then
+produces a sorted list of people that represents a good group containing person i. If there is a good
+group that contains person i, then your function should produce that group in sorted order. If multiple
+groups are good, then produce the shortest one.
+For example,
+• find_group([2, 0, 1, 4, 0], 0) =&amp;gt; [0, 1, 2]
+• find_group([2, 0, 1, 4, 0], 4) =&amp;gt; [0, 1, 2, 4]
+• find_group([2, 0, 1, 4, 0], 3) =&amp;gt; [0, 1, 2, 3, 4]&lt;/p&gt;
+
+&lt;p&gt;The first example finds the group [0, 1, 2], which is good and contains person 0. The second
+example finds the group [0, 1, 2, 4], since including person 4 means we must include person 0,
+which in turns includes person 2, and then finally person 1. The third example is [0, 1, 2, 3, 4],
+since everyone can be put into one group containing all 5 people, which is the smallest good group that
+contains person 3.
+Hints:
+• Work through some examples first, by hand, in order to see the pattern. Try drawing pictures to
+get some intuition. There is an elegant solution!&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 10 Feb 2017 00:00:00 -0500</pubDate>
+        <link>tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q4/</link>
+        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q4/</guid>
+        
+        <category>Python</category>
+        
+        <category>Data Structure</category>
+        
+        <category>accumulative recursion</category>
+        
+        
+        <category>assignment</category>
+        
+      </item>
+    
+      <item>
+        <title>Python CS116 Winter - Complete the function longest_subpalindrome</title>
+        <description>&lt;h3 id=&quot;question-3&quot;&gt;Question 3&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A palindrome is a string that is the same forwards and backwards. For example, “racecar”, “anna”, and
+“aibohphobia” (the fear of long palindromes) are all palindromes, but “abc” and “sata” are not.
+We say that a string is a “subpalindrome of s” if it is both a substring of s and a palindrome.
+Complete the function longest_subpalindrome, that consumes a lowercase alphabetical strings of 
+length at most 15, and produces the longest subpalindrome of s. If there are multiple
+subpalindromes that are the same size, then return the one that comes first alphabetically.
+For example,
+• longest_subpalindrome(“abaca”) =&amp;gt; “aba”
+• longest_subpalindrome(“anna”) =&amp;gt; “anna”
+• longest_subpalindrome(“sata”) =&amp;gt; “ata”
+• longest_subpalindrome(“abc”) =&amp;gt; “a”
+Hints:
+• You may use examples from class as helper functions.
+• Use generative recursion to break up the problem into a number of smaller sub-problems.
+• Your solution does not need to be efficient!&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Fri, 10 Feb 2017 00:00:00 -0500</pubDate>
+        <link>tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q3/</link>
+        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q3/</guid>
+        
+        <category>Python</category>
+        
+        <category>Data Structure</category>
+        
+        <category>accumulative recursion</category>
+        
+        
+        <category>assignment</category>
+        
+      </item>
+    
+      <item>
+        <title>Python CS116 Winter - Use accumulative recursion to complete the function classify_chars</title>
+        <description>&lt;h3 id=&quot;question-2&quot;&gt;Question 2&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Use accumulative recursion to complete the function classify_chars, that consumes a string s,
+and produces a list containing exactly three natural numbers:
+• the number of alphabetic characters in s
+• the number of digits in s
+• the number of all other characters in s
+For example,
+• classify_chars(“Hello CS116”) =&amp;gt; [7, 3, 1]
+• classify_chars(“2&lt;em&gt;math.pi&lt;/em&gt;r”) =&amp;gt; [7, 1, 3]&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Fri, 10 Feb 2017 00:00:00 -0500</pubDate>
+        <link>tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q2/</link>
+        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q2/</guid>
+        
+        <category>Python</category>
+        
+        <category>Data Structure</category>
+        
+        <category>accumulative recursion</category>
+        
+        
+        <category>assignment</category>
+        
+      </item>
+    
+      <item>
+        <title>Python CS116 Winter - Use accumulative recursion to complete the function nat_range</title>
+        <description>&lt;h3 id=&quot;question-1&quot;&gt;Question 1&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Use accumulative recursion to complete the function nat_range, that consumes the natural
+numbers start, end (with start &amp;lt;= end), and a positive integer step, and then produces a list:
+· that begins with start
+· advances by step for each subsequent element
+· but, ends right before reaching end
+For example,
+· nat_range(0, 5, 1) =&amp;gt; [0, 1, 2, 3, 4]
+· nat_range(0, 0, 1) =&amp;gt; []
+· nat_range(3, 7, 2) =&amp;gt; [3, 5]&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Note: This is a basic version of the built-in Python function range(start, end, step), which
+you are not allowed to use here, and also shares the semantics of string / list slicing!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 10 Feb 2017 00:00:00 -0500</pubDate>
+        <link>tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q1/</link>
+        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q1/</guid>
+        
+        <category>Python</category>
+        
+        <category>Data Structure</category>
+        
+        <category>accumulative recursion</category>
+        
+        
+        <category>assignment</category>
+        
+      </item>
+    
+      <item>
+        <title>Python magic methods (2)</title>
+        <description>&lt;h2 id=&quot;python-magic-methods-2--__call__&quot;&gt;Python magic methods (2) : __call__()&lt;/h2&gt;
+
+&lt;p&gt;In Python, we can call a method using object.method(). Is it possible if we use object() to call a method or do something? __call__() method can help us to achieve this - by defining __call__(), the class’s instance can be called as a function.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Person(object):
+    def __init__(self, name):
+        self.name = name
+
+    def __call__(self):
+        print('Name is %s.' % self.name)
+
+if __name__ == '__main__':
+    p = Person('mike')
+    print p()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Name is mike.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;when-to-use-__call__&quot;&gt;When to use __call__()?&lt;/h3&gt;
+
+&lt;p&gt;If we need the objects to be callable, or the object wraps, abstracts the concept of a function, then use __call__().&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class  Factorial:    
+    def  __init__( self ):    
+        self .cache = {}    
+          
+    def  __call__( self , n):    
+        if  n  not  in  self .cache:    
+            if  n ==  0:    
+                self .cache[n] =  1    
+            else:    
+                self .cache[n] = n *  self .__call__(n-1)    
+        return  self .cache[n]    
+    
+fact = Factorial()    
+    
+for  i  in  xrange(10):                                                                 
+    print ( &quot;{}! = {}&quot; .format(i, fact(i)))  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;0! = 1
+1! = 1
+2! = 2
+3! = 6
+4! = 24
+5! = 120
+6! = 720
+7! = 5040
+8! = 40320
+9! = 362880
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Tue, 07 Feb 2017 00:00:00 -0500</pubDate>
+        <link>tangothu.github.io/blog/2017/02/07/python-magic-methods-2/</link>
+        <guid isPermaLink="true">tangothu.github.io/blog/2017/02/07/python-magic-methods-2/</guid>
+        
+        <category>Python</category>
+        
+        <category>advanced features</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+  </channel>
+</rss>

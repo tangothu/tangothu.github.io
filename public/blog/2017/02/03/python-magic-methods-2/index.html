@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Use awk to parse plain text large file (from DHCP lease for network IP address lookup) - Python代写 | Python辅导 | Python assignment | CS代写 | 作业代写 | Python tutor</title>
+
+    <link rel="canonical" href="tangothu.github.io/blog/2017/02/03/python-magic-methods-2/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart=''>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">All about Python</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/assignment/">Assignments</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tutorservice/">Python tutor service</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Shell scripting" title="Shell scripting">Shell scripting</a>
+                        
+                        <a class="tag" href="/tags/#awk" title="awk">awk</a>
+                        
+                        <a class="tag" href="/tags/#text parsing" title="text parsing">text parsing</a>
+                        
+                    </div>
+                    <h1>Use awk to parse plain text large file (from DHCP lease for network IP address lookup)</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by All about Python on February 3, 2017</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<p>We will always need to use low level tools such as shell script to parse log files or plain text files in linux system. In this example we will show how to use awk command and shell script to parse ip leases file (dhcpd.leases) for network router Mac Address match.</p>
+
+<h2 id="use-awk-to-parse-plain-text-large-file">Use awk to parse plain text large file</h2>
+
+<p>Assume we have plain text file as below:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>lease 192.168.124.118 {
+  starts 1 2014/12/01 12:42:49;
+  ends 1 2014/12/01 20:42:49;
+  tstp 1 2014/12/01 20:42:49;
+  binding state free;
+  hardware ethernet 00:0c:29:d5:ff:cb;
+  uid "\001\000\014)\325\377\313";
+}
+lease 192.168.124.117 {
+  starts 5 2015/05/01 18:49:10;
+  ends 6 2015/05/02 02:49:10;
+  tstp 6 2015/05/02 02:49:10;
+  binding state free;
+  hardware ethernet 00:0c:29:85:6f:62;
+  uid "\001\000\014)\205ob";
+}
+lease 192.168.124.116 {
+  starts 5 2015/06/05 14:48:40;
+  ends 5 2031/06/05 22:48:40;
+  tstp 5 2015/06/05 22:48:40;
+  binding state free;
+  hardware ethernet 00:0c:29:d1:3e:0d;
+  uid "\001\000\014)\321&gt;\015";
+}
+lease 192.168.123.200 {
+  starts 5 2012/07/13 11:54:46;
+  ends 5 2031/07/13 11:57:42;
+  tstp 5 2012/07/13 11:57:42;
+  binding state free;
+  hardware ethernet 88:c6:63:c6:08:52;
+  uid "\001\210\306c\306\010R";
+}
+...
+...
+</code></pre>
+</div>
+
+<p>Given a Mac Address (the string after hardware ethernet, e.g. 00:0c:29:d5:ff:cb), our goal is to get the ip address (the string after lease, e.g. 192.168.124.118) with the current time is between the start time (in the first block example, 2014/12/01 12:42:49) and end time (2014/12/01 20:42:49).</p>
+
+<p>If we use awk, we can come up a command like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>awk 'BEGIN{RS = "}";FS = "\n";}
+{
+    split($2, start, " ");
+    split($3, end, " ");
+    if (start[1] == "starts" &amp;&amp; end[1] == "ends")
+        {
+            cmd="date +%Y%m%d%H%M%S";
+            cmd | getline currentDateTime;
+            startDate=start[3];
+            startTime=start[4];
+            gsub(/\//,"",startDate);
+            gsub(/[:;]/,"",startTime);
+            startDateTime=startDate""startTime;
+            endDate=end[3];
+            endTime=end[4];
+            gsub(/\//,"",endDate);
+            gsub(/[:;]/,"",endTime);
+            endDateTime=endDate""endTime;
+            if (currentDateTime &gt;= startDateTime
+                &amp;&amp; currentDateTime &lt;= endDateTime) {
+                for (I=NF;I&gt;0;I--) {
+                    split($I, lineArray, " ");
+                    second=lineArray[2];
+                    if (second == "ethernet") {
+                        third=lineArray[3];
+                        gsub(/\;/,"",third);
+                        split($1, lease, " ");
+                        print lease[2], third;
+                    }
+                }
+            }
+        }
+}' dhcpd.leases
+</code></pre>
+</div>
+
+<p>Explaination:</p>
+
+<p>awk can be used with the following syntax:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>awk 'BEGIN{...} {...} END{...}' input-file1
+</code></pre>
+</div>
+
+<p>BEGIN block is executed once only, before the first input record is read. Likewise, END block is executed once only, after all the input is read.</p>
+
+<p>In our example, we use BEGIN block only. BEGIN block can have multiple input builtin parameters. Because we are using RS and FS, we will explain how these two works. In this example, we choose RS as “}”, which means the fields of this file are separated as below, in red blocks. FS is chosen as “\n” (newline), which means for each field it can be further separated by each line as records, in yellow blocks.</p>
+
+<p><img src="tangothu.github.io/images/dhcpd.leases.png" alt="awk RF" /></p>
+
+<p>The variables in each record is stored as a variable starting with “$” sign, so the</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>lease 192.168.124.118 {
+</code></pre>
+</div>
+<p>is $1, and</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>starts 1 2014/12/01 12:42:49;
+</code></pre>
+</div>
+<p>is $2, etc. By splitting each the file to fields/records, we are able to add additional logic to the awk code, to see if the current time is between the start and end time of the lease when it’s validated.</p>
+
+<p>Finally, key word NF is used to record how many rows are in one field. In this case, for each field we have 8 rows and as such we scan from the end of field to get the Mac Address after key word ethernet.</p>
+
+<p>The final output after using the awk command to parse dhcpd file is (note the time when parsing this file is in 2017):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>192.168.124.116 00:0c:29:d1:3e:0d
+192.168.123.200 88:c6:63:c6:08:52
+</code></pre>
+</div>
+
+<p>Thanks for reading!</p>
+
+
+                <hr>
+
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/blog/2017/01/03/python-magic-methods-1-continued/" data-toggle="tooltip" data-placement="top" title="Python magic methods (1) continued - Use magic methods to simplify code in URL matching in Python Pyramid application">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/blog/2017/02/07/python-magic-methods-2/" data-toggle="tooltip" data-placement="top" title="Python magic methods (2)">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+                				<a href="/tags/#Python" title="Python" rel="19">
+                                    Python
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#Data Structure" title="Data Structure" rel="11">
+                                    Data Structure
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#Function" title="Function" rel="2">
+                                    Function
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#advanced features" title="advanced features" rel="3">
+                                    advanced features
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#accumulative recursion" title="accumulative recursion" rel="4">
+                                    accumulative recursion
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#iteration (while and for loops)" title="iteration (while and for loops)" rel="2">
+                                    iteration (while and for loops)
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="tangothu.github.io">My Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "tangothu";
+    var disqus_identifier = "/blog/2017/02/03/python-magic-methods-2";
+    var disqus_url = "tangothu.github.io/blog/2017/02/03/python-magic-methods-2/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/tangothu">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; All about Python 2017
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=tangothu&repo=tangothu.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src='/js/jquery.min.js '></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src='/js/bootstrap.min.js '></script>
+
+<!-- Custom Theme JavaScript -->
+<script src='/js/hux-blog.min.js '></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-93917811-1';
+    var _gaDomain = 'tangothu.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
