@@ -1,6 +1,6 @@
 # Site settings
 title: All about Python
-SEOTitle: Python辅导 | Python assignment | Data structure | Algorithm | Python tutor
+SEOTitle: Python consulting | Data structure | Algorithm | Python tutor | Python辅导
 header-img: img/home-bg.jpg
 email: pythontutorpro@gmail.com
 description: ""
@@ -70,8 +70,8 @@ ga_domain: tangothu.github.io #huangxuan.me
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "提供北美各大院校计算机课程Python辅导, Python作业讨论及辅导服务,
-有意请加微信tangothu, 或邮件pythontutorpro@gmail.com. 邮件请注明学校,题目要求和截止日期."
+sidebar-about-description: "提供计算机课程Python辅导服务,
+有意请邮件pythontutorpro@gmail.com."
 sidebar-avatar: /img/avatar_profile.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 sidebar-wechat: /img/icon_wechat.jpg
 
