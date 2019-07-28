@@ -3,10 +3,10 @@
   <channel>
     <title>All about Python</title>
     <description></description>
-    <link>tangothu.github.io/</link>
-    <atom:link href="tangothu.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 10 May 2017 22:45:51 -0400</pubDate>
-    <lastBuildDate>Wed, 10 May 2017 22:45:51 -0400</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sun, 28 Jul 2019 10:16:59 -0400</pubDate>
+    <lastBuildDate>Sun, 28 Jul 2019 10:16:59 -0400</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -96,8 +96,8 @@ and get the value. By using send(), we can now send the data to generator now.&l
 
 </description>
         <pubDate>Thu, 04 May 2017 00:00:00 -0400</pubDate>
-        <link>tangothu.github.io/blog/2017/05/04/python-coroutine-generator/</link>
-        <guid isPermaLink="true">tangothu.github.io/blog/2017/05/04/python-coroutine-generator/</guid>
+        <link>http://localhost:4000/blog/2017/05/04/python-coroutine-generator/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/05/04/python-coroutine-generator/</guid>
         
         <category>Python</category>
         
@@ -107,565 +107,6 @@ and get the value. By using send(), we can now send the data to generator now.&l
         
         
         <category>blog</category>
-        
-      </item>
-    
-      <item>
-        <title>Python COMP112 - tic tac toe</title>
-        <description>&lt;h2 id=&quot;tic-tac-toe&quot;&gt;Tic Tac Toe&lt;/h2&gt;
-&lt;p&gt;You will implement a version of the classic “tic-tac-toe” game, in which the player 
-competes against the computer to create a three-in-a-row pattern in vertical, horizontal, 
-or diagonal directions.&lt;/p&gt;
-
-&lt;p&gt;The game is played in a 3-by-3 grid, which is initially empty. 
-There are two players, the human and the computer, who take turns. 
-The human always moves first. When it’s the human’s turn, 
-he or she may place an “O” symbol in any empty position on the game grid 
-by clicking on the grid position with the mouse; afterwards, it becomes 
-the computer’s move, and the computer will place a “X” symbol in any empty position on the grid. 
-The players continue to alternate moves until the game ends. 
-The game is over when any of the following conditions occurs:&lt;/p&gt;
-
-&lt;p&gt;there are three “O” symbols in a line in any row or column, or diagonally from corner to corner, which means that the human has won 
-there are three “X” symbols in a line in any row or column, or diagonally from corner to corner, which means that the computer has won 
-there are no empty positions on the board, meaning that no further moves are possible, and the game ends in a stalemate&lt;/p&gt;
-
-&lt;p&gt;As part of this project, you must develop a reasonable (but simple) 
-“artificial intelligence” to dictate the behavior of the computer player. 
-Although you may provide a more advanced algorithm (which your instructor 
-will help you develop, if you ask), at a minimum, you must implement the 
-following logic for the computer player:&lt;/p&gt;
-
-&lt;p&gt;If it’s possible for the computer player to win in the current move 
-(i.e. there are two “X”s and one empty position in a line somewhere on the board), 
-the computer player must win by occupying that empty position. 
-If it’s possible for the human player to win on the next move 
-(i.e. there are two “O”s and one empty position in a line somewhere on the board), 
-the computer player must prevent the human’s win by occupying that empty position. 
-If neither of the above cases apply, the computer may randomly occupy any unoccupied position.&lt;/p&gt;
-
-&lt;p&gt;Getting started We provide you with starter code to help you begin this project. 
-See the file in starter.zip. This is a starting point; 
-you should replace the pass lines with code to perform the appropriate actions.&lt;/p&gt;
-</description>
-        <pubDate>Thu, 27 Apr 2017 00:00:00 -0400</pubDate>
-        <link>tangothu.github.io/assignment/2017/04/27/COMP112-tic-tac-toe/</link>
-        <guid isPermaLink="true">tangothu.github.io/assignment/2017/04/27/COMP112-tic-tac-toe/</guid>
-        
-        <category>Python</category>
-        
-        <category>Data Structure</category>
-        
-        <category>turtle</category>
-        
-        
-        <category>assignment</category>
-        
-      </item>
-    
-      <item>
-        <title>Python CSC108 - Exploring the Twitterverse</title>
-        <description>&lt;h2 id=&quot;python-assignment---csc108--exploring-the-twitterverse&quot;&gt;Python assignment - CSC108 : Exploring the Twitterverse&lt;/h2&gt;
-
-&lt;p&gt;Assignment 3: Exploring the Twitterverse&lt;/p&gt;
-
-&lt;p&gt;Purpose&lt;/p&gt;
-
-&lt;p&gt;The purpose of this assignment is to give you practise working with files, building and using dictionaries, designing functions, and writing unit tests.&lt;/p&gt;
-
-&lt;p&gt;Introduction: The Twitterverse&lt;/p&gt;
-
-&lt;p&gt;Twitter is a social networking website where users can post very short messages know as “tweets”. Each Twitter user can choose to “follow” other users, which means that they see those users’ tweets. A Twitter user sees the tweets of users they are “following”, and their tweets are seen by their “followers” (the users who follow them).&lt;/p&gt;
-
-&lt;p&gt;All the “follow” connections define a network among Twitter users, and it’s quite interesting to look for patterns in the connections. Tools like Twiangulate let you explore questions like “what connections do my two friends have in common?”. In this assignment, you’ll write a program that lets you ask questions (or “queries”) about a Twitter dataset.&lt;/p&gt;
-
-&lt;p&gt;Any tool for exploring the Twitterverse must get its data from Twitter itself. Twitter provides an API to allow programmers to write programs that interact with Twitter and extract data from it. In general, an API is a module that defines functions for accessing underlying data and performing other tasks without having to know how that data is actually stored and retrieved.&lt;/p&gt;
-
-&lt;p&gt;To make this assignment more manageable for you, we will assume that the information we need has already been extracted from Twitter and stored in a file.&lt;/p&gt;
-
-&lt;p&gt;How to tackle this assignment&lt;/p&gt;
-
-&lt;p&gt;This is your first experience designing a program of this size. We are providing detailed advice to help you break the task down into manageable pieces.&lt;/p&gt;
-
-&lt;p&gt;Make sure your twitterverse_functions.py module runs without error before submitting. If you have syntax errors in your module, comment them out before submitting, or we will not be able to test your functions!&lt;/p&gt;
-
-&lt;p&gt;The Twitter Data File&lt;/p&gt;
-
-&lt;p&gt;A Twitter data file contains a series of one or more user profiles, one after the other. Each user profile has the following elements, in this order:
-A line containing a non-blank, non-empty username. You may assume that usernames are unique, that is, a single username will not occur more than once in the file, and that usernames do not contain any whitespace.
-A line for the user’s actual name. If they did not provide a name, this line will be blank.
-A line for the user’s location, or a blank line if they did not provide one.
-A line for the URL of a website, or a blank line if they did not provide one.
-Zero or more lines for the user’s bio, then a line with nothing but the keyword ENDBIO on it. This marks the end of the bio, and is not considered part of it. (You may assume that no bio has the string ENDBIO within it.) If the user did not provide a bio, the ENDBIO line will come immediately after the website line, with no blank line in between.
-Zero or more lines each containing the username of someone that this user is following, then a line with the keyword END on it. (You may assume that no one has END as their username.) A user cannot be on his or her own following list. You may assume that every user on a following list has a user profile in the Twitter data file.
-Notice that the keywords act as separators in this file. All of their letters are capitalized, and the keywords contain no punctuation.
-Examples&lt;/p&gt;
-
-&lt;p&gt;Here is a sample user profile that might occur among many in a file:
-tomCruise
-Tom Cruise
-Los Angeles, CA
-http://www.tomcruise.com
-Official TomCruise.com crew tweets. We love you guys!
-Visit us at Facebook!
-ENDBIO
-katieH
-NicoleKidman
-END
-The file data.txt is a smallish example of a complete Twitter data file (and was made by hand) and the file rdata.txt is a much larger example (and is made from real data extracted from Twitter). These should help you confirm your understanding of the file format and will also be useful in testing your program.
-Cycles in the data&lt;/p&gt;
-
-&lt;p&gt;Although a user cannot be on their own following or followers lists, there can be “loops” (we call them “cycles”) such as this: user A can be following B who is following A. This is the shortest possible cycle. Of course, cycles can be longer.&lt;/p&gt;
-
-&lt;p&gt;The Query File&lt;/p&gt;
-
-&lt;p&gt;Note that the word “query” just means “question”. In computer science, we use it to mean a request for information. For this assignment, a query will be provided in a file. Below we will review the high level parts of the query, look at an example, and then describe the format of the query file.
-Overview&lt;/p&gt;
-
-&lt;p&gt;A query has three components: a search specification, a filter specification, and a presentation specification.&lt;/p&gt;
-
-&lt;p&gt;The search specification describes how to generate a list of Twitter usernames, starting with an initial username (a list of length one) and then finding their followers or people they are following, then people that are those people’s followers or who they are following, and so on. When processing the search specification, don’t try to do anything to avoid cycles. For instance, if the search specification says to find the people who user A is following, and from there the people they are following, you could find yourself back at user A. Don’t try to avoid that.&lt;/p&gt;
-
-&lt;p&gt;After processing the search specification, we have a list of Twitter usernames. Its length could be zero. For example, if the initial username is ‘dianelynnhorton’ and the search specification contains a single ‘followers’ keyword, then the length of the list will be zero if ‘dianelynnhorton’ has no followers.&lt;/p&gt;
-
-&lt;p&gt;The filter specification describes how to filter the list of usernames produced by the search specification. The filtering can be based on&lt;/p&gt;
-
-&lt;p&gt;whether or not they are following a particular user,
-whether or not a particular user is their follower,
-whether their name contains a particular string (case-insensitive), or
-whether their location contains a particular string (case-insensitive).
-After processing the filter specification, we have a possibly reduced list of usernames.
-Once the search results have been found and filtered, the presentation specification describes how the output should be presented. It specifies on what basis the results should be sorted, and whether the results should be presented in a short or long format.&lt;/p&gt;
-
-&lt;p&gt;Example query&lt;/p&gt;
-
-&lt;p&gt;Here is an example query:&lt;/p&gt;
-
-&lt;p&gt;SEARCH
-tomCruise
-following
-following
-following
-FILTER
-following KatieH
-location-includes USA
-PRESENT
-sort-by popularity
-format long&lt;/p&gt;
-
-&lt;p&gt;The search specification in this particular query has four steps.
-Start with a list containing the username to start the search from; ie. [‘tomCruise’]. Let’s call that list L1.
-The search keyword ‘following’ says to replace each username p in L1 with the usernames of the users who p is following. This yields a new list, L2.
-For the next ‘following’ keyword, we start with L2 and repeat the same operation as in the previous step, yielding another list, L3.
-For the final ‘following’ keyword, we start with L3 and repeat that operation one last time, yielding list L4.
-Notice that each step yields a list of zero or more usernames that is the input to the next step. There should be no duplicates in the final results list. Duplicates should be removed after each step.
-The Twitter data file diagram_data.txt contains the follower/following relationships as represented by this diagram. For those relationships, the search specification above would yield this list of usernames: [‘i’, ‘j’, ‘h’, ‘k’, ‘tomCruise’]. Make sure that you can see how the four lists, ending with this final one, are generated. Notice that the final list contains the users you can get to in three “steps” of the “following” relationship, starting from ‘tomCruise’.&lt;/p&gt;
-
-&lt;p&gt;The final list generated by the search specification becomes the input to the filter specification. For our current example, the filter specification says that the list should be filtered in this way: a user should be kept only if they are following ‘KatieH’ and has a location that includes the string ‘USA’. The presentation specification says to present the results in long format and to order the users according to their popularity.&lt;/p&gt;
-
-&lt;p&gt;Now let’s look in detail at the exact format and meaning of a query.&lt;/p&gt;
-
-&lt;p&gt;Overall format of a query&lt;/p&gt;
-
-&lt;p&gt;The format of the query data file is as described below, in this order:&lt;/p&gt;
-
-&lt;p&gt;The keyword SEARCH alone on a line.
-The search specification.
-The keyword FILTER alone on a line.
-The filter specification.
-The keyword PRESENT alone on a line.
-The presentation specification.
-Notice that the keywords above all act as separators in this file and are in all capital letters. There are other keywords (such as following which can be part of a search specification) that are not separators; they are not capitalized.
-Format and meaning of the search specification&lt;/p&gt;
-
-&lt;p&gt;The format of a search specification is as shown below, in this order:&lt;/p&gt;
-
-&lt;p&gt;A single username
-Zero or more lines, in any order, each containing one of:
-the keyword followers
-the keyword following
-Each step in the search specification involves modifying the current list of users by going through each user in the current list and finding their followers or who they are following. Importantly, at each step, we want to create the new results list by replacing each user from the current list with the users that they are following or who are their followers.&lt;/p&gt;
-
-&lt;p&gt;The possible search operations for a given user are:&lt;/p&gt;
-
-&lt;p&gt;followers operation: a list of all usernames for users who are following the given user (ie. that have the given username in the value list paired with the key ‘following’ in their data in the Twitterverse dictionary).
-following operation: a list of all usernames for users who the given user is following (ie. the value list paired with the key ‘following’ in the data associated with the given user in the Twitterverse dictionary).
-Note that, if the list of usernames is [‘A’], and we perform a ‘followers’ or ‘following’ operation, ‘A’ will not be in the resulting list, since users cannot follow themselves. If ‘A’ is one of multiple usernames in the current list, then ‘A’ can appear in the results list, but only if one of the other usernames produces ‘A’ from the search operation.&lt;/p&gt;
-
-&lt;p&gt;The final list of results should not contain any duplicates. It is most efficient to remove duplicates after each operation is performed.&lt;/p&gt;
-
-&lt;p&gt;Format and meaning of the filter specification&lt;/p&gt;
-
-&lt;p&gt;The format of a filter specification is:&lt;/p&gt;
-
-&lt;p&gt;Zero or more lines, in any order, each containing one of the following:
-the keyword name-includes, a space, and a string to match
-the keyword location-includes, a space, and a string to match
-the keyword follower, a space, and a string which is a valid username
-the keyword following, a space, and a string which is a valid username
-Each of the lines has exactly one blank within it (the space separating the keyword from the next string), and each keyword will appear at most once.
-The filters are “additive” in that each filter step should be applied to the list that resulted from the previous filter step. That is, you start with the list from the search specification, filter it based on the first filter step to get a new list L1, filter L1 in the second filter step to get L2, and so on.&lt;/p&gt;
-
-&lt;p&gt;The ‘following’ and ‘follower’ filters will keep users in the list if they are following a particular user, or if a particular user is their follower. These filters are defined as:&lt;/p&gt;
-
-&lt;p&gt;The ‘following’ filter keeps only users who have the provided username in their ‘following’ list.
-The ‘follower’ filter keeps only users who appear in the ‘following’ list for the provided username.
-The filters that have ‘includes’ as part of the keyword will do a simple substring search on the string representing the relevant data for the user in the Twitterverse dictionary. This means that if the given string occurs anywhere in a user’s name (for a ‘name-includes filter’) or a user’s location (for a ‘location-includes’ filter), then that user is to be kept in the list. The substring search should be case-insensitive. For example, if the filter specifies users whose locations include the string “USA”, then users with location “USA”, “Modesto, California, USA”, “kansas, usa” or “Musala, Bulgaria” would be kept, and users with location “United States of America” would be excluded. This is far from perfect, but don’t try to improve on it.&lt;/p&gt;
-
-&lt;p&gt;Format and meaning of the presentation specification&lt;/p&gt;
-
-&lt;p&gt;The output from your program must include every user whose username is still in the list after the search and filter specifications have been processed.&lt;/p&gt;
-
-&lt;p&gt;The presentation specification describes how the output should be presented. It consists of these two lines, in order:&lt;/p&gt;
-
-&lt;p&gt;The keyword ‘sort-by’, then a space, then one of these keywords: ‘username’, ‘name’, ‘popularity’
-Either ‘format short’ or ‘format long’.
-The users must be listed in the order indicated by the ‘sort-by’ portion of the presentation specification. Output that is sorted by username or name should be in alphabetical order, so that strings starting with ‘a’ are at the beginning of the output. Although usernames are unique, names are not. If any users have the same name, sort them by username. When sorting users by popularity, the most popular users should come first. A user’s popularity is defined to be the number of followers they have. (Not the number of people they are following!) If any users are tied for popularity, sort them by username.&lt;/p&gt;
-
-&lt;p&gt;If the presentation specification is for short format output, the output should consist of the usernames as a Python list of strings. If the presentation specification is for long format output, the output for each user should consist of a series of lines about the user, as shown in the example below. The long format output must include a line of ten dashes between each pair of users, as well as a line of dashes at the very top and very bottom of the output.&lt;/p&gt;
-
-&lt;p&gt;If there are no users to be presented (i.e., the 2nd parameter in get_present_string represents an empty list), then the long format output should just include two lines of dashes.&lt;/p&gt;
-
-&lt;p&gt;For the long format, the series of lines describing a single user should be formatted as shown below:&lt;/p&gt;
-
-&lt;p&gt;tomCruise
-name: Tom Cruise
-location: Los Angeles, CA
-website: http://www.tomcruise.com
-bio:
-Official TomCruise.com crew tweets. We love you guys!
-Visit us at Facebook!
-following: [‘katieH’, ‘NicoleKidman’]
-Notice that:
-The name, location, and website text is reproduced exactly as it was in the Twitter data file, with the addition of the labels at the start of the line.
-The bio begins on the line after the line containing ‘bio:’, unlike the other components that appear on the same line as their “tag”.
-The bio itself is also reproduced exactly as it was in the Twitter data file, including upper and lower case, newline characters, etc.
-The “following” list is produced simply by converting the list of username strings to a string.&lt;/p&gt;
-</description>
-        <pubDate>Wed, 15 Mar 2017 00:00:00 -0400</pubDate>
-        <link>tangothu.github.io/assignment/2017/03/15/CSC108-a3-Exploring-the-Twitterverse/</link>
-        <guid isPermaLink="true">tangothu.github.io/assignment/2017/03/15/CSC108-a3-Exploring-the-Twitterverse/</guid>
-        
-        <category>Python</category>
-        
-        <category>Data Structure</category>
-        
-        <category>dict</category>
-        
-        
-        <category>assignment</category>
-        
-      </item>
-    
-      <item>
-        <title>Python CS116 Winter - to write a function phone_word</title>
-        <description>&lt;h3 id=&quot;question-4&quot;&gt;Question 4&lt;/h3&gt;
-
-&lt;p&gt;A fun game people sometimes play is figuring out which words their 
-phone number spells using the mapping given by 
-(cite http://static.trustedreviews.com/94/000026330/c000/OT-­‐282.jpg):&lt;br /&gt;
-0 – [] 
-1 – [] 
-2 – [A,B,C] 
-3 – [D,E,F] 
-4 – [G,H,I] 
-5 – [J,K,L] 
-6 – [M,N,O] 
-7 – [P,Q,R,S] 
-8 – [T,U,V] 
-9 – [W,X,Y,Z]&lt;/p&gt;
-
-&lt;p&gt;Your job will be to write a function phone_word which consumes a phone number 
-num which is a natural number consisting of 7 digits or less and returns a 
-list of all possible phone words that can be achieved (in all capital letters). 
-For example, if the number consumed was 2629327, then some words in the 
-output list include COBWEBS, BOAWEBS, COAXEAR, ANAXEAR and others. 
-Note that all these words need not be valid English words; just strings 
-consisting of capital letters. As another example, if the number entered 
-was 6391866 one of the output words would be NEWTON. The phone words 
-in the list should be in alphabetical order. Here are two complete 
-examples: phone_word(2160) =&amp;gt; [‘AM’, ‘AN’, ‘AO’, ‘BM’, ‘BN’, ‘BO’, ‘CM’, ‘CN’, ‘CO’] 
-phone_word(1001100) =&amp;gt; [] You may (and should) use the global constant 
-phone_dictionary as given in the interface file.&lt;/p&gt;
-
-&lt;p&gt;Hints: Try to keep your testing data small – restrict yourself to 
-numbers with at most 4 digits in your testing and/or numbers with 
-more 0s and 1s. Given a list of phone words using the first `n’ digits, 
-how would you add the next digit to this list? Removing and adding 
-elements to the same list might be a useful technique.&lt;/p&gt;
-</description>
-        <pubDate>Thu, 16 Feb 2017 00:00:00 -0500</pubDate>
-        <link>tangothu.github.io/assignment/2017/02/16/CS116-iteration-Q4/</link>
-        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/16/CS116-iteration-Q4/</guid>
-        
-        <category>Python</category>
-        
-        <category>Data Structure</category>
-        
-        <category>iteration (while and for loops)</category>
-        
-        
-        <category>assignment</category>
-        
-      </item>
-    
-      <item>
-        <title>Python CS116 Winter - special version of the popular game Mastermind verbal_mastermind</title>
-        <description>&lt;h3 id=&quot;question-3&quot;&gt;Question 3&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;In this question, you are going to play a special version of the popular game Mastermind. 
-The object of the game for the user is to identify a keyword by making a series of guesses. 
-You will write a function verbal_mastermind which consumes a target string of all lowercase letters 
-called a keyword of length between 2 and 100, informs the user how many characters are in the keyword 
-and prompts the user for input until the user guesses the keyword or quits (see below). 
-The function produces None. Your program starts by telling the user how many 
-characters the keyword has using the string: The keyword has # characters. 
-(where # is replaced by the number of characters in the keyword). 
-Then, you are to prompt the user using the sentence:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Please enter a guess: (Notice there is a space after the colon above).&lt;/p&gt;
-
-&lt;p&gt;Guesses will consist of only lowercase letters or the string “!quit”. 
-For a given guess, your program will request a new word if the length of the guess 
-is not the same as the target using these lines printed on separate lines: 
-Your guess contains an incorrect number of characters. The keyword has # characters. 
-(where # is replaced by the number of characters in the keyword). 
-Otherwise, the program will print to the screen the number of characters that 
-are correct and in the correct position and also print the number of characters 
-(excluding those already correct) that are in the word but not in the correct position.&lt;/p&gt;
-
-&lt;p&gt;For example, if the keyword was the string “answers” and the guessed word was “peelers”, 
-the program would output: Exact: 3, Other: 0 The letters “ers” match exactly 
-whereas the remaining letters “peel” and “answ” share no common letters. 
-See the first example below for other cases. If the user guesses “!quit” (no quotes), 
-your program should stop and tell the user the correct answer (see the prompt below). 
-If the user guesses the correct answer. The program should print out the word Congratulations! 
-followed by telling the user the correct answer using the prompt 
-(on the same line with a space after the exclamation point):&lt;/p&gt;
-
-&lt;p&gt;The correct keyword was answers. Here are three  examples:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;blockquote&gt;
-    &lt;blockquote&gt;
-      &lt;p&gt;verbal_mastermind(“answers”)
-The keyword has 7 characters.
-Please enter a guess: bananas
-Exact: 1, Other: 2
-Please enter a guess: aaaaaaa
-Exact: 1, Other: 0
-Please enter a guess: andoras
-Exact: 3, Other: 1
-Please enter a guess: peelers
-Exact: 3, Other: 0
-Please enter a guess: startle
-Exact: 0, Other: 4
-Please enter a guess: answers
-Congratulations! The correct keyword was answers.
-verbal_mastermind(“money”)
-The keyword has 5 characters.
-Please enter a guess: money
-Congratulations! The correct keyword was money.&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/blockquote&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;blockquote&gt;
-    &lt;blockquote&gt;
-      &lt;p&gt;verbal_mastermind(“failed”)
-The keyword has 6 characters.
-Please enter a guess: banana
-Exact: 1, Other: 0
-Please enter a guess: toomanycharacters
-Your guess contains an incorrect number of characters.
-The keyword has 6 characters.
-Please enter a guess: !quit
-The correct keyword was failed.&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/blockquote&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;question-4&quot;&gt;Question 4&lt;/h3&gt;
-&lt;p&gt;A fun game people sometimes play is figuring out which words their phone number spells using the mapping given by (cite http://static.trustedreviews.com/94/000026330/c000/OT-­‐282.jpg):  0 – [] 1 – [] 2 – [A,B,C] 3 – [D,E,F] 4 – [G,H,I] 5 – [J,K,L] 6 – [M,N,O] 7 – [P,Q,R,S] 8 – [T,U,V] 9 – [W,X,Y,Z]  Your job will be to write a function phone_word which consumes a phone number num which is a natural number consisting of 7 digits or less and returns a list of all possible phone words that can be achieved (in all capital letters). For example, if the number consumed was 2629327, then some words in the output list include COBWEBS, BOAWEBS, COAXEAR, ANAXEAR and others. Note that all these words need not be valid English words; just strings consisting of capital letters. As another example, if the number entered was 6391866 one of the output words would be NEWTON. The phone words in the list should be in alphabetical order. Here are two complete examples: phone_word(2160) =&amp;gt; [‘AM’, ‘AN’, ‘AO’, ‘BM’, ‘BN’, ‘BO’, ‘CM’, ‘CN’, ‘CO’] phone_word(1001100) =&amp;gt; [] You may (and should) use the global constant phone_dictionary as given in the interface file. Hints: Try to keep your testing data small – restrict yourself to numbers with at most 4 digits in your testing and/or numbers with more 0s and 1s. Given a list of phone words using the first `n’ digits, how would you add the next digit to this list? Removing and adding elements to the same list might be a useful technique.&lt;/p&gt;
-</description>
-        <pubDate>Thu, 16 Feb 2017 00:00:00 -0500</pubDate>
-        <link>tangothu.github.io/assignment/2017/02/16/CS116-iteration-Q3/</link>
-        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/16/CS116-iteration-Q3/</guid>
-        
-        <category>Python</category>
-        
-        <category>Data Structure</category>
-        
-        <category>iteration (while and for loops)</category>
-        
-        
-        <category>assignment</category>
-        
-      </item>
-    
-      <item>
-        <title>Python CS116 Winter - Use accumulative recursion to complete the function find_group</title>
-        <description>&lt;h3 id=&quot;question-4&quot;&gt;Question 4&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Consider the following scenario, in which there are n different “people”, each represented by a distinct
-natural number labelled from 0 to n–1.
-Each person has been asked to “choose” a single person that they would prefer to have as a group
-member for some project. These choices are recorded in a list L of length n &amp;gt; 1, where the ith
-element of L contains the choice for person i.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;For example, if L = [2, 0, 1, 4, 0], then (see picture):
-• person 0 has chosen person 2
-• person 1 has chosen person 0
-• person 2 has chosen person 1
-• person 3 has chosen person 4
-• person 4 has chosen person 0
-and note that people are not allowed to choose themselves.
-Now we want to automate the task of finding the smallest “group” that contains a given person.
-However, we will only consider a group to be “good” if it has at least two people, and everyone in the
-group chose someone else from the same group.
-For instance, in the above example, the group of people [0, 1, 2] is good because all of these
-people chose others from the same group. However, the group [3, 4] is not good because person
-4 chose person 0, and person 0 is not in the group. In order for the group to be good, each person’s
-choice must also be (recursively) added to the same group, and therefore [0, 1, 2, 3, 4] would
-be the smallest good group that includes person 3.
-Your task is to use any kind of recursion to complete the function find_group, that consumes some
-list L of choices, and an initial person i — according to all of the above conditions — and then
-produces a sorted list of people that represents a good group containing person i. If there is a good
-group that contains person i, then your function should produce that group in sorted order. If multiple
-groups are good, then produce the shortest one.
-For example,
-• find_group([2, 0, 1, 4, 0], 0) =&amp;gt; [0, 1, 2]
-• find_group([2, 0, 1, 4, 0], 4) =&amp;gt; [0, 1, 2, 4]
-• find_group([2, 0, 1, 4, 0], 3) =&amp;gt; [0, 1, 2, 3, 4]&lt;/p&gt;
-
-&lt;p&gt;The first example finds the group [0, 1, 2], which is good and contains person 0. The second
-example finds the group [0, 1, 2, 4], since including person 4 means we must include person 0,
-which in turns includes person 2, and then finally person 1. The third example is [0, 1, 2, 3, 4],
-since everyone can be put into one group containing all 5 people, which is the smallest good group that
-contains person 3.
-Hints:
-• Work through some examples first, by hand, in order to see the pattern. Try drawing pictures to
-get some intuition. There is an elegant solution!&lt;/p&gt;
-
-</description>
-        <pubDate>Fri, 10 Feb 2017 00:00:00 -0500</pubDate>
-        <link>tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q4/</link>
-        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q4/</guid>
-        
-        <category>Python</category>
-        
-        <category>Data Structure</category>
-        
-        <category>accumulative recursion</category>
-        
-        
-        <category>assignment</category>
-        
-      </item>
-    
-      <item>
-        <title>Python CS116 Winter - Complete the function longest_subpalindrome</title>
-        <description>&lt;h3 id=&quot;question-3&quot;&gt;Question 3&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;A palindrome is a string that is the same forwards and backwards. For example, “racecar”, “anna”, and
-“aibohphobia” (the fear of long palindromes) are all palindromes, but “abc” and “sata” are not.
-We say that a string is a “subpalindrome of s” if it is both a substring of s and a palindrome.
-Complete the function longest_subpalindrome, that consumes a lowercase alphabetical strings of 
-length at most 15, and produces the longest subpalindrome of s. If there are multiple
-subpalindromes that are the same size, then return the one that comes first alphabetically.
-For example,
-• longest_subpalindrome(“abaca”) =&amp;gt; “aba”
-• longest_subpalindrome(“anna”) =&amp;gt; “anna”
-• longest_subpalindrome(“sata”) =&amp;gt; “ata”
-• longest_subpalindrome(“abc”) =&amp;gt; “a”
-Hints:
-• You may use examples from class as helper functions.
-• Use generative recursion to break up the problem into a number of smaller sub-problems.
-• Your solution does not need to be efficient!&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Fri, 10 Feb 2017 00:00:00 -0500</pubDate>
-        <link>tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q3/</link>
-        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q3/</guid>
-        
-        <category>Python</category>
-        
-        <category>Data Structure</category>
-        
-        <category>accumulative recursion</category>
-        
-        
-        <category>assignment</category>
-        
-      </item>
-    
-      <item>
-        <title>Python CS116 Winter - Use accumulative recursion to complete the function classify_chars</title>
-        <description>&lt;h3 id=&quot;question-2&quot;&gt;Question 2&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Use accumulative recursion to complete the function classify_chars, that consumes a string s,
-and produces a list containing exactly three natural numbers:
-• the number of alphabetic characters in s
-• the number of digits in s
-• the number of all other characters in s
-For example,
-• classify_chars(“Hello CS116”) =&amp;gt; [7, 3, 1]
-• classify_chars(“2&lt;em&gt;math.pi&lt;/em&gt;r”) =&amp;gt; [7, 1, 3]&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Fri, 10 Feb 2017 00:00:00 -0500</pubDate>
-        <link>tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q2/</link>
-        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q2/</guid>
-        
-        <category>Python</category>
-        
-        <category>Data Structure</category>
-        
-        <category>accumulative recursion</category>
-        
-        
-        <category>assignment</category>
-        
-      </item>
-    
-      <item>
-        <title>Python CS116 Winter - Use accumulative recursion to complete the function nat_range</title>
-        <description>&lt;h3 id=&quot;question-1&quot;&gt;Question 1&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Use accumulative recursion to complete the function nat_range, that consumes the natural
-numbers start, end (with start &amp;lt;= end), and a positive integer step, and then produces a list:
-· that begins with start
-· advances by step for each subsequent element
-· but, ends right before reaching end
-For example,
-· nat_range(0, 5, 1) =&amp;gt; [0, 1, 2, 3, 4]
-· nat_range(0, 0, 1) =&amp;gt; []
-· nat_range(3, 7, 2) =&amp;gt; [3, 5]&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Note: This is a basic version of the built-in Python function range(start, end, step), which
-you are not allowed to use here, and also shares the semantics of string / list slicing!&lt;/p&gt;
-</description>
-        <pubDate>Fri, 10 Feb 2017 00:00:00 -0500</pubDate>
-        <link>tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q1/</link>
-        <guid isPermaLink="true">tangothu.github.io/assignment/2017/02/10/CS116-accumulative-recursion-Q1/</guid>
-        
-        <category>Python</category>
-        
-        <category>Data Structure</category>
-        
-        <category>accumulative recursion</category>
-        
-        
-        <category>assignment</category>
         
       </item>
     
@@ -738,12 +179,934 @@ for  i  in  xrange(10):
 
 </description>
         <pubDate>Tue, 07 Feb 2017 00:00:00 -0500</pubDate>
-        <link>tangothu.github.io/blog/2017/02/07/python-magic-methods-2/</link>
-        <guid isPermaLink="true">tangothu.github.io/blog/2017/02/07/python-magic-methods-2/</guid>
+        <link>http://localhost:4000/blog/2017/02/07/python-magic-methods-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/02/07/python-magic-methods-2/</guid>
         
         <category>Python</category>
         
         <category>advanced features</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Use awk to parse plain text large file (from DHCP lease for network IP address lookup)</title>
+        <description>&lt;p&gt;We will always need to use low level tools such as shell script to parse log files or plain text files in linux system. In this example we will show how to use awk command and shell script to parse ip leases file (dhcpd.leases) for network router Mac Address match.&lt;/p&gt;
+
+&lt;h2 id=&quot;use-awk-to-parse-plain-text-large-file&quot;&gt;Use awk to parse plain text large file&lt;/h2&gt;
+
+&lt;p&gt;Assume we have plain text file as below:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;lease 192.168.124.118 {
+  starts 1 2014/12/01 12:42:49;
+  ends 1 2014/12/01 20:42:49;
+  tstp 1 2014/12/01 20:42:49;
+  binding state free;
+  hardware ethernet 00:0c:29:d5:ff:cb;
+  uid &quot;\001\000\014)\325\377\313&quot;;
+}
+lease 192.168.124.117 {
+  starts 5 2015/05/01 18:49:10;
+  ends 6 2015/05/02 02:49:10;
+  tstp 6 2015/05/02 02:49:10;
+  binding state free;
+  hardware ethernet 00:0c:29:85:6f:62;
+  uid &quot;\001\000\014)\205ob&quot;;
+}
+lease 192.168.124.116 {
+  starts 5 2015/06/05 14:48:40;
+  ends 5 2031/06/05 22:48:40;
+  tstp 5 2015/06/05 22:48:40;
+  binding state free;
+  hardware ethernet 00:0c:29:d1:3e:0d;
+  uid &quot;\001\000\014)\321&amp;gt;\015&quot;;
+}
+lease 192.168.123.200 {
+  starts 5 2012/07/13 11:54:46;
+  ends 5 2031/07/13 11:57:42;
+  tstp 5 2012/07/13 11:57:42;
+  binding state free;
+  hardware ethernet 88:c6:63:c6:08:52;
+  uid &quot;\001\210\306c\306\010R&quot;;
+}
+...
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Given a Mac Address (the string after hardware ethernet, e.g. 00:0c:29:d5:ff:cb), our goal is to get the ip address (the string after lease, e.g. 192.168.124.118) with the current time is between the start time (in the first block example, 2014/12/01 12:42:49) and end time (2014/12/01 20:42:49).&lt;/p&gt;
+
+&lt;p&gt;If we use awk, we can come up a command like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;awk 'BEGIN{RS = &quot;}&quot;;FS = &quot;\n&quot;;}
+{
+    split($2, start, &quot; &quot;);
+    split($3, end, &quot; &quot;);
+    if (start[1] == &quot;starts&quot; &amp;amp;&amp;amp; end[1] == &quot;ends&quot;)
+        {
+            cmd=&quot;date +%Y%m%d%H%M%S&quot;;
+            cmd | getline currentDateTime;
+            startDate=start[3];
+            startTime=start[4];
+            gsub(/\//,&quot;&quot;,startDate);
+            gsub(/[:;]/,&quot;&quot;,startTime);
+            startDateTime=startDate&quot;&quot;startTime;
+            endDate=end[3];
+            endTime=end[4];
+            gsub(/\//,&quot;&quot;,endDate);
+            gsub(/[:;]/,&quot;&quot;,endTime);
+            endDateTime=endDate&quot;&quot;endTime;
+            if (currentDateTime &amp;gt;= startDateTime
+                &amp;amp;&amp;amp; currentDateTime &amp;lt;= endDateTime) {
+                for (I=NF;I&amp;gt;0;I--) {
+                    split($I, lineArray, &quot; &quot;);
+                    second=lineArray[2];
+                    if (second == &quot;ethernet&quot;) {
+                        third=lineArray[3];
+                        gsub(/\;/,&quot;&quot;,third);
+                        split($1, lease, &quot; &quot;);
+                        print lease[2], third;
+                    }
+                }
+            }
+        }
+}' dhcpd.leases
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Explaination:&lt;/p&gt;
+
+&lt;p&gt;awk can be used with the following syntax:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;awk 'BEGIN{...} {...} END{...}' input-file1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;BEGIN block is executed once only, before the first input record is read. Likewise, END block is executed once only, after all the input is read.&lt;/p&gt;
+
+&lt;p&gt;In our example, we use BEGIN block only. BEGIN block can have multiple input builtin parameters. Because we are using RS and FS, we will explain how these two works. In this example, we choose RS as “}”, which means the fields of this file are separated as below, in red blocks. FS is chosen as “\n” (newline), which means for each field it can be further separated by each line as records, in yellow blocks.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/dhcpd.leases.png&quot; alt=&quot;awk RF&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The variables in each record is stored as a variable starting with “$” sign, so the&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;lease 192.168.124.118 {
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;is $1, and&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;starts 1 2014/12/01 12:42:49;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;is $2, etc. By splitting each the file to fields/records, we are able to add additional logic to the awk code, to see if the current time is between the start and end time of the lease when it’s validated.&lt;/p&gt;
+
+&lt;p&gt;Finally, key word NF is used to record how many rows are in one field. In this case, for each field we have 8 rows and as such we scan from the end of field to get the Mac Address after key word ethernet.&lt;/p&gt;
+
+&lt;p&gt;The final output after using the awk command to parse dhcpd file is (note the time when parsing this file is in 2017):&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;192.168.124.116 00:0c:29:d1:3e:0d
+192.168.123.200 88:c6:63:c6:08:52
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Thanks for reading!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 03 Feb 2017 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/blog/2017/02/03/python-magic-methods-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/02/03/python-magic-methods-2/</guid>
+        
+        <category>Shell scripting</category>
+        
+        <category>awk</category>
+        
+        <category>text parsing</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Python magic methods (1) continued - Use magic methods to simplify code in URL matching in Python Pyramid application</title>
+        <description>&lt;p&gt;In the last article we reviewed the features of python magic methods, __new__() and __init__(). We will look into a real example today about how to use the magic methods to simplify code in Python, with example of URL matching in Pyramid framework.&lt;/p&gt;
+
+&lt;h2 id=&quot;python-magic-methods-1-continued-use-descriptor-__new__-and-metaclass-to-simplify-url-matching&quot;&gt;Python magic methods (1) continued: Use descriptor, __new__ and metaclass to simplify URL Matching&lt;/h2&gt;
+
+&lt;p&gt;Assume we have code like below. The method get_route_param will get the parameter from current request object in Pyramid by the name.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class TitlesContext(RootContext):
+    def get_title(self):
+        title = self._db.query(Title).get(self.get_route_param('title_id'))
+        if not title:
+            raise HTTPNotFound()
+        return title
+
+    def get_route_param(self, name):
+        &quot;&quot;&quot;
+        Return the route parameter with the given ``name`` or raise a 404 if it
+        is False-y.
+
+        :rtype: unicode
+        :raise: :exc:`pyramid.httpexceptions.HTTPNotFound`
+        &quot;&quot;&quot;
+        value = self._request.matchdict[name].strip()
+        if not value:
+            raise HTTPNotFound()
+        return value
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In one pyramid application, for each Model-View-Controller, there could be multiple context object to query the database objects, thus the method get_route_param could exist in many places.&lt;/p&gt;
+
+&lt;p&gt;To improve, we can refactor the code by removing the get_route_param method by creating a new class, UrlMatch:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class TitlesContext(RootContext):
+
+    title_id = UrlMatch()
+    
+    def get_title(self):
+        title = self._db.query(Title).get(self.title_id)
+        if not title:
+            raise HTTPNotFound()
+        return title    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+class UrlMatch(object):
+    &quot;&quot;&quot;
+    Descriptor that will retrieve variable from the current requests matchdict.
+
+    This should be used on a context class to allow retrieving matchdict variables
+    from the context. When the context class uses :class:`UrlMatchMeta` as it's metaclass
+    then ``UrlMatch`` will use the class attribute name as the key to extract from
+    the matchdict. If the parent class of ``UrlMatch`` does not use `UrlMatchMeta`
+    as its metaclass then the ``name`` argument must be given to ``UrlMatch``.
+
+    Example with metaclass::
+
+        class MyContext(object):
+
+            __metaclass__ = UrlMatchMeta
+
+            def __init__(self, request):
+                self._request = request
+
+            my_var = UrlMatch()
+	 &quot;&quot;&quot;
+
+    def __init__(self, name=None):
+        self.name = name
+
+    def __get__(self, obj, type=None):
+        if not obj:
+            # Accessed via class, so return the descriptor
+            return self
+
+        if not self.name:
+            raise ValueError(
+                'UrlMatch property does not have a name to extract from matchdict. ' +
+                'Use viewutils.UrlMatchMeta as your metaclass or pass a name to UrlMatch().'
+            )
+
+        try:
+            return obj._request.matchdict[self.name]
+        except KeyError:
+            # Turn the KeyError into AttributeError because this will be accessed as
+            # an attribute
+            raise AttributeError(&quot;Matchdict does not have key '{}'&quot;.format(self.name))
+
+
+class UrlMatchMeta(abc.ABCMeta):
+    &quot;&quot;&quot;
+    Metaclass that provides support for the :class:`UrlMatch` descriptor.
+
+    This metaclass will set the ``name`` attribute of each ``UrlMatch`` class attribute
+    to the name of the class attribute.
+    &quot;&quot;&quot;
+
+    def __new__(cls, classname, bases, classDict):
+        new_class = super(UrlMatchMeta, cls).__new__(cls, classname, bases, classDict)
+        cls._set_url_match_names(new_class)
+
+        return new_class
+
+    @staticmethod
+    def _set_url_match_names(new_class):
+        for key, attr in vars(new_class).items():
+            if isinstance(attr, UrlMatch):
+                attr.name = key
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In this example, we used descriptor, metaclass __new__() to create this new class to simplify the code. 
+So how will this work?&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;__metaclass__ is used to redefine how a class is constructed. In UrlMatchMeta, __new__() is called to add the key in MyContext’s attributes (in this case, “title_id”) to the name of UrlMatch() object. Note __new__() is called automatically when calling the class name, even before __init__(). By using metaclass, we have created a UrlMatch object called title_id in TitlesContext and dynamically added title_id as its name.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;__get__() descriptor is used to retrieve the attribute from request context. Python descriptor says if we call obj.d, it will look for d in obj’s dictionary, and if d defines __get__(), it will call d.__get__(obj). In our case, when we call self.title_id (self is the TitlesContext), it finds __get__() method, so it will actually call title_id.__get__(TitlesContext). Since title_id is UrlMatch, it will return obj._request.matchdict[self.name], which is TitlesContext._request.matchdict[“title_id”]. As such, we complete the same way as to look for title_id parameter in request (which is the same as get_route_param from the old way).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Tue, 03 Jan 2017 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/blog/2017/01/03/python-magic-methods-1-continued/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/01/03/python-magic-methods-1-continued/</guid>
+        
+        <category>Python</category>
+        
+        <category>advanced features</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Python magic methods (1)</title>
+        <description>&lt;h2 id=&quot;python-magic-methods-1--__new__-and-__init__&quot;&gt;Python magic methods (1) : __new__() and __init__()&lt;/h2&gt;
+
+&lt;p&gt;In Python, magic methods are special methods where you can define to add “magic” to classes. They’re always surrounded by double underscores (called ‘dunder’). We will look into these magic methods in Object construction and initialization and see how they add advantages to python object oriented programming.&lt;/p&gt;
+
+&lt;h3 id=&quot;object-construction-and-initialization&quot;&gt;Object construction and initialization&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;__new__(cls, […): the first method to get called in an object’s instantiation&lt;/li&gt;
+  &lt;li&gt;__init__(self, […): the method get called to create objects of class&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;From the definition above, we see that __new__() accepts cls as it’s first parameter, while __init__() accepts self. __init__() is called after __new__() when object is initialized.&lt;/p&gt;
+
+&lt;p&gt;Let’s take a look at example below.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class MyClass(object):
+
+    def __new__(cls):
+        print &quot;MyClass.__new__ called&quot;
+        return super(MyClass, cls).__new__(cls) # here super is type
+
+    def __init__(self):
+        print &quot;MyClass.__init__ called&quot;
+
+
+
+if __name__ == '__main__':
+    c = MyClass()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;MyClass.__new__ called
+MyClass.__init__ called
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;As we can see, __new__() method took cls as the input to create &lt;em&gt;self&lt;/em&gt; object, then when a new MyClass object is instantiated, __init__() is called thereafter.&lt;/p&gt;
+
+&lt;p&gt;Another thing to note: __new__() is called automatically when calling the class name, which is when we do MyClass(). On the other hand, __init__() is called every time an instance of the class is returned by __new__() passing the returned instance to __init__() as ‘self’.&lt;/p&gt;
+
+&lt;p&gt;As such, __new__() will return the instance of &lt;em&gt;cls&lt;/em&gt;, and then, this new instance will be picked up by __init__(). If we ommit calling super for __new__() and not return anything, then __init__() won’t be executed.&lt;/p&gt;
+
+&lt;h3 id=&quot;when-to-use-__new__&quot;&gt;When to use __new__()?&lt;/h3&gt;
+
+&lt;p&gt;If you want to control the actual creation process, use the __new__() method. If you intend to alter something like the base classes or the attributes, you’ll have to do it in __new__().&lt;/p&gt;
+
+&lt;p&gt;Below example is to help to create a customized list with a method , “add”. By default, python list doesn’t have add method, but in this example we can create this customized list by adding add to the attr of the metaclass in __new__() method.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class ListMetaclass(type):
+    def __new__(cls, name, bases, attrs):
+        attrs['add'] = lambda self, value: self.append(value)
+        return type.__new__(cls, name, bases, attrs)
+
+class MyList(list):
+    __metaclass__ = ListMetaclass # use ListMetaclass to customize class
+
+if __name__ == '__main__':
+    #c = MyClass()
+    l = MyList()
+    l.add(1)
+    print (l)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[1]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The result shows this MyList() instance has a method add which adds elements to the list.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 23 Dec 2016 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/blog/2016/12/23/python-magic-methods-1/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2016/12/23/python-magic-methods-1/</guid>
+        
+        <category>Python</category>
+        
+        <category>advanced features</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Python How to assert a method is called in unit test using Mock/MagicMock</title>
+        <description>&lt;h2 id=&quot;why-do-we-need-unit-test&quot;&gt;Why do we need unit test?&lt;/h2&gt;
+
+&lt;p&gt;Sometimes developers are asked to restructure their code due to design, framework change or code cleanup purpose. One scenario is, the developer will implement same logic but move the code from one class to another, etc., and still keep the same business logic. Consequently, how to test if the code refactor / restructure doesn’t have any impact is crucial. If the unit test is already in place, then the developer doesn’t need to rerun the whole program again and again to test the code’s logic after the refactor.&lt;/p&gt;
+
+&lt;h2 id=&quot;real-problem---how-to-test-if-a-method-is-called-with-its-argument&quot;&gt;Real problem - how to test if a method is called with its argument?&lt;/h2&gt;
+
+&lt;p&gt;We have one web app views module which contains a method like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@action_config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;renderer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'offering_definition/edit_package.mako'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;offering_definition&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;copy_util&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CopyUtility&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;package_copy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;copy_util&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;copy_package&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;package&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;redirect&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;route_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;'package manager id'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'edit'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;package_copy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;definition_id&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HTTPFound&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;redirect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;What this function does is, we got an instance called “package”, and want to copy that object. Once copied the web page should be redirected to another page.&lt;/p&gt;
+
+&lt;p&gt;Now, we want an unit test that can verify if copy_package() method is actually called in copy() method, with the argument of package. How can we achieve that?&lt;/p&gt;
+
+&lt;h2 id=&quot;solution---use-mockmagicmock&quot;&gt;Solution - use Mock/MagicMock&lt;/h2&gt;
+
+&lt;p&gt;Python Mock/MagicMock enables us to reproduce expensive objects in our tests by using built-in methods (&lt;code class=&quot;highlighter-rouge&quot;&gt;__call__&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;__import__&lt;/code&gt;) and variables to “memorize” the status of attributes, and function calls. We can use them to mimic the resources by controlling how they were created, what their return value is. There is one method called &lt;em&gt;assert_called_with()&lt;/em&gt; which asserts that the patched function was called with the arguments specified as arguments, to assert_called_with(). Let’s take a look how this is implemented.&lt;/p&gt;
+
+&lt;p&gt;For above code, we can write a unit test like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_copy_processing_post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;make_offering_definition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'POST'&lt;/span&gt;
+    &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;POST&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;POST_EDIT_PARAMS&lt;/span&gt;
+    &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;definition_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;package&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;definition_id&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;odh&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OfferingDefinitionHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'boss.views.offering_definition.lib.CopyUtility.copy_package'&lt;/span&gt;
+               &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;copy_package_call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;copy_return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;odh&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;copy_package_call&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assert_called_with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;package&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;how-does-this-work&quot;&gt;How does this work?&lt;/h2&gt;
+
+&lt;p&gt;Let’s analyze the code line by line:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;with patch('boss.views.offering_definition.lib.CopyUtility.copy_package'
+    ) as copy_package_call:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This will create a new instance of mock.patch object and assign it to a variable called copy_package_call. copy_package_call is a MagicMock object with the name as copy_package. This object create all attributes and methods as you access them and store details of how they have been used. You can assume copy_package_call an object that keeps track of how its attributes (if any) or callable is called, how many times the callable is called, what are the arguments, etc.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    copy_return = odh.copy()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;When it comes to this line, because copy() includes package_copy = copy_util.copy_package(package) method call, and copy_package() is been defined as a MagicMock(), the CallableMixin’s &lt;strong&gt;call&lt;/strong&gt;() method will also be invoked.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def __call__(_mock_self, *args, **kwargs):
+    # can't use self in-case a function / method we are mocking uses self
+    # in the signature
+    _mock_self._mock_check_sig(*args, **kwargs)
+    return _mock_self._mock_call(*args, **kwargs)
+
+def _mock_call(_mock_self, *args, **kwargs):
+    self = _mock_self
+    self.called = True
+    self.call_count += 1
+    _new_name = self._mock_new_name
+    _new_parent = self._mock_new_parent
+    _call = _Call((args, kwargs), two=True)
+    self.call_args = _call
+    self.call_args_list.append(_call)
+    self.mock_calls.append(_Call(('', args, kwargs)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This line self.call_args = call keeps track of args / kwargs in a tuple that are used in function call. In this case, it will be the instance of OfferingDefinition. This self.callargs is used later to trace the call arguments.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    copy_package_call.assert_called_with(package)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If we go to the source code of assert_called_with(), we can see what it’s doing:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def assert_called_with(_mock_self, *args, **kwargs):
+    &quot;&quot;&quot;assert that the mock was called with the specified arguments.
+    Raises an AssertionError if the args and keyword args passed in are
+    different to the last call to the mock.&quot;&quot;&quot;
+    self = _mock_self
+    if self.call_args is None:
+        expected = self._format_mock_call_signature(args, kwargs)
+        raise AssertionError('Expected call: %s\nNot called' % (expected,))
+    def _error_message(cause):
+        msg = self._format_mock_failure_message(args, kwargs)
+        if six.PY2 and cause is not None:
+            # Tack on some diagnostics for Python without __cause__
+            msg = '%s\n%s' % (msg, str(cause))
+        return msg
+    expected = self._call_matcher((args, kwargs))
+    actual = self._call_matcher(self.call_args)
+    if expected != actual:
+        cause = expected if isinstance(expected, Exception) else None
+        six.raise_from(AssertionError(_error_message(cause)), cause)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In this call – assert_called_with(package), package is passed into function as args.
+This method assert_called_with compares if the expected mock object (copy_package()) and the actual object are invoked with by the same argument (OfferingDefinition). Because self.call_args also keeps track of package, the expected and actual object will be equal, and thus the unit test function will pass.&lt;/p&gt;
+
+&lt;h2 id=&quot;more-methods-about-magicmock-from-python-doc&quot;&gt;More methods about MagicMock (from Python doc)&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;assert_called_with()&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This method is a convenient way of asserting that calls are made in a particular way:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;assert_called_once_with()&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Assert that the mock was called exactly once and with the specified arguments.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;assert_any_call()&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;assert the mock has been called with the specified arguments. The assert passes if the mock has ever been called, unlike assert_called_with() and assert_called_once_with() that only pass if the call is the most recent one.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;assert_has_calls()&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;assert the mock has been called with the specified calls. The mock_calls list is checked for the calls. If any_order is false (the default) then the calls must be sequential. There can be extra calls before or after the specified calls. If any_order is true then the calls can be in any order, but they must all appear in mock_calls.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 18 Dec 2016 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/blog/2016/12/18/python-how-to-assert-method-is-called-in-unit-test/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2016/12/18/python-how-to-assert-method-is-called-in-unit-test/</guid>
+        
+        <category>Python</category>
+        
+        <category>Unit Test</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Python advanced data structure - collections</title>
+        <description>&lt;h2 id=&quot;python-advanced-data-structure---collections&quot;&gt;Python advanced data structure - collections&lt;/h2&gt;
+
+&lt;p&gt;In Python, dict, list, set and tuple are commonly used data structures. Other than these, Python also has several useful built-in data structures in its collections module, e.g., OrderedDict, Counter, deque. Let’s take a look at their behavior and sample usage.&lt;/p&gt;
+
+&lt;h3 id=&quot;ordereddict&quot;&gt;OrderedDict()&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;How to define a OrderedDict : 
+OrderedDict( [(key1, value1), (key2, value2)] )&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Difference with dict: dict is un-ordered data structure. When you want to iterate key value pairs based on their sequence in the dict&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Example&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from collections import OrderedDict
+
+items = (
+    ('d', 4),
+    ('a', 1),
+    ('b', 2),
+    ('c', 3),
+)
+
+regular_dict = dict(items)
+ordered_dict = OrderedDict(items)
+
+print 'regular_dict:'
+for k, v in regular_dict.items():
+    print k, v
+
+print 'ordered_dict:'
+for k, v in ordered_dict.items():
+    print k, v
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;regular_dict:
+a 1
+c 3
+b 2
+d 4
+ordered_dict:
+d 4
+a 1
+b 2
+c 3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Note the OrderedDict will iterate the elements with the sequence when the OrderedDict was defined. On the other hand, for dict, since there is no sequence of the key-value paire, the iteration is also not ordered.&lt;/p&gt;
+
+&lt;h3 id=&quot;counter&quot;&gt;Counter()&lt;/h3&gt;
+
+&lt;p&gt;Assume you have a list and you want to get the statistics of the elements in the list, for example, total number of item counts, the item that most frequently shows in the list, etc. Then you may use Counter() in collections to get these stats.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Example: get the item counts&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from collections import Counter
+ 
+li = [&quot;Roundness&quot;, &quot;Square&quot;, &quot;Triangle&quot;, \
+&quot;Roundness&quot;, &quot;Roundness&quot;, &quot;Square&quot;]
+a = Counter(li)
+ 
+print a
+print &quot;{0} : {1}&quot;.format(a.values(),a.keys())
+ 
+print(a.most_common(2)) 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Counter({'Roundness': 3, 'Square': 2, 'Triangle': 1})
+[3, 1, 2] : ['Roundness', 'Triangle', 'Square']
+[('Roundness', 3), ('Square', 2)]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;deque&quot;&gt;deque()&lt;/h3&gt;
+
+&lt;p&gt;deque stands for “double-ended queue”. It implements the fast append and pop element from the head.&lt;/p&gt;
+
+&lt;p&gt;In list, we can also do&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;l.insert(0, v)
+l.pop(0)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;But the time complexity of methods call above will be O(n), which is linear increasing to the number of elements in list. For deque, the time complexity of inserting and poping is O(1).&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Example&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from collections import deque
+
+q = deque(['a', 'b', 'c'])
+q.append('x')
+q.appendleft('y')
+q.popleft()
+q.popleft()
+print (q)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deque(['b', 'c', 'x'])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Thu, 01 Dec 2016 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/blog/programming/2016/12/01/python-advanced-data-structures/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/programming/2016/12/01/python-advanced-data-structures/</guid>
+        
+        <category>Python</category>
+        
+        <category>Data Structure</category>
+        
+        
+        <category>blog</category>
+        
+        <category>Programming</category>
+        
+      </item>
+    
+      <item>
+        <title>Serve Python Flask application using mod_wsgi</title>
+        <description>&lt;h1 id=&quot;how-to-serve-python-flask-application-using-mod_wsgi-express-and-apache-in-mac-os-x-el-capitan&quot;&gt;How to serve Python Flask Application using mod_wsgi-express and Apache in Mac OS X El Capitan&lt;/h1&gt;
+
+&lt;p&gt;If you have a python web application, you will need to deploy it to a physical server after the development is done. Python WSGI (web service gateway interface) is a protocal where separates the web framework (for example, Flask) with the web server (for example, Apache). The WSGI module provides an interconnect of sorts between Apache and your Python processes.&lt;/p&gt;
+
+&lt;p&gt;It is suggested to deploy Flask application by using Apache and mod_wsgi, on Flask &lt;a href=&quot;http://flask.pocoo.org/docs/0.11/deploying/mod_wsgi/&quot; title=&quot;Flask&quot;&gt;website&lt;/a&gt;. To acheieve this we will install the python modules and setup the environment.&lt;/p&gt;
+
+&lt;h3 id=&quot;prepare-the-environment&quot;&gt;Prepare the environment&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;install virtualenv&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ pip install virtualenv
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;once installed, we should also configure the virtual environment&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ mkdir MyFlaskProject
+$ cd MyFlaskProject
+$ virtualenv venv
+$ source ./bin/venv
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;It is highly suggested to use virtualenv as this will isolate the workspace of your python runtime environment and create a separate code dependency of your python process. You have the option to deactivate this after using this environment.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;install mod_wsgi&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install mod_wsgi
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;install Flask&lt;/p&gt;
+
+    &lt;p&gt;```
+pip install Flask&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All the modules are installed with its latest version. They will be installed to the virtual environment’s lib folder if this hasn’t been installed before.&lt;/p&gt;
+
+&lt;h3 id=&quot;create-a-flask-app&quot;&gt;Create a Flask app&lt;/h3&gt;
+
+&lt;p&gt;We will demonstrate a simple “Hello Flask” example in Flask app.&lt;/p&gt;
+
+&lt;p&gt;hello.py&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import sys, os
+sys.path.append(os.path.dirname(__file__))
+
+from flask import Flask
+app = Flask(__name__)
+@app.route(&quot;/&quot;)
+def hello():
+    return &quot;Hello, I love Flask!&quot;
+if __name__ == &quot;__main__&quot;:
+    app.run(host= '0.0.0.0')
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;create-a-wsgi-file&quot;&gt;Create a .wsgi file&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import sys, os
+sys.path.insert(0, &quot;&amp;lt;root directory of your flask app&amp;gt;&quot;) # e.g. /var/www/FlaskApp/
+
+from hello import app as application
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;run-the-service&quot;&gt;Run the service&lt;/h3&gt;
+
+&lt;p&gt;If you run this command,&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ mod_wsgi-express start-server hello.wsgi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You should be able to see below message from your terminal:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Server URL         : http://localhost:8000/
+Server Root        : /tmp/mod_wsgi-localhost:8000:501
+Server Conf        : /tmp/mod_wsgi-localhost:8000:501/httpd.conf
+Error Log File     : /tmp/mod_wsgi-localhost:8000:501/error_log (warn)
+Request Capacity   : 5 (1 process * 5 threads)
+Request Timeout    : 60 (seconds)
+Queue Backlog      : 100 (connections)
+Queue Timeout      : 45 (seconds)
+Server Capacity    : 20 (event/worker), 20 (prefork)
+Server Backlog     : 500 (connections)
+Locale Setting     : en_CA.UTF-8
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If no error log is showing, this means that the Flask service is running and you should be able to open localhost URL &lt;a href=&quot;http://localhost:8000/&quot; title=&quot;localhost&quot;&gt;localhost&lt;/a&gt; to see it display “Hello Flask” message.&lt;/p&gt;
+
+&lt;p&gt;The apache httpd.conf file is located at /etc/apache2/httpd.conf . It is suggested on the Flask website to modify httpd.conf file to configure Apache (&lt;a href=&quot;http://flask.pocoo.org/docs/0.11/deploying/mod_wsgi/&quot;&gt;here&lt;/a&gt;). However, if you check the httpd.conf file in /tmp folder, you will find mod_wsgi is smart enough to pick up the Flask application by checking the path in .wsgi file, as below:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;...
+...
+WSGIDaemonProcess localhost:8000 \
+...
+   home='/var/www/FlaskApp/' \
+...
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;so you don’t have to modify the httpd.conf file.&lt;/p&gt;
+
+&lt;p&gt;In OS X EI Capitan, it is possible if you see an error message as&lt;/p&gt;
+
+&lt;p&gt;install: /usr/libexec/apache2/mod_wsgi.so: Operation not permitted&lt;/p&gt;
+
+&lt;p&gt;when invoking mod_wsgi to start the server. This is due to the System Integrity Protection by Mac EI Capitan and you may follow this &lt;a href=&quot;https://github.com/GrahamDumpleton/mod_wsgi/issues/98&quot;&gt;site&lt;/a&gt; thread to disable it.&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 16 Aug 2016 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/blog/2016/08/16/python-How-To-Serve-Python-Flask-Application-Using-mod_wsgi-express/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2016/08/16/python-How-To-Serve-Python-Flask-Application-Using-mod_wsgi-express/</guid>
+        
+        <category>Python</category>
+        
+        <category>web application</category>
+        
+        <category>Flask</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Python function - pass by value or by reference?</title>
+        <description>&lt;h2 id=&quot;python-function---pass-by-value-or-by-reference&quot;&gt;Python function - pass by value or by reference?&lt;/h2&gt;
+
+&lt;p&gt;Let’s look at below examples to change int number and list in function variables.&lt;/p&gt;
+
+&lt;h3 id=&quot;changing-an-int-number-in-function-variable&quot;&gt;Changing an int number in function variable&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def changeNumber(num):
+	num = 2
+	print ('Changing num to %s',num)
+
+num = 1
+print ('Before change, num is %s',num)
+changeNumber(num)
+print ('After change, num is %s',num)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;('Before change, num is %s', 1)
+('Changing num to %s', 2)
+('After change, num is %s', 1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;changing-an-list-in-function-variable&quot;&gt;Changing an list in function variable&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def changeList(lst):
+	lst.append(50)
+	newlst = [1,2,3,4,5,6,7,8,9,10]
+	lst = newlst
+
+lst = [1,2,3,4]
+print ('Before change, list is ',lst)
+changeList(lst)
+print ('After change, list is ',lst)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Result:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;('Before change, list is ', [1, 2, 3, 4])
+('After change, list is ', [1, 2, 3, 4, 50])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;int-value-is-not-changed-while-list-is-changed-whats-happening&quot;&gt;int value is not changed while list is changed.. What’s happening?&lt;/h3&gt;
+
+&lt;p&gt;In Python, all variables can be seen as the reference to an object in memory (like a tag on an object). When changing the num (type: int), because int is a immutable data type in Python, so in changeNumber(num) method an local variable (also named “num”) is created locally with in the function, and it is assigned as int value 2. However, the original parameter num, is still pointing to 1, thus num is not changed after calling function changeNumber(num).&lt;/p&gt;
+
+&lt;p&gt;When changing the lst (type: list), the parameter lst is passed into the function. In the function it is calling append method, which is to change the content of the list (list is mutable, which means the content of it can be changed). But when we reassign the lst to a new list(newlst), it is the same case as changeNumber again - lst is assigned to a new list but it is a local variable assignment without impacting the external variable. So in this case, the variable itself is not changed externally outside of function, but the content already changed.&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 01 Dec 2015 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/blog/2015/12/01/python-pass-by-value-or-reference/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2015/12/01/python-pass-by-value-or-reference/</guid>
+        
+        <category>Python</category>
+        
+        <category>Function</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>List Comprehension in Python</title>
+        <description>&lt;h2 id=&quot;list-comprehension-in-python---summary&quot;&gt;List Comprehension in Python - Summary&lt;/h2&gt;
+
+&lt;p&gt;This article is to write tips on what is list comprehension in Python, how to write it, and how to use it.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-is-python-list-comprehension&quot;&gt;What is Python list comprehension?&lt;/h3&gt;
+
+&lt;p&gt;List comprehension provides a convenient way to define lists in Python. Traditionally how we create lists in Python is:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nums = [0,1,2,3,4]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;With list comprehension, we can create lists in this new way, as:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nums = [x for x in range(5)]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;how-to-write-list-comprehension&quot;&gt;How to write list comprehension&lt;/h3&gt;
+
+&lt;p&gt;In list comprehension, there are four components. Take below code piece as an example:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nums = [x for x in range(5) if x &amp;gt; 2]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;There are four parts in this list comprehension, including:&lt;/p&gt;
+
+&lt;p&gt;input parameters: range(5)
+variable in input parameters: x
+condition: if x &amp;gt; 2
+list comprehension expression: []&lt;/p&gt;
+
+&lt;p&gt;Once you have above four components, you can write list comprehension.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-generator-by-using-list-comprehension-grammar&quot;&gt;Creating generator by using list comprehension grammar&lt;/h3&gt;
+
+&lt;p&gt;After a list comprehension is created, it will be taken by memory in Python runtime. However, if the list itself is a very large data set, it will occupy a lot of memory as well. Instead of creating list comprehension, we can create generator as an alternative.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nums_generator = (x for x in range(5) if x &amp;gt; 2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Note to create generator using list comprehension grammar, the only difference is we use parentheses () instead of square brackets [].&lt;/p&gt;
+
+&lt;p&gt;The benefits of using generator is, only the generator itself will be loaded into memory, which will let the code run faster if memory is limited. In order to retrieve the elements in generator, we only need to use for loop to access its element:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for item in nums_generator:
+	print item
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Tue, 20 Oct 2015 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/blog/2015/10/20/python-list-comprehension/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2015/10/20/python-list-comprehension/</guid>
+        
+        <category>Python</category>
+        
+        <category>Data Structure</category>
         
         
         <category>blog</category>

@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Python data structure usage summary - Python代写 | Python辅导 | Python assignment | CS代写 | 作业代写 | Python tutor</title>
+
+    <link rel="canonical" href="tangothu.github.io/blog/2015/09/01/python-data-structures/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart=''>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">All about Python</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/assignment/">Assignments</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tutorservice/">Python tutor service</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                        <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
+                        
+                    </div>
+                    <h1>Python data structure usage summary</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by All about Python on September 1, 2015</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<h2 id="python-data-structure-usage---list-tuple-dict-and-set">Python data structure usage - list, tuple, dict and set</h2>
+
+<p>This article is to write notes to record how to define, insert/remove, access and iterate python data structures.</p>
+
+<h3 id="list">list()</h3>
+
+<ul>
+  <li>Define - use square brackets [] to define.</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>classmates = ['Macro','Bob','Julia']
+</code></pre>
+</div>
+<ul>
+  <li>Insert</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>position = 1
+classmates.insert(position,'Aaron') # or use classmates.append('Stephen') which will append data to the last position of list 
+</code></pre>
+</div>
+<ul>
+  <li>Remove</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>classmates.remove('Aaron') # or use classmates.pop(), which will return the last element 
+</code></pre>
+</div>
+<ul>
+  <li>Access</li>
+</ul>
+
+<p>We can use square bracket with index to access element</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>classmates[0] 
+</code></pre>
+</div>
+
+<ul>
+  <li>Iterate</li>
+</ul>
+
+<p>We can use enumerate, to loop list. Enumerate method will get the iterator of list, yield its index and related element, and loop the index until the very end of list. It will create an <em>indexed series</em> of data.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>for i, item in enumerate(classmates):
+	print i, item
+</code></pre>
+</div>
+
+<p>Alternatively we can also use</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>for i in range(0, len(classmates)):
+	print i, classmates[i]
+</code></pre>
+</div>
+
+<p>Note, in Python, list() is not <em>hashable</em>. What hashable means is an object will have a hashvalue (provided by its own <strong>hash</strong>() method and can be compared to other objects) which never changes during its lifetime. For list(), since it is not immutable, the value of itself might be changed, thus if it has hashvalue it will get changed too during its lifetime. That’s why python list() doesn’t have <strong>hash</strong>() method and is not hashable.</p>
+
+<h3 id="tuple">tuple()</h3>
+
+<ul>
+  <li>Define - use parenthesis () to define</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>month = ('Tom','Feb','Dec')
+</code></pre>
+</div>
+
+<ul>
+  <li>Insert</li>
+</ul>
+
+<p>Once a tuple is created, it cannot be inserted with an element since it is immutable.</p>
+
+<ul>
+  <li>Remove</li>
+</ul>
+
+<p>Once a tuple is created, it cannot remove an element since it is immutable.</p>
+
+<ul>
+  <li>Access</li>
+</ul>
+
+<p>We can use square bracket with index to access element</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>month[0] 
+</code></pre>
+</div>
+
+<ul>
+  <li>Iterate
+We can use enumerate, to loop tuple.</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>for i, item in enumerate(month):
+	print i, item
+</code></pre>
+</div>
+
+<h3 id="set">set()</h3>
+
+<ul>
+  <li>Define - use set() with a list in the parenthesis to define it</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>s = set([3,4,5])
+</code></pre>
+</div>
+
+<ul>
+  <li>Insert</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>s.add('5') # s will now become set(['5',3,4,5])
+</code></pre>
+</div>
+
+<ul>
+  <li>Remove</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>s.remove(5) # s will not become set(['5',3,4])
+</code></pre>
+</div>
+
+<ul>
+  <li>Access</li>
+</ul>
+
+<p>Note we cannot use s[0] to access an element in set because set is unordered collection without index.</p>
+
+<ul>
+  <li>Iterate</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>for i in s
+	print i
+</code></pre>
+</div>
+
+<h3 id="dict">dict()</h3>
+
+<p>Dict, in Python, is a <em>mapping</em> type which maps a key to a value. The mapping mechanism is implemented by hash function to the key. 
+Note in dict, the key has to be hashable (thus immutable) - this is because each time when requesting a value using a key, hash(key) should produce the same result, or otherwise you will get two values based on the same key - that means the definition of dict is wrong! As a result, the key should be hashable, or in other words, the hash(key) should always be the same. 
+If the key can be changed, then the hash functino will also return a different value, which shouldn’t happen. Thus, the key has to be immutable (list cannot be the key in dict.)</p>
+
+<ul>
+  <li>Define - use curly brackets {} to define.</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>students = {'kevin':60,'michael':70,'jason':65}
+</code></pre>
+</div>
+
+<ul>
+  <li>Insert</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>students['mike'] = 80
+</code></pre>
+</div>
+
+<ul>
+  <li>Remove</li>
+</ul>
+
+<p>Use key word <em>del</em></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>del students['mike']
+</code></pre>
+</div>
+
+<p>or</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>students.pop('mike') # this will return 80 and remove 'mike':80 in dict
+</code></pre>
+</div>
+
+<ul>
+  <li>Access</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>students['mike']
+</code></pre>
+</div>
+
+<p>or</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>score=students.get('mike')
+</code></pre>
+</div>
+
+<ul>
+  <li>Iterate</li>
+</ul>
+
+<p>Use items() method</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>for key, value in students.items()
+	print key, value
+</code></pre>
+</div>
+
+<p>Reference:
+<a href="https://wiki.python.org/moin/DictionaryKeys">Python Dictionary Keys</a></p>
+
+
+
+                <hr>
+
+                
+
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/blog/2015/09/08/python-function-parameter/" data-toggle="tooltip" data-placement="top" title="Function parameter with default value in Python">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+                				<a href="/tags/#Python" title="Python" rel="19">
+                                    Python
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#Data Structure" title="Data Structure" rel="11">
+                                    Data Structure
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#Function" title="Function" rel="2">
+                                    Function
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#advanced features" title="advanced features" rel="3">
+                                    advanced features
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#accumulative recursion" title="accumulative recursion" rel="4">
+                                    accumulative recursion
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#iteration (while and for loops)" title="iteration (while and for loops)" rel="2">
+                                    iteration (while and for loops)
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="tangothu.github.io">My Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "tangothu";
+    var disqus_identifier = "/blog/2015/09/01/python-data-structures";
+    var disqus_url = "tangothu.github.io/blog/2015/09/01/python-data-structures/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/tangothu">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; All about Python 2017
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=tangothu&repo=tangothu.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src='/js/jquery.min.js '></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src='/js/bootstrap.min.js '></script>
+
+<!-- Custom Theme JavaScript -->
+<script src='/js/hux-blog.min.js '></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-93917811-1';
+    var _gaDomain = 'tangothu.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
